@@ -18,12 +18,12 @@
 | Typography | ✅ Complete | Instrument Sans + Vazirmatn, self-hosted, OFL |
 | Component library | ✅ Complete | 40+ components, all states, live reference page |
 | App shell | ✅ Complete | Rail, topbar, scope switcher, drawer, palette |
-| Screens | ✅ Complete | 7 pages / 40+ inspectable states |
+| Screens | ✅ Complete | 7 pages / 35+ inspectable states |
 | RTL / LTR | ✅ Complete | Logical properties throughout, verified both ways |
 | Responsive | ✅ Complete | 390 / 768 / 834 / 1024 / 1440 verified, 0 overflow |
 | Accessibility | ✅ Passed | Contrast AA, names, focus, targets, reduced motion |
 | Design decisions | ✅ Reviewed | 10 proposals → 6 approved, 4 modified, 0 rejected (`docs/design/decision-review.md`) |
-| Phase 02 architecture | ✅ Proposal | `docs/architecture/phase-02-architecture.md` — 21 sections, 23 decisions |
+| Phase 02 architecture | ✅ Proposal | `docs/architecture/phase-02-architecture.md` — 22 sections, 23 decisions |
 | Application code | ⛔ Not started | Deliberately blocked until design + architecture are approved |
 | Backend / auth / AI providers | ⛔ Not started | Same |
 
@@ -93,7 +93,7 @@ PROJECT_STATUS.md  DECISIONS.md  DESIGN_PROGRESS.md  NEXT_STEPS.md  README.md
 NEXORA_Master_Product_Technical_Specification (1).md
 ```
 
-36 tracked files. No build step, no package manager, no external network request at runtime.
+38 tracked files. No build step, no package manager, no external network request at runtime.
 
 ---
 
