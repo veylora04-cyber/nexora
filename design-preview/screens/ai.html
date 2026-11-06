@@ -125,19 +125,22 @@
               </div>
             </div>
 
+            <div class="state-switch thread-states" role="group" aria-label="AI states">
+                            <span class="state-switch__label" data-t="demo.states.ai"></span>
+                            <button data-demo-variant="ai:normal" aria-pressed="true" data-t="demo.ai.normal"></button>
+                            <button data-demo-variant="ai:stream" aria-pressed="false" data-t="demo.ai.stream"></button>
+                            <button data-demo-variant="ai:rate" aria-pressed="false" data-t="demo.ai.rate"></button>
+                            <button data-demo-variant="ai:timeout" aria-pressed="false" data-t="demo.ai.timeout"></button>
+                            <button data-demo-variant="ai:partial" aria-pressed="false" data-t="demo.ai.partial"></button>
+                            <button data-demo-variant="ai:credential" aria-pressed="false" data-t="demo.ai.credential"></button>
+                            <button data-demo-variant="ai:quota" aria-pressed="false" data-t="demo.ai.quota"></button>
+                            <button data-demo-variant="ai:toolfail" aria-pressed="false" data-t="demo.ai.tool"></button>
+                            <button data-demo-variant="ai:context" aria-pressed="false" data-t="demo.ai.context"></button>
+                            <button data-demo-variant="ai:empty" aria-pressed="false" data-t="demo.ai.empty"></button>
+                          </div>
+
             <div class="ai__thread">
-              <div class="state-switch thread-states" role="group" aria-label="AI states">
-                <span class="state-switch__label" data-t="demo.states.ai"></span>
-                <button data-demo-variant="ai:normal" aria-pressed="true" data-t="demo.ai.normal"></button>
-                <button data-demo-variant="ai:rate" aria-pressed="false" data-t="demo.ai.rate"></button>
-                <button data-demo-variant="ai:timeout" aria-pressed="false" data-t="demo.ai.timeout"></button>
-                <button data-demo-variant="ai:partial" aria-pressed="false" data-t="demo.ai.partial"></button>
-                <button data-demo-variant="ai:credential" aria-pressed="false" data-t="demo.ai.credential"></button>
-                <button data-demo-variant="ai:quota" aria-pressed="false" data-t="demo.ai.quota"></button>
-                <button data-demo-variant="ai:toolfail" aria-pressed="false" data-t="demo.ai.tool"></button>
-                <button data-demo-variant="ai:context" aria-pressed="false" data-t="demo.ai.context"></button>
-                <button data-demo-variant="ai:empty" aria-pressed="false" data-t="demo.ai.empty"></button>
-              </div>
+              
 
               <div class="ai__thread-inner" data-variant-group="ai" data-variant="normal">
 
@@ -255,6 +258,37 @@
                   </div>
                 </div>
 
+              </div>
+
+              <!-- Streaming: the answer is arriving, the composer is a stop control -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="stream" hidden>
+                <div class="msg">
+                  <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+                  <div class="msg__body">
+                    <div class="msg__name"><span data-t="common.you"></span></div>
+                    <p class="msg__text" data-t="ai.stream.m1"></p>
+                  </div>
+                </div>
+
+                <div class="msg msg--ai">
+                  <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <div class="msg__body">
+                    <div class="msg__name">
+                      <span>NEXORA</span>
+                      <span class="badge badge--plain" data-t="ai.model.balanced"></span>
+                    </div>
+                    <p class="msg__text"><span data-t="ai.stream.m2"></span><span class="caret" aria-hidden="true"></span></p>
+                    <div class="gen">
+                      <span class="gen__pulse" aria-hidden="true"></span>
+                      <span class="gen__label" data-t="ai.stream.gen"></span>
+                      <button class="chip chip--action gen__stop" data-demo-toast="toast.paletteRun">
+                        <svg class="icon" aria-hidden="true"><use href="#i-pause"></use></svg>
+                        <span data-t="ai.stream.stop"></span>
+                      </button>
+                    </div>
+                    <p class="t-caption gen__note" data-t="ai.stream.note"></p>
+                  </div>
+                </div>
               </div>
 
               <!-- Rate limit -->
@@ -428,9 +462,13 @@
                       <span data-t="ai.composer.context"></span>
                     </button>
                     <span class="t-meta" style="margin-inline-start:auto" data-t="ai.composer.tokens"></span>
-                    <button class="composer__send" data-demo-toast="toast.paletteRun">
+                    <button class="composer__send" data-hide-in="ai:stream" data-demo-toast="toast.paletteRun">
                       <span data-t="ai.composer.send"></span>
                       <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
+                    </button>
+                    <button class="composer__send composer__send--stop" data-variant-group="ai" data-variant="stream" hidden data-demo-toast="toast.paletteRun">
+                      <span data-t="ai.stream.stop"></span>
+                      <svg class="icon" aria-hidden="true"><use href="#i-pause"></use></svg>
                     </button>
                   </div>
                 </div>

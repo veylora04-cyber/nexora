@@ -132,6 +132,7 @@ NX.i18n.add({
   'demo.ai.tool': { fa: 'ابزار', en: 'Tool' },
   'demo.ai.context': { fa: 'زمینه', en: 'Context' },
   'demo.ai.empty': { fa: 'خالی', en: 'Empty' },
+  'demo.ai.stream': { fa: 'در حال نوشتن', en: 'Streaming' },
   'demo.dash.normal': { fa: 'با کار', en: 'With tasks' },
   'demo.dash.empty': { fa: 'بدون کار', en: 'No tasks' },
   'demo.ws.normal': { fa: 'با عضو', en: 'With members' },

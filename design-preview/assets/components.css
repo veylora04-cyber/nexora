@@ -1721,3 +1721,92 @@
   .approval__fact:nth-child(odd) { border-inline-end: 0; }
   .approval__bind { margin-inline-start: 0; max-width: none; }
 }
+
+/* ---------- Streaming message ------------------------------------------- */
+/* The caret is the only honest way to say "this is still arriving": it marks
+   the exact position the next token will land, which a spinner cannot do.
+   Both the caret and the pulse stop under prefers-reduced-motion — the state
+   is still legible from the label and the stop control. */
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-inline-start: 2px;
+  vertical-align: -0.15em;
+  background: var(--nx-signal);
+  animation: nx-caret 1.05s steps(2, start) infinite;
+}
+@keyframes nx-caret { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+.gen {
+  display: flex;
+  align-items: center;
+  gap: var(--nx-space-2);
+  margin-block-start: var(--nx-space-3);
+  padding: 6px var(--nx-space-2) 6px var(--nx-space-3);
+  border: var(--nx-border-w) solid var(--nx-border-faint);
+  border-radius: var(--nx-radius-sm);
+  background: var(--nx-surface-2);
+  width: fit-content;
+  max-width: 100%;
+}
+.gen__pulse {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--nx-signal-fill);
+  animation: nx-pulse 1.6s var(--nx-ease-out) infinite;
+}
+@keyframes nx-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--nx-signal-fill) 55%, transparent); }
+  70% { box-shadow: 0 0 0 6px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.gen__label {
+  font-size: var(--nx-text-2xs);
+  color: var(--nx-text-2);
+}
+.gen__stop { margin-inline-start: var(--nx-space-1); }
+.gen__note { margin-block-start: var(--nx-space-2); }
+
+.composer__send--stop {
+  background: var(--nx-surface-3);
+  color: var(--nx-text-1);
+  border: var(--nx-border-w) solid var(--nx-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret { animation: none; opacity: 1; }
+  .gen__pulse { animation: none; }
+}
+
+/* Below 520px the six facts are more scannable as label/value rows than as a
+   grid. A 318px-wide two-column grid forces every value onto two or three
+   lines and makes the card 634px tall — taller than the phone viewport it has
+   to fit inside, so the decision scrolls out of view while the user is
+   deciding. Rows cost 180px instead of 400px and read top-to-bottom. */
+@media (max-width: 520px) {
+  .approval__facts { grid-template-columns: 1fr; }
+  .approval__fact {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--nx-space-3);
+    padding: 5px var(--nx-space-4);
+    border-inline-end: 0 !important;
+  }
+  .approval__fact dt { margin-block-end: 0; flex: none; }
+  .approval__fact dd { text-align: end; }
+  .approval__foot { padding-block: 10px; gap: var(--nx-space-2); }
+  .approval__bind {
+    max-width: none;
+    width: 100%;
+    margin-inline-start: 0;
+    text-align: start;
+    padding-block-start: 6px;
+    border-block-start: var(--nx-border-w) solid var(--nx-border-faint);
+  }
+  .approval__head { padding: 10px var(--nx-space-4); }
+  .approval__mark { width: 22px; height: 22px; }
+}

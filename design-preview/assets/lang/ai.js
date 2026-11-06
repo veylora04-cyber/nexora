@@ -245,11 +245,26 @@ NX.i18n.add({
   'ai.empty.ctx': {
     fa: 'با شروع نخستین گفتگو، بافتار آن همین‌جا نمایش داده می‌شود.',
     en: 'Context appears here as soon as the first conversation starts.',
-  },  'ai.empty.body': {
+  },
+  'ai.empty.body': {
     fa: 'یک پرسش بپرسید تا شروع شود، یا اول کلید خودتان را وصل کنید.',
     en: 'Ask something to start, or connect your own key first.',
   },
   'ai.empty.cta': { fa: 'شروع گفتگو', en: 'Start a conversation' },
   'ai.empty.alt': { fa: 'اتصال هوش مصنوعی شخصی', en: 'Connect Personal AI' },
   'ai.empty.sessions': { fa: 'در این فضای کاری گفتگویی ثبت نشده است.', en: 'No conversations in this workspace yet.' },
+  'ai.stream.m1': {
+    fa: 'سه پیشنهاد برای بریف کمپین بنویس و برای هرکدام یک جملهٔ دلیل بیاور.',
+    en: 'Draft three options for the campaign brief and give one line of reasoning for each.',
+  },
+  'ai.stream.m2': {
+    fa: 'گزینهٔ نخست بر شواهد موجود تکیه می‌کند: نرخ تبدیل بخش سازمانی در دو فصل گذشته',
+    en: 'The first option leans on what the data already shows: enterprise-segment conversion over the last two quarters',
+  },
+  'ai.stream.gen': { fa: 'در حال نوشتن…', en: 'Writing…' },
+  'ai.stream.stop': { fa: 'توقف', en: 'Stop' },
+  'ai.stream.note': {
+    fa: 'هر لحظه می‌توانید متوقف کنید؛ متن نوشته‌شده باقی می‌ماند و هزینه فقط برای همان مقدار محاسبه می‌شود.',
+    en: 'You can stop at any moment. What has been written stays, and you are charged only for it.',
+  },
 });

@@ -863,11 +863,8 @@
 /* Sits inside the scrolling thread so a reviewer can switch states without
    leaving the screen; sticky so it never scrolls out of reach. */
 .thread-states {
-  position: sticky;
-  inset-block-start: 0;
-  z-index: 2;
-  margin-block: 0 var(--nx-space-5);
-  padding-block-end: var(--nx-space-3);
+  margin-block: 0 var(--nx-space-3);
+  padding-block-end: 0;
   background: var(--nx-bg);
 }
 
@@ -1118,3 +1115,23 @@
 .matrix__lg .partial { color: var(--nx-warning); }
 .matrix__lg .partial::after { content: "·"; margin-inline-start: 5px; color: var(--nx-text-3); }
 .matrix__lg .no { color: var(--nx-text-3); opacity: .6; }
+
+/* The state strip is a prototype control, not product chrome, but it wraps:
+   three rows at 390px, two at 1280px, and each row is taken straight out of
+   the conversation. One scrollable row keeps every state reachable at any
+   width without spending the thread on them. */
+@media (max-width: 1400px) {
+  .thread-states {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-block-end: var(--nx-space-2);
+  }
+  .thread-states::-webkit-scrollbar { display: none; }
+  .thread-states > * { flex: none; }
+}
+
+/* The date used to sit on its own row above the greeting, costing 24px of the
+   first screenful to say something the sentence below it can carry. */
+.page-head__dot { margin-inline: var(--nx-space-2); color: var(--nx-text-3); opacity: .7; }
+.page-head__date { color: var(--nx-text-3); }

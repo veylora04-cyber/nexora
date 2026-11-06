@@ -437,6 +437,37 @@
       });
     });
 
+    /* A conversation opens at its newest message, not its oldest. Without
+       this the approval card — the reason the screen exists — sits below the
+       fold on first paint, and the user sees a discussion instead of a
+       decision. The state strip is sticky, so it stays put. */
+    const thread = doc.querySelector('.ai__thread');
+    if (thread) {
+      requestAnimationFrame(() => {
+        const card = thread.querySelector('.approval');
+        /* On a phone the card is taller than the thread, so something has to
+           be clipped. Align its top instead of its bottom: the user needs to
+           read what they are approving before they reach the buttons, and the
+           six pixels that fall off the end are the binding note's padding. */
+        const strip = thread.querySelector('.thread-states');
+        const covered = strip ? strip.offsetHeight : 0;
+        const tooTall = card && card.offsetHeight + covered + 16 > thread.clientHeight;
+        if (tooTall) {
+          const delta = card.getBoundingClientRect().top - thread.getBoundingClientRect().top;
+          thread.scrollTop += delta - covered - 8;
+        } else {
+          thread.scrollTop = thread.scrollHeight;
+          /* Scrolling to the end can still park the card's head behind the
+             sticky strip. Nudge it down until the head clears. */
+          if (card) {
+            const head = card.getBoundingClientRect().top;
+            const limit = thread.getBoundingClientRect().top + covered + 8;
+            if (head < limit) thread.scrollTop -= (limit - head);
+          }
+        }
+      });
+    }
+
     /* Loading-state demo */
     doc.querySelectorAll('[data-demo-loading]').forEach((el) =>
       el.addEventListener('click', () => {
