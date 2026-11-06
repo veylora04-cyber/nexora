@@ -1,9 +1,10 @@
 # ACCEPTANCE REPORT — Phase 01 refinement, architecture corrections, UI/UX upgrade
 
 **Branch:** `phase-01-closure-phase-02-architecture`
-**HEAD:** `c45d8ef447243cd7da09579665aae71b4b8b2ddd`
+**HEAD when the work was finished:** `3ed84ddb13fa35d72a85cde7596a17ccdb9479cc`, plus the commit that
+adds this report — `git log -1` on the branch is the authoritative SHA.
 **Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — **not modified, not merged**
-**Remote:** the branch is **6 commits ahead of `origin/phase-01-closure-phase-02-architecture`
+**Remote:** the branch is **9 commits ahead of `origin/phase-01-closure-phase-02-architecture`
 and not pushed.** Push failed with `could not read Username for 'https://github.com'`; no
 credential is available in this environment. Nothing was force-pushed and no history was rewritten.
 
@@ -22,6 +23,9 @@ credential is available in this environment. Nothing was force-pushed and no his
 | `d4958d2` | feat(ui): refine hierarchy, error surfaces and mobile behaviour |
 | `d52f00a` | docs: record the refinement pass and reconcile four stale counts |
 | `c45d8ef` | docs: the repository tracks 40 files, not 38 |
+| `7fb2681` | fix(a11y): return focus to the drawer trigger on close |
+| `a16a809` | docs: acceptance report and before/after evidence |
+| `3ed84dd` | docs: the tree listing now shows the evidence directory and the report |
 
 ---
 
