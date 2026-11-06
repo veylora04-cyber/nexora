@@ -59,7 +59,7 @@ docs/design/
   design-decisions.md approved / proposed / unresolved
   decision-review.md  all ten proposals reviewed against the specification
 docs/architecture/
-  phase-02-architecture.md  technical architecture proposal, 29 decisions, 8 diagrams
+  phase-02-architecture.md  technical architecture proposal, 29 decisions, 12 diagrams
   security-traceability.md  18 security domains: control, phase, test, scope
   error-taxonomy.md         8 AI error classes and their UI mapping
 PROJECT_STATUS.md · DECISIONS.md · DESIGN_PROGRESS.md · NEXT_STEPS.md

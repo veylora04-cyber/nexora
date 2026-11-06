@@ -31,8 +31,8 @@ operation that will never succeed.
 | `AI_PROVIDER_UNAVAILABLE` | Provider disconnection | 503 | Yes, manual | 10 s | Full state card, fail-closed note |
 | `AI_INVALID_CREDENTIAL` | Invalid API key | 401 | **No** | — | Full state card with a fix action |
 | `AI_QUOTA_EXHAUSTED` | Insufficient credits or quota | 402 | **No** | Until the next period | Full state card with a fix action |
-| `TOOL_EXECUTION_FAILED` | Tool execution failure | 422 | Per tool policy | — | Inline on the tool card |
-| `AI_CONTEXT_OVERFLOW` | Context overflow | 413 | **No** — needs a different request | — | Inline, with a trim action |
+| `TOOL_EXECUTION_FAILED` | Tool execution failure | 422 | Per tool policy | — | State card in the thread, carrying the approval id |
+| `AI_CONTEXT_OVERFLOW` | Context overflow | 413 | **No** — needs a different request | — | State card with the carry-over list |
 
 Two properties are deliberate and worth stating:
 
@@ -128,7 +128,7 @@ Two properties are deliberate and worth stating:
 | **Retry policy** | Per tool policy. Destructive tools require a **new approval**, never a retry of the old one (§9.3). |
 | **Recovery action** | `retry_tool` (new approval) or `skip_tool`. |
 | **Logging** | `warn`, with tool name, version, sandbox exit code, and duration. Never the tool's raw output. |
-| **UI** | Inline on the tool card, which already carries the approval state. |
+| **UI** | State card in the thread, carrying the approval id and the attempt count, with `request again` as the primary action. Re-running mints a **new** approval — the card says so, because a spent approval that looks reusable is how a user comes to expect a button that must fail. |
 
 ### `AI_CONTEXT_OVERFLOW` — 413
 
@@ -140,30 +140,39 @@ Two properties are deliberate and worth stating:
 | **Retry policy** | **None** — the same request will fail identically. |
 | **Recovery action** | `trim_context` — opens the context inspector with the largest contributors ranked. |
 | **Logging** | `info`, with token counts by segment (system, history, retrieval, attachments) so the cause is visible without reproducing it. |
-| **UI** | Inline, with the ranked contributors as the action. |
+| **UI** | State card with the ranked contributors replaced by a carry-over list: what moves to the new thread, and a note that the old one is archived rather than deleted. The alternative — trimming silently and answering a question the model only half-heard — is the failure this state exists to prevent. |
 
 ---
 
 ## 3. Mapping to the interface
 
-The prototype renders five AI states. Eight categories need six surfaces, because two of them are not
-full-page conditions:
+The prototype (`design-preview/screens/ai.html`) renders nine AI states, driven by the `data-demo-variant`
+switcher. Eight of them are the categories above; the ninth is the empty workspace.
 
 | UI surface | States it covers | Where it appears |
 |---|---|---|
-| Full state card | rate limit, timeout, provider unavailable, invalid credential, quota exhausted | Replaces the thread body; the composer stays usable where retry is possible |
-| Inline notice | partial failure | Above the delivered answer |
-| Inline on tool card | tool execution failure | Inside the tool call that failed |
-| Inline with action | context overflow | Above the composer, with the trim action |
-| Normal | — | — |
+| Full state card, `--err` | rate limit, invalid credential, quota exhausted | Replaces the thread body; the composer stays usable only where a retry can succeed |
+| Full state card, `--warn` | timeout, partial failure | Replaces the thread body, with the partial output kept below it |
+| State card in the thread | tool execution failure, context overflow | Replaces the thread body for the failed step, not for the workspace |
+| Normal | — | The thread as it reads when nothing is wrong |
 | Empty | — | No sessions yet |
 
-**What was missing before this revision.** The prototype drew rate limit, timeout, partial failure and
-provider disconnection — four of eight. Invalid credential and quota exhaustion are now drawn as
-their own cards, because they are the two errors where the user's next action is *not* "wait": one
-needs a new key, the other needs a decision about money, and a generic "provider problem" card sends
-them to the wrong place. Tool failure and context overflow are inline by design: they are about one
-step or one request, not about the workspace.
+`AI_PROVIDER_UNAVAILABLE` (503) is **not** drawn as its own card. It shares the timeout card's shape
+— same message, same single retry, same preserved prompt — and differs only in the code and the
+`retry_after_ms` it reads from the response. Two cards that differ in one line are one card with a
+variable, and the prototype does not pretend otherwise.
+
+**What this revision added.** The prototype previously drew four of the eight: rate limit, timeout,
+partial failure and invalid credential. Three are new here — quota exhausted, tool execution failure
+and context overflow. Quota is new because it is the only error whose recovery is a decision about
+money rather than a wait, and a generic "provider problem" card sends the user to the wrong place.
+Tool failure is new because it is the only error that arrives *after* an approval, and it is the
+screen that has to make the spent approval obvious. Context overflow is new because its recovery —
+move the thread — is unlike every other recovery in the product.
+
+Every one of the nine states is reachable in the browser from the state switcher at the top of the
+thread, and each was checked at 1440 and 390, in Persian and English, light and dark, with no
+horizontal overflow and no console error.
 
 ---
 

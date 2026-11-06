@@ -116,8 +116,9 @@ with a confirming toast.
 
 ### 9 · Decision review and Phase 02 architecture
 
-Ten proposals reviewed against the master specification (`docs/design/decision-review.md`): 6
-approved, 4 modified, 0 rejected. The four open UX questions were answered rather than deferred.
+Ten proposals reviewed against the master specification (`docs/design/decision-review.md`): the review
+**recommends** 6 approve, 4 modify, 0 reject. A recommendation is not an approval — all ten remain
+`PROPOSED` until the user signs off. The four open UX questions were answered rather than deferred.
 
 **Corrected in the prototype as a result:** the role matrix now matches §17.3 cell for cell — Member ×
 invite changed from a grant to `No*`, and §17.3's two footnotes are rendered, because they are where
@@ -127,8 +128,39 @@ the *conditions* live.
 AI, the two-level scope switcher, and onboarding draft persistence. Each changes an approved surface,
 so each waits for sign-off.
 
-`docs/architecture/phase-02-architecture.md` covers the seventeen required areas as twenty-three
+`docs/architecture/phase-02-architecture.md` covers the seventeen required areas as twenty-nine
 numbered decisions, each tagged spec-stated, decided, or parameter-still-open.
+
+### 10 · Refinement — hierarchy, the approval card, and mobile AI
+
+The prototype was correct and complete but read as a system rather than a product. This pass changed
+hierarchy and left the vocabulary alone: same tokens, same primitives, same visual language.
+
+1. **Dashboard became a command centre.** A context strip states scope, policy, member count and
+   provider before any card. One primary column, "Needs you", leads with the approval that is waiting;
+   everything else that used to compete with it moved to a secondary column carrying live AI activity
+   and usage against the hard limit. The old grid gave nine cards equal weight, which is a way of
+   saying none of them matters.
+2. **The tool call became an approval card.** It states the tool, the destination, what changes, the
+   risk level, whether the change can be reversed, and when the approval expires — then the argument
+   hash and the exact arguments behind a disclosure, then approve/decline, then the note that binds
+   the decision to this user, this workspace and this agent version. Six facts, because the six are
+   what a non-technical approver actually needs to decide.
+3. **Nine AI states instead of five.** Quota exhausted, tool execution failed and context overflow
+   were missing; each has a recovery that is unlike the others, and a generic "provider problem" card
+   would send the user to the wrong place. `error-taxonomy.md` §3 maps all eight codes to surfaces.
+4. **Onboarding became progressive.** A progress bar and a step counter that are derived from the view,
+   so they cannot disagree with the screen. Cap, retention and fail-closed collapsed behind a
+   disclosure that states their defaults in its own summary — the defaults are the recommendation, and
+   hiding them without saying so would be a dark pattern.
+5. **The permission matrix got a legend.** Six kinds of cell, one colour, no explanation; the legend
+   names all six, and the cells keep their own variants.
+6. **Mobile AI was fixed.** At 390px the five header triggers left the thread title about 30px, so it
+   wrapped one character per line, and the composer's send button was clipped out of its own bar.
+   Below 720px the title takes its own row; below 480px the token counter drops out of the bar.
+7. **Design-system debt.** The auth brand column and the overview hero are dark in both themes and
+   carried eight repeated hex literals between them. They now use four `--nx-inverse-*` tokens; the
+   saffron button's ink uses `--nx-on-signal`. No hex literal remains outside `tokens.css`.
 
 
 ---
@@ -139,10 +171,10 @@ All checks run against `python3 -m http.server 8080` with the browser cache disa
 
 | Check | Method | Result |
 |---|---|---|
-| i18n coverage | Every `data-t*` attribute resolved against the dictionary, both languages | **0 missing, 0 partial, 0 raw-key leaks** across 7 pages (807 translated bindings) |
-| Page errors | `pageerror` listener during full render | **0** |
-| Horizontal overflow | `documentElement.scrollWidth` vs viewport, 2 languages × 5 widths × 7 pages | **0 overflows** (70 combinations) |
-| Contrast | Computed foreground vs resolved background, per visible text node, WCAG AA | **Pass** on all 7 pages × 2 themes, plus the five AI failure states in both themes |
+| i18n coverage | Every `data-t*` attribute resolved against the dictionary, both languages | **0 missing, 0 partial, 0 raw-key leaks** across 7 pages × 4 language/theme combinations |
+| Page errors | `pageerror` and `console.error` listeners during full render | **0** |
+| Horizontal overflow | `documentElement.scrollWidth` vs viewport, plus every element's box against the viewport, 4 language/theme combinations × 7 widths × 7 pages | **0 overflowing documents, 0 offending elements** (196 page loads) |
+| Contrast | Computed foreground vs resolved background, per visible text node, WCAG AA | **Pass** on all 7 pages × 2 themes, plus all nine AI states in both themes |
 | Accessible names | Every `a[href]`, `button`, `input`, `select`, `textarea`, `[tabindex]` | **0 unnamed** |
 | Focus visibility | Real keyboard tabbing through the reference page | **Every stop has a visible ring** (only `body` wrap-around does not) |
 | Mobile rail focus | 24 × `Tab` at 390px | **0 stops inside the closed rail** |
