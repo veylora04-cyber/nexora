@@ -4,10 +4,10 @@
 **Branch tip:** `git log -1` on the branch. The table in §1 lists the commits that carry work; small
 documentation corrections that follow them are visible in `git log`.
 **Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — **not modified, not merged**
-**Remote:** the branch has **unpushed commits** on top of
-`origin/phase-01-closure-phase-02-architecture` (`e8cfcfa`). Push failed with
-`could not read Username for 'https://github.com'`; no credential is available in this environment.
-Nothing was force-pushed and no history was rewritten.
+**Remote:** **pushed.** `origin/phase-01-closure-phase-02-architecture` moved `e8cfcfa..8e29275`
+as a fast-forward, and the remote tip was read back through the GitHub API to confirm it matches the
+local HEAD. `origin/main` is still `056d0a8` — not modified, not merged. Nothing was force-pushed
+and no history was rewritten.
 
 ---
 
@@ -236,20 +236,17 @@ All three dismissal paths now return focus to the trigger that opened the drawer
 
 What remains:
 
-1. **The branch is not pushed.** No GitHub credential exists in this environment. Everything is
-   committed locally on `phase-01-closure-phase-02-architecture`; `git push` will work from a
-   machine that has one.
-2. **`AI_PROVIDER_UNAVAILABLE` (503) has no card of its own.** It shares the timeout card, differing
+1. **`AI_PROVIDER_UNAVAILABLE` (503) has no card of its own.** It shares the timeout card, differing
    only in the code and the retry delay. `error-taxonomy.md` §3 says so rather than implying a
    separate surface exists.
-3. **The AI reading column is 544 px at 1440.** Correct for a three-pane layout, but a reader who
+2. **The AI reading column is 544 px at 1440.** Correct for a three-pane layout, but a reader who
    maximises the thread would want the session list to collapse on demand; that is a Phase 02
    interaction, not a Phase 01 defect.
-4. **The prototype's annotation layer is still present.** Three `Proposal` badges mark unapproved
+3. **The prototype's annotation layer is still present.** Three `Proposal` badges mark unapproved
    decisions and must be deleted, not restyled, at hand-off.
-5. **The dashboard widget grid remains deferred**, as §14.5 requires — Phase 01's layout is
+4. **The dashboard widget grid remains deferred**, as §14.5 requires — Phase 01's layout is
    grid-ready, the grid itself is Phase 02.
-6. **No real behaviour.** Every action is a local interaction or a toast. Persistence is
+5. **No real behaviour.** Every action is a local interaction or a toast. Persistence is
    `localStorage` for theme and language only.
 
 ---
