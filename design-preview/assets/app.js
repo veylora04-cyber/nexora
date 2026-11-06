@@ -234,11 +234,25 @@
       });
     }
 
+    /* Every drawer closes the same way: Escape, the scrim, or the close button.
+       Focus goes back to whatever opened it — without that a keyboard user
+       lands on <body> and has to tab in from the top of the page again. */
+    let drawerOpener = null;
+    const closeDrawers = () => {
+      const open = doc.querySelectorAll('.drawer[data-open="true"]');
+      if (!open.length) return false;
+      open.forEach((d) => d.setAttribute('data-open', 'false'));
+      if (drawerOpener && doc.contains(drawerOpener)) drawerOpener.focus();
+      drawerOpener = null;
+      return true;
+    };
+
     const notifBtn = doc.getElementById('notif-btn');
     const notifDrawer = doc.getElementById('notif-drawer');
     if (notifBtn && notifDrawer) {
       notifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        drawerOpener = notifBtn;
         notifDrawer.setAttribute('data-open', 'true');
         openScrim();
         setTimeout(() => notifDrawer.querySelector('[data-drawer-close]').focus(), 30);
@@ -248,6 +262,8 @@
       b.addEventListener('click', () => {
         b.closest('.drawer').setAttribute('data-open', 'false');
         closeScrim();
+        if (drawerOpener && doc.contains(drawerOpener)) drawerOpener.focus();
+        drawerOpener = null;
       })
     );
 
@@ -259,6 +275,7 @@
         e.stopPropagation();
         const drawer = doc.getElementById(btn.getAttribute('data-drawer-open'));
         if (!drawer) return;
+        drawerOpener = btn;
         drawer.setAttribute('data-open', 'true');
         openScrim();
         const target = drawer.querySelector('[data-drawer-close]') || drawer;
@@ -306,9 +323,7 @@
       scrimEl.addEventListener('click', () => {
         closeAll();
         closePalette();
-        doc.querySelectorAll('.drawer[data-open="true"]').forEach((d) =>
-          d.setAttribute('data-open', 'false')
-        );
+        closeDrawers();
         doc.querySelectorAll('.modal[data-open="true"]').forEach((m) =>
           m.setAttribute('data-open', 'false')
         );
@@ -352,9 +367,7 @@
       } else if (e.key === 'Escape') {
         closeAll();
         closePalette();
-        doc.querySelectorAll('.drawer[data-open="true"]').forEach((d) =>
-          d.setAttribute('data-open', 'false')
-        );
+        closeDrawers();
         doc.querySelectorAll('.modal[data-open="true"]').forEach((m) =>
           m.setAttribute('data-open', 'false')
         );
