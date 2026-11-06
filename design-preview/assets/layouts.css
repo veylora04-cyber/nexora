@@ -21,13 +21,13 @@
   justify-content: flex-start;
   gap: var(--nx-space-9);
   padding: var(--nx-space-8) var(--nx-space-9);
-  background: #07100e;
-  color: #e9f0ed;
+  background: var(--nx-inverse-bg);
+  color: var(--nx-inverse-fg);
   border-inline-end: 1px solid rgba(233, 240, 237, 0.08);
 }
 
-.auth__brand .brand { color: #e9f0ed; }
-.auth__brand .brand__mark { color: #3fc2b0; }
+.auth__brand .brand { color: var(--nx-inverse-fg); }
+.auth__brand .brand__mark { color: var(--nx-inverse-accent); }
 
 .auth__brand-copy { position: relative; z-index: 1; max-width: 34ch; }
 
@@ -36,7 +36,7 @@
   line-height: 1.28;
   letter-spacing: var(--nx-tracking-display);
   font-weight: var(--nx-weight-medium);
-  color: #f2f8f6;
+  color: var(--nx-inverse-fg-strong);
   margin-block-end: var(--nx-space-4);
 }
 
@@ -59,7 +59,7 @@
 .auth__diagram .ring { stroke: rgba(63, 194, 176, 0.16); stroke-width: 1; }
 .auth__diagram .ring--2 { stroke: rgba(63, 194, 176, 0.26); }
 .auth__diagram .ring--3 { stroke: rgba(63, 194, 176, 0.55); }
-.auth__diagram .node { fill: #3fc2b0; }
+.auth__diagram .node { fill: var(--nx-inverse-accent); }
 .auth__diagram .node--dim { fill: rgba(63, 194, 176, 0.55); }
 .auth__diagram .tick { stroke: rgba(63, 194, 176, 0.22); stroke-width: 1; }
 
@@ -89,7 +89,7 @@
   border-radius: 50%;
   border: 1px solid rgba(63, 194, 176, 0.6);
 }
-.rg--1 { width: 6px; height: 6px; background: #3fc2b0; border-color: #3fc2b0; }
+.rg--1 { width: 6px; height: 6px; background: var(--nx-inverse-accent); border-color: var(--nx-inverse-accent); }
 .rg--2 { width: 12px; height: 12px; }
 .rg--3 { width: 18px; height: 18px; border-color: rgba(63, 194, 176, 0.32); }
 
@@ -241,6 +241,7 @@
 }
 
 .onb__top {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -466,6 +467,27 @@
   padding: var(--nx-space-4) var(--nx-space-6);
 }
 .ai__thread-inner { max-width: 720px; margin-inline: auto; }
+
+/* Below 720 the five header triggers leave the title about 30px, which wraps
+   it one character per line. Give the title its own row and let the triggers
+   share the next one. */
+@media (max-width: 720px) {
+  .ai__thread-head {
+    flex-wrap: wrap;
+    gap: var(--nx-space-2);
+    padding-inline: var(--nx-space-4);
+  }
+  .ai__thread-title { flex: 1 1 100%; min-width: 0; }
+  .ai__thread-head > .cluster { margin-inline-start: auto; }
+  .ai__thread { padding-inline: var(--nx-space-4); }
+  .ai__composer { padding-inline: var(--nx-space-4); }
+}
+
+/* The token counter is the first thing to go when the bar runs out of room;
+   the two actions on either side of it are not. */
+@media (max-width: 480px) {
+  .composer__bar .t-meta { display: none; }
+}
 
 .ai__composer {
   flex: none;
@@ -724,19 +746,19 @@
 .home-hero {
   position: relative;
   overflow: hidden;
-  background: #07100e;
-  color: #e9f0ed;
+  background: var(--nx-inverse-bg);
+  color: var(--nx-inverse-fg);
   padding: var(--nx-space-10) var(--nx-space-6) var(--nx-space-11);
   border-block-end: 1px solid rgba(233, 240, 237, 0.08);
 }
 .home-hero__inner { max-width: 1160px; margin-inline: auto; position: relative; z-index: 1; }
-.home-hero__mark { color: #3fc2b0; margin-block-end: var(--nx-space-6); }
+.home-hero__mark { color: var(--nx-inverse-accent); margin-block-end: var(--nx-space-6); }
 .home-hero__title {
   font-size: clamp(2.25rem, 4.4vw, 3.75rem);
   line-height: 1.06;
   letter-spacing: -0.03em;
   font-weight: var(--nx-weight-semibold);
-  color: #f4faf8;
+  color: var(--nx-inverse-fg-strong);
   max-width: 22ch;
 }
 .home-hero__sub {
@@ -749,7 +771,7 @@
 .home-hero__actions { margin-block-start: var(--nx-space-6); display: flex; gap: var(--nx-space-3); flex-wrap: wrap; }
 /* The hero sits on ink in both themes, so the quiet button needs light ink. */
 .home-hero .btn--ghost { color: rgba(233, 240, 237, 0.8); }
-.home-hero .btn--ghost:hover:not(:disabled) { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.home-hero .btn--ghost:hover:not(:disabled) { color: var(--nx-inverse-fg-strong); background: rgba(255, 255, 255, 0.08); }
 .home-hero__rings {
   position: absolute;
   inset-block-end: -55%;
@@ -1009,3 +1031,90 @@
   .ctxbar__item--end { margin-inline-start: 0; }
   .stat3 { gap: var(--nx-space-2); }
 }
+
+/* ---------- Onboarding progress -----------------------------------------
+   The step list is hidden below 640px, so the bar and the compact counter
+   carry the same information at the widths where the list cannot. */
+/* The bar is a hairline on the header's own bottom edge, not a flex item:
+   as an item it collapses to zero width beside the brand. The label takes the
+   step list's slot in the row, because on mobile that list is gone. */
+.onb__progress {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -1px;
+  height: 3px;
+  margin: 0;
+  background: var(--nx-border);
+  overflow: hidden;
+}
+.onb__progress-fill {
+  height: 100%;
+  width: 25%;
+  background: var(--nx-primary);
+  transition: width var(--nx-dur-base) var(--nx-ease-out);
+}
+.onb__progress-label {
+  display: none;
+  margin: 0;
+  font-size: var(--nx-text-2xs);
+  color: var(--nx-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Advanced onboarding settings stay collapsed: the defaults are the product's
+   recommendation, and the hint states them so the disclosure is honest. */
+.onb-adv {
+  border: var(--nx-border-w) solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  background: var(--nx-surface-2);
+}
+.onb-adv summary {
+  display: flex;
+  align-items: center;
+  gap: var(--nx-space-2);
+  padding: 10px var(--nx-space-4);
+  font-size: var(--nx-text-xs);
+  color: var(--nx-text-2);
+  cursor: pointer;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.onb-adv summary::-webkit-details-marker { display: none; }
+.onb-adv summary:hover { color: var(--nx-text-1); }
+.onb-adv summary .icon-dir { transition: transform var(--nx-dur-fast) var(--nx-ease-out); }
+.onb-adv[open] summary .icon-dir { transform: rotate(90deg); }
+[dir="rtl"] .onb-adv summary .icon-dir { transform: rotate(180deg); }
+[dir="rtl"] .onb-adv[open] summary .icon-dir { transform: rotate(90deg); }
+.onb-adv__hint {
+  margin-inline-start: auto;
+  font-size: var(--nx-text-3xs);
+  color: var(--nx-text-3);
+}
+.onb-adv__body {
+  padding: var(--nx-space-4);
+  border-block-start: var(--nx-border-w) solid var(--nx-border-faint);
+}
+
+@media (max-width: 640px) {
+  .onb__progress-label { display: block; }
+  .onb-adv__hint { margin-inline-start: 0; width: 100%; }
+}
+
+/* ---------- Permission matrix legend ------------------------------------
+   Six states, not three. The legend is what stops 'partial' from meaning
+   'a bit of everything' when the specification means five different things. */
+.matrix__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nx-space-2) var(--nx-space-5);
+  margin-block-end: var(--nx-space-3);
+  font-size: var(--nx-text-3xs);
+  color: var(--nx-text-3);
+}
+.matrix__lg { display: inline-flex; align-items: center; gap: 6px; }
+.matrix__lg .yes { color: var(--nx-primary); display: inline-flex; }
+.matrix__lg .yes .icon { width: 13px; height: 13px; }
+.matrix__lg .partial { color: var(--nx-warning); }
+.matrix__lg .partial::after { content: "·"; margin-inline-start: 5px; color: var(--nx-text-3); }
+.matrix__lg .no { color: var(--nx-text-3); opacity: .6; }

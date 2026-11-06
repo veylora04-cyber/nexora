@@ -107,6 +107,9 @@ NX.i18n.add({
   },
 
   /* Step 3 — AI */
+  'onb.stepOf': { fa: 'گام', en: 'Step' },
+  'onb.s3.adv': { fa: 'تنظیمات پیشرفته', en: 'Advanced settings' },
+  'onb.s3.advHint': { fa: 'سقف ۵۰ دلار · نگهداری ۳۰ روز · توقف در قطعی', en: '$50 cap · 30-day retention · stops on failure' },
   'onb.s3.title': { fa: 'هوش مصنوعی از کجا پاسخ بگیرد؟', en: 'Where should the AI get its answers?' },
   'onb.s3.sub': {
     fa: 'هر دو مسیر همیشه در دسترس‌اند؛ این انتخاب فقط نقطهٔ شروع است.',

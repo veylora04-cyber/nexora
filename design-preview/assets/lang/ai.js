@@ -171,18 +171,72 @@ NX.i18n.add({
     en: 'The three main competitors differ on base price, usage ceiling and enterprise support. This summary rests only on the two sources that were read.',
   },
 
-  'ai.err.offline.badge': { fa: 'هوش مصنوعی شخصی قطع است', en: 'Personal AI disconnected' },
-  'ai.err.offline.code': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
-  'ai.err.offline.title': { fa: 'درخواست‌ها متوقف شده‌اند', en: 'Requests are stopped' },
-  'ai.err.offline.body': {
+  'ai.err.credential.badge': { fa: 'هوش مصنوعی شخصی قطع است', en: 'Personal AI disconnected' },
+  'ai.err.credential.code': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
+  'ai.err.credential.title': { fa: 'درخواست‌ها متوقف شده‌اند', en: 'Requests are stopped' },
+  'ai.err.credential.body': {
     fa: 'برای این فضای کاری «بستن در خطا» روشن است؛ بنابراین هیچ درخواستی به Central AI نرفت. داده‌ها نزد همان Providerی ماند که خودتان انتخاب کرده بودید.',
     en: 'Fail-closed is on for this workspace, so nothing was sent to Central AI. Your data stayed with the provider you chose.',
   },
-  'ai.err.offline.cta': { fa: 'تنظیمات اتصال', en: 'Open connection settings' },
-  'ai.err.offline.alt': { fa: 'اجازهٔ Central AI برای این نشست', en: 'Allow Central AI for this session' },
-  'ai.err.offline.note': {
+  'ai.err.credential.cta': { fa: 'تنظیمات اتصال', en: 'Open connection settings' },
+  'ai.err.credential.alt': { fa: 'اجازهٔ Central AI برای این نشست', en: 'Allow Central AI for this session' },
+  'ai.err.credential.note': {
     fa: 'بازگشت خودکار وجود ندارد؛ هر بازگشت نیازمند اجازهٔ صریح شماست.',
     en: 'There is no automatic fallback. Every fallback needs your explicit permission first.',
+  },
+
+  /* 402 — the only failure with a commercial recovery, and the only one the
+     user cannot fix alone. No retry button: retrying spends nothing and
+     changes nothing. */
+  'ai.err.quota.badge': { fa: 'سهمیهٔ ماه تمام شد', en: 'Monthly quota spent' },
+  'ai.err.quota.code': { fa: '۴۰۲ · سقف ۵۰ دلار', en: '402 · $50 cap' },
+  'ai.err.quota.title': { fa: 'سهمیهٔ این ماه مصرف شد', en: "This month's allowance is spent" },
+  'ai.err.quota.body': {
+    fa: 'تا پایان دوره (۱۲ روز) درخواست‌های Central AI پذیرفته نمی‌شوند. گفتگوها، فایل‌ها و تنظیمات دست‌نخورده می‌مانند.',
+    en: 'Central AI will not accept requests for the remaining 12 days of this period. Conversations, files and settings are untouched.',
+  },
+  'ai.err.quota.cta': { fa: 'افزایش سقف', en: 'Raise the cap' },
+  'ai.err.quota.alt': { fa: 'ادامه با هوش مصنوعی شخصی', en: 'Continue with Personal AI' },
+  'ai.err.quota.note': {
+    fa: 'تغییر سقف یک اقدام مدیریتی است و در گزارش ممیزی ثبت می‌شود.',
+    en: 'Raising the cap is a manager action and is recorded in the audit log.',
+  },
+
+  /* 422 — the approval ran and the tool failed. The point of this screen is
+     that the approval is spent: running again needs a new one. */
+  'ai.err.tool.badge': { fa: 'اجرا ناموفق', en: 'Execution failed' },
+  'ai.err.tool.code': { fa: '۴۲۲ · اجرای ابزار', en: '422 · tool execution' },
+  'ai.err.tool.title': { fa: 'تأیید شما اجرا شد، اما ابزار خطا داد', en: 'Your approval ran, but the tool failed' },
+  'ai.err.tool.body': {
+    fa: 'درخواست به سیستم مقصد رسید و همان‌جا برگشت خورد. هیچ تغییری اعمال نشد و چیزی برای بازگرداندن وجود ندارد.',
+    en: 'The request reached the destination system and was rejected there. Nothing was changed, so there is nothing to undo.',
+  },
+  'ai.err.tool.f1': { fa: 'ابزار: ایمیل — ارسال پیام', en: 'Tool: mail — send message' },
+  'ai.err.tool.f2': { fa: 'شناسهٔ تأیید: apr_01J8QK', en: 'Approval: apr_01J8QK' },
+  'ai.err.tool.f3': { fa: 'تلاش ۱ از ۳', en: 'Attempt 1 of 3' },
+  'ai.err.tool.cta': { fa: 'درخواست دوباره', en: 'Request again' },
+  'ai.err.tool.alt': { fa: 'دیدن پاسخ مقصد', en: "See the destination's reply" },
+  'ai.err.tool.note': {
+    fa: 'اجرای دوباره به تأیید تازه نیاز دارد؛ همین تأیید مصرف شده است.',
+    en: 'Running it again needs a new approval — this one is spent.',
+  },
+
+  /* 413 — the answer would be truncated, so we move the thread instead. */
+  'ai.err.context.badge': { fa: 'زمینه پر شد', en: 'Context full' },
+  'ai.err.context.code': { fa: '۴۱۳ · پنجرهٔ زمینه', en: '413 · context window' },
+  'ai.err.context.title': { fa: 'این گفتگو از حد زمینه گذشت', en: 'This conversation is past the context limit' },
+  'ai.err.context.body': {
+    fa: 'ادامه دادن در همین گفتگو پاسخ را از میانه می‌بُرد. سه نکتهٔ کلیدی به یک گفتگوی تازه منتقل می‌شود.',
+    en: 'Continuing here would cut the answer off mid-sentence. Three key facts move to a new conversation instead.',
+  },
+  'ai.err.context.f1': { fa: 'هدف: بازبینی قرارداد ۱۴۰۴', en: 'Goal: review the 1404 contract' },
+  'ai.err.context.f2': { fa: 'تصمیم‌های گرفته‌شده: ۳ مورد', en: 'Decisions taken: 3' },
+  'ai.err.context.f3': { fa: 'منابع خوانده‌شده: ۴ فایل', en: 'Sources read: 4 files' },
+  'ai.err.context.cta': { fa: 'ادامه در گفتگوی تازه', en: 'Continue in a new conversation' },
+  'ai.err.context.alt': { fa: 'خلاصه کن و ادامه بده', en: 'Summarise and continue' },
+  'ai.err.context.note': {
+    fa: 'این گفتگو بایگانی می‌ماند و حذف نمی‌شود.',
+    en: 'This conversation is archived, not deleted.',
   },
 
   'ai.empty.title': { fa: 'هنوز گفتگویی نیست', en: 'No conversations yet' },

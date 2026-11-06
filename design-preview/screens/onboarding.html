@@ -38,6 +38,14 @@
         <span class="onb__step" data-step="4" data-state="next"><span class="onb__step-num" data-num="4"></span><span data-t="onb.step4"></span></span>
       </div>
 
+      <div class="onb__progress" id="onb-progress" hidden aria-hidden="true">
+        <div class="onb__progress-fill" id="onb-progress-fill"></div>
+      </div>
+      <p class="onb__progress-label" id="onb-progress-label" hidden>
+        <span data-t="onb.stepOf"></span>
+        <span class="t-num"><span id="onb-step-now" data-num="1"></span> / <span data-num="4"></span></span>
+      </p>
+
       <button class="btn btn--quiet btn--sm onb__exit" type="button">
         <svg class="icon icon-dir" aria-hidden="true"><use href="#i-logout"></use></svg>
         <span data-t="onb.exit"></span>
@@ -304,41 +312,49 @@
                 </div>
               </div>
 
-              <div class="grid grid-2">
-                <div class="field">
-                  <label class="field__label" for="onb-model" data-t="onb.s3.model"></label>
-                  <select class="select" id="onb-model">
-                    <option selected data-t="onb.model.balanced"></option>
-                    <option data-t="onb.model.fast"></option>
-                    <option data-t="onb.model.deep"></option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label class="field__label" for="onb-cap" data-t="onb.s3.cap"></label>
-                  <input class="input" id="onb-cap" type="text" inputmode="numeric" value="50" dir="ltr" />
-                  <p class="field__hint" data-t="onb.s3.capHint"></p>
-                </div>
-              </div>
-
               <div class="field">
-                <label class="field__label" for="onb-retention" data-t="onb.s3.retention"></label>
-                <select class="select" id="onb-retention">
-                  <option data-t="onb.s3.ret.1"></option>
-                  <option selected data-t="onb.s3.ret.2"></option>
-                  <option data-t="onb.s3.ret.3"></option>
+                <label class="field__label" for="onb-model" data-t="onb.s3.model"></label>
+                <select class="select" id="onb-model">
+                  <option selected data-t="onb.model.balanced"></option>
+                  <option data-t="onb.model.fast"></option>
+                  <option data-t="onb.model.deep"></option>
                 </select>
-                <p class="field__hint" data-t="onb.s3.retHint"></p>
               </div>
 
-              <div class="list list--flush">
-                <div class="list__row">
-                  <div class="list__main">
-                    <div class="list__title" data-t="onb.s3.fail"></div>
-                    <div class="list__sub" data-t="onb.s3.failSub"></div>
+              <details class="onb-adv">
+                <summary>
+                  <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-chevronRight"></use></svg>
+                  <span data-t="onb.s3.adv"></span>
+                  <span class="onb-adv__hint" data-t="onb.s3.advHint"></span>
+                </summary>
+                <div class="stack stack-5 onb-adv__body">
+                  <div class="field">
+                    <label class="field__label" for="onb-cap" data-t="onb.s3.cap"></label>
+                    <input class="input" id="onb-cap" type="text" inputmode="numeric" value="50" dir="ltr" />
+                    <p class="field__hint" data-t="onb.s3.capHint"></p>
                   </div>
-                  <label class="switch"><input type="checkbox" checked data-t-aria="onb.s3.fail" /></label>
+
+                  <div class="field">
+                    <label class="field__label" for="onb-retention" data-t="onb.s3.retention"></label>
+                    <select class="select" id="onb-retention">
+                      <option data-t="onb.s3.ret.1"></option>
+                      <option selected data-t="onb.s3.ret.2"></option>
+                      <option data-t="onb.s3.ret.3"></option>
+                    </select>
+                    <p class="field__hint" data-t="onb.s3.retHint"></p>
+                  </div>
+
+                  <div class="list list--flush">
+                    <div class="list__row">
+                      <div class="list__main">
+                        <div class="list__title" data-t="onb.s3.fail"></div>
+                        <div class="list__sub" data-t="onb.s3.failSub"></div>
+                      </div>
+                      <label class="switch"><input type="checkbox" checked data-t-aria="onb.s3.fail" /></label>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </details>
             </form>
 
             <aside class="onb-summary">
@@ -528,6 +544,18 @@
          with the screen it labels. */
       var step = name === 'smart' ? 1 : name === 'smart2' ? 2 : name === 'smart3' ? 3 : name === 'smart4' ? 4 : 0;
       document.getElementById('onb-steps').hidden = step === 0;
+
+      /* The bar and the compact counter are the same fact at two widths: the
+         full step list is hidden below 640px, and a step you cannot see is a
+         step you cannot trust. */
+      var bar = document.getElementById('onb-progress');
+      var fill = document.getElementById('onb-progress-fill');
+      var label = document.getElementById('onb-progress-label');
+      var now = document.getElementById('onb-step-now');
+      if (bar) bar.hidden = step === 0;
+      if (label) label.hidden = step === 0;
+      if (fill) fill.style.width = (step / 4 * 100) + '%';
+      if (now) now.textContent = NX.i18n.num(step);
       document.querySelectorAll('.onb__step').forEach(function (s) {
         var n = Number(s.getAttribute('data-step'));
         s.setAttribute('data-state', n < step ? 'done' : n === step ? 'current' : 'next');

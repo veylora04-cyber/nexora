@@ -266,6 +266,18 @@
             <span class="badge badge--signal" data-t="wsPage.roles.proposal"></span>
           </div>
 
+          <!-- The matrix uses six kinds of cell, and each cell names its own
+               variant ("مشاهده هزینه", "طبق مجوز"). The legend names the six
+               kinds, so a variant can be read without guessing. -->
+          <div class="matrix__legend" role="list">
+            <span class="matrix__lg" role="listitem"><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span data-t="wsPage.lg.full"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.limitedWord"></span><span data-t="wsPage.lg.limited"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.delegWord"></span><span data-t="wsPage.lg.deleg"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.ownWord"></span><span data-t="wsPage.lg.own"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.viewWord"></span><span data-t="wsPage.lg.view"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="no">—</span><span data-t="wsPage.lg.none"></span></span>
+          </div>
+
           <div class="panel table-scroll">
             <table class="matrix">
               <thead>

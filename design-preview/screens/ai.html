@@ -94,11 +94,11 @@
           <!-- Thread -->
           <div class="ai__col">
             <div class="ai__thread-head">
-              <div style="min-width:0" data-hide-in="ai:empty">
+              <div class="ai__thread-title" data-hide-in="ai:empty">
                 <div class="t-h3" style="font-size:var(--nx-text-md)" data-t="ai.thread.title"></div>
                 <div class="t-caption" data-t="ai.thread.sub"></div>
               </div>
-              <div style="min-width:0" data-variant-group="ai" data-variant="empty" hidden>
+              <div class="ai__thread-title" data-variant-group="ai" data-variant="empty" hidden>
                 <div class="t-h3" style="font-size:var(--nx-text-md)" data-t="ai.empty.head"></div>
                 <div class="t-caption" data-t="ai.empty.headSub"></div>
               </div>
@@ -132,7 +132,10 @@
                 <button data-demo-variant="ai:rate" aria-pressed="false" data-t="demo.ai.rate"></button>
                 <button data-demo-variant="ai:timeout" aria-pressed="false" data-t="demo.ai.timeout"></button>
                 <button data-demo-variant="ai:partial" aria-pressed="false" data-t="demo.ai.partial"></button>
-                <button data-demo-variant="ai:offline" aria-pressed="false" data-t="demo.ai.offline"></button>
+                <button data-demo-variant="ai:credential" aria-pressed="false" data-t="demo.ai.credential"></button>
+                <button data-demo-variant="ai:quota" aria-pressed="false" data-t="demo.ai.quota"></button>
+                <button data-demo-variant="ai:toolfail" aria-pressed="false" data-t="demo.ai.tool"></button>
+                <button data-demo-variant="ai:context" aria-pressed="false" data-t="demo.ai.context"></button>
                 <button data-demo-variant="ai:empty" aria-pressed="false" data-t="demo.ai.empty"></button>
               </div>
 
@@ -319,19 +322,80 @@
               </div>
 
               <!-- Provider disconnected, fail-closed -->
-              <div class="ai__thread-inner" data-variant-group="ai" data-variant="offline" hidden>
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="credential" hidden>
                 <div class="state-card state-card--err">
                   <div class="cluster cluster-2">
-                    <span class="badge badge--err"><span class="dot dot--signal"></span><span data-t="ai.err.offline.badge"></span></span>
-                    <span class="t-caption" data-t="ai.err.offline.code"></span>
+                    <span class="badge badge--err"><span class="dot dot--signal"></span><span data-t="ai.err.credential.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.credential.code"></span>
                   </div>
-                  <h3 class="t-h3" data-t="ai.err.offline.title"></h3>
-                  <p class="t-body" data-t="ai.err.offline.body"></p>
+                  <h3 class="t-h3" data-t="ai.err.credential.title"></h3>
+                  <p class="t-body" data-t="ai.err.credential.body"></p>
                   <div class="cluster cluster-2">
-                    <button class="btn btn--primary btn--sm" data-t="ai.err.offline.cta"></button>
-                    <button class="btn btn--ghost btn--sm" data-t="ai.err.offline.alt"></button>
+                    <button class="btn btn--primary btn--sm" data-t="ai.err.credential.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.credential.alt"></button>
                   </div>
-                  <p class="t-caption" data-t="ai.err.offline.note"></p>
+                  <p class="t-caption" data-t="ai.err.credential.note"></p>
+                </div>
+              </div>
+
+              <!-- Quota exhausted: no retry, because retrying cannot help -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="quota" hidden>
+                <div class="state-card state-card--err">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--err"><span data-t="ai.err.quota.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.quota.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.quota.title"></h3>
+                  <p class="t-body" data-t="ai.err.quota.body"></p>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--primary btn--sm" data-t="ai.err.quota.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.quota.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.quota.note"></p>
+                </div>
+              </div>
+
+              <!-- Tool execution failed: the approval is spent, not reusable -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="toolfail" hidden>
+                <div class="state-card state-card--err">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--err"><span data-t="ai.err.tool.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.tool.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.tool.title"></h3>
+                  <p class="t-body" data-t="ai.err.tool.body"></p>
+                  <ul class="state-card__list">
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-zap"></use></svg><span data-t="ai.err.tool.f1"></span></li>
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-lock"></use></svg><span class="code" data-t="ai.err.tool.f2"></span></li>
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-refresh"></use></svg><span data-t="ai.err.tool.f3"></span></li>
+                  </ul>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--secondary btn--sm" data-t="ai.err.tool.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.tool.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.tool.note"></p>
+                </div>
+              </div>
+
+              <!-- Context overflow: move the thread, do not truncate it -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="context" hidden>
+                <div class="state-card state-card--warn">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--warn"><span data-t="ai.err.context.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.context.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.context.title"></h3>
+                  <p class="t-body" data-t="ai.err.context.body"></p>
+                  <ul class="state-card__list">
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-target"></use></svg><span data-t="ai.err.context.f1"></span></li>
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-check"></use></svg><span data-t="ai.err.context.f2"></span></li>
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-file"></use></svg><span data-t="ai.err.context.f3"></span></li>
+                  </ul>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--primary btn--sm" data-t="ai.err.context.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.context.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.context.note"></p>
                 </div>
               </div>
 
