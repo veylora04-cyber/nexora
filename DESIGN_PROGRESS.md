@@ -17,7 +17,7 @@ glass panels, and a single universal radius.
 ### 2 · Typography
 Instrument Sans + Vazirmatn, both OFL, subset to `woff2` (148 KB). Persian rules implemented as
 token overrides: tracking forced to `0`, body `+1` step, leading `1.7`. Numbers and dates delegated
-to `Intl` so no screen contains a literal Persian digit.
+to `Intl`, so no value is digit-converted by hand.
 
 **Fixed:** fonts initially 404'd because `tokens.css` referenced `../fonts/` while the files live
 beside it. Corrected to `fonts/…` and verified with `document.fonts.check()`.
@@ -68,6 +68,69 @@ light and lightened to `#859890` in dark; `--nx-signal` darkened to `#96590c` fo
 `--nx-signal-soft`. The hero meta line and the hero's ghost button were below AA on the ink
 background and were corrected. Three demo inputs on the reference page had no accessible name; added.
 
+### 8 · Phase 01 closure — the seven known gaps
+
+Closed one at a time, without touching the token layer or the component vocabulary. Every addition
+reuses an existing primitive.
+
+**AI context inspector below 1240px → drawer.** Added `#ctx-drawer` with the same content: scope rows,
+attached files, usage meter, rule callout. The generic opener (`data-drawer-open="<id>"`) was written
+so any trigger can open any drawer.
+
+**AI session list below 900px → drawer.** `#sessions-drawer` with search, today/week grouping and a
+"new conversation" footer. The model chip hides below 900px — the thread header cannot hold both the
+sessions trigger and the model chip at that width, and the trigger wins because it is navigation.
+
+**Composer cap.** `max-height: 168px` with internal scrolling.
+
+**Five AI failure states.** Rate limit, timeout, partial failure, provider disconnected, and no
+sessions, switched by a sticky strip inside the thread. A generic mechanism (`data-demo-variant`) was
+added rather than five bespoke toggles: it hides the sibling whose `data-variant` does not match and
+hides any element carrying `data-hide-in` for that state, so the session list and the context column
+empty themselves without duplicating markup.
+
+**Empty states.** Dashboard with zero tasks, workspace with zero members, AI with zero sessions —
+each with a real next action, not a shrug.
+
+**Smart Start steps 2–4.** Three new full views: invite (email, default role segmented control, invite
+link policy, guest approval), AI setup (Central vs Personal comparison, model, monthly cap, retention,
+fail-closed), review (three editable rows, three consents, "after creation" summary, callout). The
+step marker derives `data-state` from the active view, so the marker can never disagree with the
+content.
+
+**Notification drawer.** Grouped Today / Earlier, per-row `data-unread`, unread count, mark-all-as-read
+with a confirming toast.
+
+**Fixed during this iteration:**
+- The context drawer rendered empty: its content wrapper reused `ai__col--ctx`, which is
+  `display: none` below 1240px. Replaced with a plain flex column.
+- An open drawer sat *under* the prototype bar. `z-index: calc(var(--nx-z-toast) + 1)` when
+  `data-open="true"`.
+- Focus did not move into an opened drawer: `focus()` ran in the same frame, while the drawer was
+  still `visibility: hidden`. Deferred by one frame; verified landing on the close button at 390px and
+  1200px.
+- The onboarding rewrite leaked `onb.role.member/admin/guest`. Added; re-audited clean.
+- Hardcoded Persian numerals in the step marker and the member count replaced with `data-num`.
+- Page content sat under the prototype bar. Bottom padding added to `.content`; verified
+  `switchBottom 796 < devTop 843`.
+
+### 9 · Decision review and Phase 02 architecture
+
+Ten proposals reviewed against the master specification (`docs/design/decision-review.md`): 6
+approved, 4 modified, 0 rejected. The four open UX questions were answered rather than deferred.
+
+**Corrected in the prototype as a result:** the role matrix now matches §17.3 cell for cell — Member ×
+invite changed from a grant to `No*`, and §17.3's two footnotes are rendered, because they are where
+the *conditions* live.
+
+**Written as a proposal, not built:** the approvals queue, the estimated-cost qualifier for Personal
+AI, the two-level scope switcher, and onboarding draft persistence. Each changes an approved surface,
+so each waits for sign-off.
+
+`docs/architecture/phase-02-architecture.md` covers the seventeen required areas as twenty-three
+numbered decisions, each tagged spec-stated, decided, or parameter-still-open.
+
+
 ---
 
 ## Verification record
@@ -76,13 +139,14 @@ All checks run against `python3 -m http.server 8080` with the browser cache disa
 
 | Check | Method | Result |
 |---|---|---|
-| i18n coverage | Every `data-t*` attribute resolved against the dictionary, both languages | **0 missing, 0 partial, 0 raw-key leaks** across 7 pages (659 translated bindings) |
+| i18n coverage | Every `data-t*` attribute resolved against the dictionary, both languages | **0 missing, 0 partial, 0 raw-key leaks** across 7 pages (807 translated bindings) |
 | Page errors | `pageerror` listener during full render | **0** |
 | Horizontal overflow | `documentElement.scrollWidth` vs viewport, 2 languages × 5 widths × 7 pages | **0 overflows** (70 combinations) |
-| Contrast | Computed foreground vs resolved background, per visible text node, WCAG AA | **Pass** on all 7 pages × 2 themes |
+| Contrast | Computed foreground vs resolved background, per visible text node, WCAG AA | **Pass** on all 7 pages × 2 themes, plus the five AI failure states in both themes |
 | Accessible names | Every `a[href]`, `button`, `input`, `select`, `textarea`, `[tabindex]` | **0 unnamed** |
 | Focus visibility | Real keyboard tabbing through the reference page | **Every stop has a visible ring** (only `body` wrap-around does not) |
 | Mobile rail focus | 24 × `Tab` at 390px | **0 stops inside the closed rail** |
+| Drawer focus | Open each drawer, read `document.activeElement` | Lands on the close button at 390px and 1200px |
 | Fonts | `document.fonts.check()` for both families | **true / true** |
 | Tables | Wide tables at 390px | Scroll inside `.table-scroll`; page width unchanged |
 
@@ -104,9 +168,20 @@ All checks run against `python3 -m http.server 8080` with the browser cache disa
 
 ## Remaining known imperfections
 
-1. The dashboard's AI composer is ~107px tall; at 2-row content it grows without a scroll cap.
-2. The AI thread's context inspector is hidden below 1240px with no alternative entry point yet
-   (it should become a drawer).
-3. The onboarding "Free Start" card is intentionally sparse; the balance is achieved with muted
-   bullets rather than content.
-4. Session list on the AI screen is hidden below 900px with no replacement navigation.
+The four gaps listed here at Phase 01 delivery are closed (§8 above). What remains:
+
+1. **Four review recommendations are designed but not built** — the approvals queue, the estimated-cost
+   qualifier for Personal AI, the two-level scope switcher, and onboarding draft persistence. Each
+   changes an approved surface, so each waits for sign-off rather than shipping inside a closure phase.
+2. **The dashboard widget grid is deferred, not rejected** (§14.5 requires it). Phase 01's layout is
+   grid-ready; the grid itself is Phase 02.
+3. **The prototype carries its own annotation layer.** Three `Proposal` badges mark unapproved design
+   decisions. They are review scaffolding and must be deleted, not restyled, at hand-off — otherwise
+   saffron would mean both "unapproved design" and "the AI is waiting for you".
+4. **The role matrix scrolls horizontally at 390px.** The Billing Manager and Security Auditor columns
+   are off-screen until scrolled. Correct for a seven-column comparison table, but comparing a Member's
+   access against a Billing Manager's takes a scroll on the narrowest screens.
+5. **The Free Start card is intentionally sparse.** The balance is achieved with muted bullets rather
+   than content, which reads as unfinished to some reviewers. It is deliberate: the card's job is to be
+   clearly *less* than Smart Start without being a warning.
+

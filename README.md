@@ -7,7 +7,8 @@
 Design-only deliverable for **NEXORA**, a modular multi-level work platform (personal, team,
 organisation) with an AI layer. Phase 01 establishes the visual and UX foundation: brand
 direction, token layer, component library, application shell, and six product screens — as a
-static prototype with no build step and no external runtime dependency.
+static prototype with no build step and no external runtime dependency. Phase 02 has a technical
+architecture proposal, not an implementation.
 
 **No application code was written.** No backend, no auth logic, no real AI provider calls, no
 production schema. Every screen is a design artefact intended for review and approval.
@@ -56,6 +57,9 @@ docs/design/
   design-system.md    tokens, components, states, contribution rules
   ux-architecture.md  information architecture, flows, screen specs
   design-decisions.md approved / proposed / unresolved
+  decision-review.md  all ten proposals reviewed against the specification
+docs/architecture/
+  phase-02-architecture.md  technical architecture proposal, 23 decisions
 PROJECT_STATUS.md · DECISIONS.md · DESIGN_PROGRESS.md · NEXT_STEPS.md
 ```
 
@@ -67,8 +71,8 @@ PROJECT_STATUS.md · DECISIONS.md · DESIGN_PROGRESS.md · NEXT_STEPS.md
   `inline-start` / `block-end` forms. There is no `left` or `right` anywhere in the CSS, so RTL is
   the same layout rather than a parallel one.
 - **Persian is the default, not a translation.** `dir="rtl"` and `lang="fa"` on load; letter
-  spacing forced to `0`; body size one step larger; leading `1.7`; all numbers and dates through
-  `Intl` (`fa-IR`, Persian calendar) so no screen contains a literal Persian digit.
+  spacing forced to `0`; body size one step larger; leading `1.7`; every number and date formatted
+  through `Intl` (`fa-IR`, Persian calendar), so no value is digit-converted by hand.
 - **Self-hosted type.** Instrument Sans (Latin) and Vazirmatn (Arabic + Latin), both OFL, subset
   to 148 KB total. Zero external requests — the prototype runs offline.
 - **Motion with restraint.** Two durations, two easings, entrance only, all suppressed under
@@ -80,21 +84,24 @@ Measured, not asserted. Scripts ran against the served prototype in Chromium.
 
 | Check | Result |
 |---|---|
-| Horizontal overflow | 7 pages × 5 widths (360–1440) × 2 languages = 70 combinations, **0 overflow** |
-| Contrast | 7 pages × 2 themes, **all pass WCAG AA** |
+| Horizontal overflow | 7 pages × 5 widths (390–1440) × 2 languages = 70 combinations, **0 overflow** |
+| Contrast | 7 pages × 2 themes, plus the five AI failure states in both themes, **all pass WCAG AA** |
 | Accessible names | **0 missing** on interactive elements |
 | Focus rings | Full keyboard traversal, **every stop has a visible ring** |
 | Closed mobile drawer | **0 focus landings** (visibility gated, not just translated) |
-| i18n bindings | 659 bindings, **0 missing keys, 0 raw-key leaks** |
+| Drawer focus | Lands on the close button at 390px and 1200px |
+| i18n bindings | 807 bindings, **0 missing keys, 0 raw-key leaks** |
 | Runtime errors | **0** across all pages and viewports |
 
 ## Status
 
-Phase 01 is **complete and awaiting approval**. Ten design proposals are marked as needing a
-decision and seven items are open — see [`docs/design/design-decisions.md`](docs/design/design-decisions.md).
-No application development starts until the design is approved.
+Phase 01 is **closed** and Phase 02 has an **architecture proposal**. Ten design proposals were
+reviewed against the master specification: six approved, four modified, none rejected — see
+[`docs/design/decision-review.md`](docs/design/decision-review.md). Six questions still need product
+or legal answers. No application development starts until the design and the architecture are
+approved.
 
 ## Branch
 
-Work lives on `design/phase-01-foundation`. This repository was created to receive it; there is
-no prior history to protect.
+Work lives on `phase-01-closure-phase-02-architecture`, branched from `main` at `056d0a8`. `main` is
+untouched; nothing is pushed to it directly.
