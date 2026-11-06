@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · Workspace</title>
+  <script>
+    (function () {
+      var l = localStorage.getItem('nx.lang') || 'fa';
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/tokens.css" />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="../assets/components.css" />
+  <link rel="stylesheet" href="../assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-t="a11y.skip"></a>
+
+  <div class="shell" id="shell">
+    <div id="rail-slot"></div>
+    <div class="main">
+      <div id="topbar-slot"></div>
+
+      <main class="content" id="main">
+        <div class="page-head">
+          <div>
+            <div class="page-head__meta"><span data-t="wsPage.meta"></span></div>
+            <h1 class="t-h1 page-head__title" data-t="wsPage.title"></h1>
+            <p class="page-head__sub" data-t="wsPage.sub"></p>
+          </div>
+          <div class="cluster cluster-2">
+            <button class="btn btn--secondary" data-demo-toast="toast.saved" data-t="wsPage.manage"></button>
+            <button class="btn btn--primary" data-demo-toast="toast.saved">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-plus"></use></svg>
+              <span data-t="wsPage.create"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Workspace set -->
+        <div class="ws-cards">
+          <article class="ws-card">
+            <div class="ws-card__head">
+              <div class="cluster cluster-2">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+                <div>
+                  <div class="ws-card__name" data-t="ws.personal"></div>
+                  <span class="badge badge--plain" data-t="ws.level.personal"></span>
+                </div>
+              </div>
+            </div>
+            <div class="ws-card__meta">
+              <span data-t="wsPage.personal.role"></span>
+              <span data-t="wsPage.personal.meta"></span>
+            </div>
+            <div class="ws-card__foot">
+              <span class="t-caption" data-t="wsPage.personal.usage"></span>
+              <button class="btn btn--quiet btn--sm" data-t="wsPage.open"></button>
+            </div>
+          </article>
+
+          <article class="ws-card" data-current="true">
+            <div class="ws-card__head">
+              <div class="cluster cluster-2">
+                <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+                <div>
+                  <div class="ws-card__name" data-t="ws.team"></div>
+                  <span class="badge badge--primary" data-t="ws.level.team"></span>
+                </div>
+              </div>
+              <span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.current"></span></span>
+            </div>
+            <div class="ws-card__meta">
+              <span data-t="wsPage.team.role"></span>
+              <span data-t="wsPage.team.meta"></span>
+            </div>
+            <div class="ws-card__foot">
+              <span class="t-caption" data-t="wsPage.team.usage"></span>
+              <button class="btn btn--quiet btn--sm" data-t="wsPage.settings"></button>
+            </div>
+          </article>
+
+          <article class="ws-card">
+            <div class="ws-card__head">
+              <div class="cluster cluster-2">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
+                <div>
+                  <div class="ws-card__name" data-t="ws.org"></div>
+                  <span class="badge badge--plain" data-t="ws.level.org"></span>
+                </div>
+              </div>
+            </div>
+            <div class="ws-card__meta">
+              <span data-t="wsPage.org.role"></span>
+              <span data-t="wsPage.org.meta"></span>
+            </div>
+            <div class="ws-card__foot">
+              <span class="t-caption" data-t="wsPage.org.policy"></span>
+              <button class="btn btn--quiet btn--sm" data-t="wsPage.view"></button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs section-gap" data-tabs="ws" role="tablist">
+          <button class="tab" role="tab" data-tab="members" aria-selected="true">
+            <span data-t="wsPage.tab.members"></span><span class="tab__count">۶</span>
+          </button>
+          <button class="tab" role="tab" data-tab="roles" aria-selected="false" data-t="wsPage.tab.roles"></button>
+          <button class="tab" role="tab" data-tab="invite" aria-selected="false" data-t="wsPage.tab.invite"></button>
+          <button class="tab" role="tab" data-tab="settings" aria-selected="false" data-t="wsPage.tab.settings"></button>
+        </div>
+
+        <!-- Members -->
+        <section class="section-gap-sm" data-tab-panel="members" data-group="ws">
+          <div class="cluster-between" style="margin-block-end:var(--nx-space-3)">
+            <div class="cluster cluster-2">
+              <div class="input-wrap" style="width:260px">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-search"></use></svg>
+                <input class="input" style="height:34px;font-size:var(--nx-text-2xs)" type="search" data-t-ph="wsPage.search" />
+              </div>
+              <button class="btn btn--secondary btn--sm">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-filter"></use></svg>
+                <span data-t="wsPage.filter"></span>
+              </button>
+            </div>
+            <button class="btn btn--primary btn--sm" data-demo-toast="toast.invited" data-t="wsPage.invite"></button>
+          </div>
+
+          <div class="panel table-scroll">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th data-t="wsPage.col.member"></th>
+                  <th data-t="wsPage.col.role"></th>
+                  <th data-t="wsPage.col.status"></th>
+                  <th data-t="wsPage.col.active"></th>
+                  <th class="table__col-actions"><span class="visually-hidden" data-t="wsPage.col.actions"></span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm">س‌م</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m1"></div>
+                        <div class="t-caption" dir="ltr">sara@arastudio.io</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--primary" data-t="wsPage.role.owner"></span></td>
+                  <td><span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.state.active"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.now"></td>
+                  <td style="text-align:end"><button class="icon-btn icon-btn--sm" data-t-aria="common.edit"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm avatar--neutral">ع‌ر</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m2"></div>
+                        <div class="t-caption" dir="ltr">ali@arastudio.io</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge" data-t="wsPage.role.admin"></span></td>
+                  <td><span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.state.active"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.12m"></td>
+                  <td style="text-align:end"><button class="icon-btn icon-btn--sm" data-t-aria="common.edit"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm avatar--neutral">م‌ک</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m3"></div>
+                        <div class="t-caption" dir="ltr">maryam@arastudio.io</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge" data-t="wsPage.role.member"></span></td>
+                  <td><span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.state.active"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.1h"></td>
+                  <td style="text-align:end"><button class="icon-btn icon-btn--sm" data-t-aria="common.edit"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm avatar--neutral">ر‌ت</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m4"></div>
+                        <div class="t-caption" dir="ltr">reza@arastudio.io</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge" data-t="wsPage.role.member"></span></td>
+                  <td><span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.state.active"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.1d"></td>
+                  <td style="text-align:end"><button class="icon-btn icon-btn--sm" data-t-aria="common.edit"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm avatar--signal">ن‌ا</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m5"></div>
+                        <div class="t-caption" dir="ltr">negar@partner.co</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge badge--plain" data-t="wsPage.role.guest"></span></td>
+                  <td><span class="badge badge--ok"><span class="dot"></span><span data-t="wsPage.state.active"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.3d"></td>
+                  <td style="text-align:end"><button class="icon-btn icon-btn--sm" data-t-aria="common.edit"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cluster cluster-2">
+                      <span class="avatar avatar--sm avatar--neutral">ح‌ص</span>
+                      <div>
+                        <div class="t-strong" data-t="wsPage.m6"></div>
+                        <div class="t-caption" dir="ltr">hossein@arastudio.io</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge" data-t="wsPage.role.member"></span></td>
+                  <td><span class="badge badge--warn"><span class="dot"></span><span data-t="wsPage.state.pending"></span></span></td>
+                  <td class="t-meta" data-t="wsPage.when.2d"></td>
+                  <td style="text-align:end"><button class="btn btn--ghost btn--sm" data-t="wsPage.resend"></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="t-caption" style="margin-block-start:var(--nx-space-3)" data-t="wsPage.members.note"></p>
+        </section>
+
+        <!-- Roles -->
+        <section class="section-gap-sm" data-tab-panel="roles" data-group="ws" hidden>
+          <div class="cluster-between" style="margin-block-end:var(--nx-space-3)">
+            <p class="t-sm" style="margin:0" data-t="wsPage.roles.sub"></p>
+            <span class="badge badge--signal" data-t="wsPage.roles.proposal"></span>
+          </div>
+
+          <div class="panel table-scroll">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th data-t="wsPage.roles.capability"></th>
+                  <th data-t="wsPage.role.owner"></th>
+                  <th data-t="wsPage.role.admin"></th>
+                  <th data-t="wsPage.role.member"></th>
+                  <th data-t="wsPage.role.guest"></th>
+                  <th data-t="wsPage.role.billing"></th>
+                  <th data-t="wsPage.role.auditor"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-t="wsPage.cap.1"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.limited"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="partial" data-t="wsPage.val.audit"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.2"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.delegated"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="partial" data-t="wsPage.val.read"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.3"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.byPerm"></span></td>
+                  <td><span class="partial" data-t="wsPage.val.limited"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="partial" data-t="wsPage.val.readLog"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.4"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.delegated"></span></td>
+                  <td><span class="partial" data-t="wsPage.val.personalOnly"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="partial" data-t="wsPage.val.readCost"></span></td>
+                  <td><span class="partial" data-t="wsPage.val.readPolicy"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.5"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.ownUsage"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.audit"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.6"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.audit"></span></td>
+                </tr>
+                <tr>
+                  <td data-t="wsPage.cap.7"></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                  <td><span class="partial" data-t="wsPage.val.byPolicy"></span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="no">—</span></td>
+                  <td><span class="partial" data-t="wsPage.val.financeOnly"></span></td>
+                  <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout" style="margin-block-start:var(--nx-space-4)">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+            <div data-t="wsPage.roles.note"></div>
+          </div>
+        </section>
+
+        <!-- Invite -->
+        <section class="section-gap-sm" data-tab-panel="invite" data-group="ws" hidden>
+          <div class="invite-methods">
+            <button class="invite-method" aria-pressed="true">
+              <span class="invite-method__title">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-message"></use></svg>
+                <span data-t="wsPage.invite.email"></span>
+              </span>
+              <span class="t-caption" data-t="wsPage.invite.emailSub"></span>
+            </button>
+            <button class="invite-method" aria-pressed="false">
+              <span class="invite-method__title">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-link"></use></svg>
+                <span data-t="wsPage.invite.link"></span>
+              </span>
+              <span class="t-caption" data-t="wsPage.invite.linkSub"></span>
+            </button>
+            <button class="invite-method" aria-pressed="false">
+              <span class="invite-method__title">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-inbox"></use></svg>
+                <span data-t="wsPage.invite.request"></span>
+              </span>
+              <span class="t-caption" data-t="wsPage.invite.requestSub"></span>
+            </button>
+          </div>
+
+          <div class="panel section-gap-sm">
+            <div class="panel__body stack stack-4">
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="inv-email" data-t="wsPage.invite.emailField"></label>
+                  <input class="input" id="inv-email" type="email" dir="ltr" placeholder="name@company.com" />
+                </div>
+                <div class="field">
+                  <label class="field__label" for="inv-role" data-t="wsPage.invite.roleField"></label>
+                  <select class="select" id="inv-role">
+                    <option data-t="wsPage.role.member"></option>
+                    <option data-t="wsPage.role.admin"></option>
+                    <option data-t="wsPage.role.guest"></option>
+                    <option data-t="wsPage.role.billing"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="cluster cluster-2">
+                <button class="btn btn--primary" data-demo-toast="toast.invited" data-t="wsPage.invite.send"></button>
+                <span class="t-caption" data-t="wsPage.invite.sendNote"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel section-gap-sm">
+            <div class="panel__head">
+              <h3 class="panel__title" data-t="wsPage.link.title"></h3>
+              <span class="badge badge--plain" data-t="wsPage.link.badge"></span>
+            </div>
+            <div class="panel__body stack stack-4">
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="inv-exp" data-t="wsPage.link.expiry"></label>
+                  <select class="select" id="inv-exp">
+                    <option data-t="wsPage.link.exp1"></option>
+                    <option selected data-t="wsPage.link.exp2"></option>
+                    <option data-t="wsPage.link.exp3"></option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="inv-max" data-t="wsPage.link.maxUses"></label>
+                  <input class="input" id="inv-max" type="number" value="5" min="1" max="50" />
+                </div>
+              </div>
+              <div class="link-box">
+                <span class="grow">https://app.nexora.io/join/••••••••••••••••</span>
+                <button class="btn btn--secondary btn--sm" data-demo-toast="toast.copied">
+                  <svg class="icon icon-16" aria-hidden="true"><use href="#i-copy"></use></svg>
+                  <span data-t="common.copy"></span>
+                </button>
+              </div>
+              <p class="t-caption" data-t="wsPage.link.note"></p>
+            </div>
+          </div>
+
+          <div class="panel section-gap-sm">
+            <div class="panel__head">
+              <h3 class="panel__title" data-t="wsPage.pending.title"></h3>
+            </div>
+            <div class="list">
+              <div class="list__row">
+                <span class="avatar avatar--sm avatar--neutral">ح‌ص</span>
+                <div class="list__main">
+                  <div class="list__title" data-t="wsPage.m6"></div>
+                  <div class="list__sub"><span dir="ltr">hossein@arastudio.io</span></div>
+                </div>
+                <span class="badge" data-t="wsPage.role.member"></span>
+                <span class="list__meta" data-t="wsPage.when.2d"></span>
+                <button class="btn btn--ghost btn--sm" data-t="common.cancel"></button>
+              </div>
+              <div class="list__row">
+                <span class="avatar avatar--sm avatar--neutral">ف‌ن</span>
+                <div class="list__main">
+                  <div class="list__title" data-t="wsPage.m7"></div>
+                  <div class="list__sub"><span dir="ltr">farhad@partner.co</span></div>
+                </div>
+                <span class="badge badge--plain" data-t="wsPage.role.guest"></span>
+                <span class="list__meta" data-t="wsPage.when.5d"></span>
+                <button class="btn btn--ghost btn--sm" data-t="common.cancel"></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="section-gap-sm" data-tab-panel="settings" data-group="ws" hidden>
+          <div class="panel">
+            <div class="panel__head">
+              <h3 class="panel__title" data-t="wsPage.set.general"></h3>
+            </div>
+            <div class="panel__body stack stack-5">
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="set-name" data-t="wsPage.set.name"></label>
+                  <input class="input" id="set-name" type="text" value="استودیو آرا" />
+                </div>
+                <div class="field">
+                  <span class="field__label" data-t="wsPage.set.type"></span>
+                  <div class="segmented" role="group">
+                    <button type="button" aria-selected="false" data-t="ws.level.personal"></button>
+                    <button type="button" aria-selected="true" data-t="ws.level.team"></button>
+                    <button type="button" aria-selected="false" data-t="ws.level.org"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="set-lang" data-t="wsPage.set.lang"></label>
+                  <select class="select" id="set-lang">
+                    <option selected>فارسی</option>
+                    <option>English</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="set-ret" data-t="wsPage.set.retention"></label>
+                  <select class="select" id="set-ret">
+                    <option data-t="wsPage.set.ret1"></option>
+                    <option selected data-t="wsPage.set.ret2"></option>
+                    <option data-t="wsPage.set.ret3"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="cluster-between" style="border-block-start:1px solid var(--nx-border-faint);padding-block-start:var(--nx-space-4)">
+                <span class="t-caption" data-t="wsPage.set.note"></span>
+                <button class="btn btn--primary btn--sm" data-demo-toast="toast.saved" data-t="common.save"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="danger-zone section-gap-sm">
+            <div class="cluster-between" style="align-items:flex-start">
+              <div style="max-width:56ch">
+                <div class="panel__title" data-t="wsPage.set.danger"></div>
+                <p class="t-caption" style="margin-block-start:4px" data-t="wsPage.set.dangerSub"></p>
+              </div>
+              <button class="btn btn--danger btn--sm" data-demo-toast="toast.saved" data-t="wsPage.set.delete"></button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <div id="drawer-slot"></div>
+  <div id="palette-slot"></div>
+  <div id="devbar-slot"></div>
+
+  <script src="../assets/icons.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/lang/common.js"></script>
+  <script src="../assets/lang/workspace.js"></script>
+  <script src="../assets/chrome.js"></script>
+  <script>
+    document.getElementById('rail-slot').outerHTML = NX.rail('members');
+    document.getElementById('topbar-slot').outerHTML = NX.topbar();
+    document.getElementById('drawer-slot').outerHTML = NX.drawer();
+    document.getElementById('palette-slot').outerHTML = NX.palette();
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'workspace');
+
+    document.querySelectorAll('.segmented button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        b.parentElement.querySelectorAll('button').forEach(function (x) {
+          x.setAttribute('aria-selected', 'false');
+        });
+        b.setAttribute('aria-selected', 'true');
+      });
+    });
+    document.querySelectorAll('.invite-method').forEach(function (m) {
+      m.addEventListener('click', function () {
+        document.querySelectorAll('.invite-method').forEach(function (x) {
+          x.setAttribute('aria-pressed', 'false');
+        });
+        m.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

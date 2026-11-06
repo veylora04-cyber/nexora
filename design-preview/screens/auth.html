@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · Authentication</title>
+  <script>
+    (function () {
+      var l = localStorage.getItem('nx.lang') || 'fa';
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/tokens.css" />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="../assets/components.css" />
+  <link rel="stylesheet" href="../assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#auth-panel" data-t="a11y.skip"></a>
+
+  <div class="auth">
+    <!-- Brand side: the only surface that shows the product's face -->
+    <aside class="auth__brand">
+      <a class="brand" href="../index.html" aria-label="NEXORA">
+        <span class="brand__mark" id="brand-mark"></span>
+        <span class="brand__word">NEXORA</span>
+      </a>
+
+      <div class="auth__brand-copy">
+        <h1 class="auth__brand-title" data-t="auth.brandTitle"></h1>
+        <p class="auth__brand-sub" data-t="auth.brandSub"></p>
+
+        <ul class="scope-legend">
+          <li>
+            <span class="scope-legend__glyph"><span class="rg rg--1"></span></span>
+            <span data-t="auth.diagram.personal"></span>
+          </li>
+          <li>
+            <span class="scope-legend__glyph"><span class="rg rg--2"></span></span>
+            <span data-t="auth.diagram.team"></span>
+          </li>
+          <li>
+            <span class="scope-legend__glyph"><span class="rg rg--3"></span></span>
+            <span data-t="auth.diagram.org"></span>
+          </li>
+        </ul>
+      </div>
+
+      <svg class="auth__diagram" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-linecap="round">
+          <circle class="ring" cx="300" cy="300" r="270" stroke-dasharray="1600 96" transform="rotate(-38 300 300)" />
+          <circle class="ring ring--2" cx="300" cy="300" r="190" stroke-dasharray="1110 84" transform="rotate(-38 300 300)" />
+          <circle class="ring ring--3" cx="300" cy="300" r="110" stroke-dasharray="630 61" transform="rotate(-38 300 300)" />
+        </g>
+        <path class="tick" d="M300 300 L481 99" />
+        <circle class="node--dim" cx="478" cy="105" r="3" />
+        <circle class="node--dim" cx="419" cy="163" r="3" />
+        <circle class="node--dim" cx="363" cy="219" r="3" />
+        <circle class="node" cx="300" cy="300" r="5" />
+      </svg>
+    </aside>
+
+    <!-- Form side -->
+    <main class="auth__panel" id="auth-panel">
+      <div class="auth__card">
+
+        <!-- 1 · Sign in -->
+        <section class="auth-view" data-view="signin">
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.signin.title"></h2>
+            <p class="auth__card-sub" data-t="auth.signin.sub"></p>
+          </div>
+
+          <div class="auth__social">
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-google"></use></svg>
+              <span>Google</span>
+            </button>
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-github"></use></svg>
+              <span>GitHub</span>
+            </button>
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-microsoft"></use></svg>
+              <span>Microsoft</span>
+            </button>
+          </div>
+
+          <div class="auth__divider" data-t="auth.or"></div>
+
+          <form class="stack stack-4" onsubmit="return false">
+            <div class="field">
+              <label class="field__label" for="si-email" data-t="auth.email"></label>
+              <input class="input" id="si-email" type="email" dir="ltr" autocomplete="email"
+                     placeholder="name@company.com" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="si-pass" data-t="auth.password"></label>
+              <div class="input-wrap">
+                <input class="input" id="si-pass" type="password" dir="ltr" autocomplete="current-password"
+                       placeholder="••••••••••" />
+                <span class="input-wrap__trail">
+                  <button type="button" class="icon-btn icon-btn--sm" data-pass-toggle="si-pass"
+                          data-t-aria="auth.showPassword">
+                    <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+                  </button>
+                </span>
+              </div>
+            </div>
+
+            <div class="cluster-between">
+              <label class="check">
+                <input type="checkbox" checked />
+                <span data-t="auth.remember"></span>
+              </label>
+              <button type="button" class="btn btn--quiet btn--sm" data-goto="forgot"
+                      data-t="auth.forgot"></button>
+            </div>
+
+            <button class="btn btn--primary btn--lg btn--block" data-demo-loading data-demo-toast="toast.saved">
+              <span data-t="auth.signin.cta"></span>
+            </button>
+          </form>
+
+          <button class="btn btn--ghost btn--block" style="margin-block-start:var(--nx-space-3)" data-goto="passkey">
+            <svg class="icon icon-18" aria-hidden="true"><use href="#i-fingerprint"></use></svg>
+            <span data-t="auth.passkeyCta"></span>
+          </button>
+
+          <div class="auth__foot">
+            <span data-t="auth.noAccount"></span>
+            <button class="btn btn--quiet btn--sm" data-goto="signup" data-t="auth.goSignup"></button>
+          </div>
+        </section>
+
+        <!-- 2 · Sign up -->
+        <section class="auth-view" data-view="signup" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.signup.title"></h2>
+            <p class="auth__card-sub" data-t="auth.signup.sub"></p>
+          </div>
+
+          <div class="auth__social">
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-google"></use></svg><span>Google</span>
+            </button>
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-github"></use></svg><span>GitHub</span>
+            </button>
+            <button class="btn btn--secondary" data-demo-toast="toast.paletteRun">
+              <svg class="icon icon-18" aria-hidden="true"><use href="#i-microsoft"></use></svg><span>Microsoft</span>
+            </button>
+          </div>
+
+          <div class="auth__divider" data-t="auth.or"></div>
+
+          <form class="stack stack-4" onsubmit="return false">
+            <div class="field">
+              <label class="field__label" for="su-name" data-t="auth.name"></label>
+              <input class="input" id="su-name" type="text" autocomplete="name" data-t-ph="auth.namePh" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="su-email" data-t="auth.email"></label>
+              <input class="input" id="su-email" type="email" dir="ltr" autocomplete="email"
+                     placeholder="name@company.com" />
+            </div>
+            <div class="field">
+              <label class="field__label" for="su-pass" data-t="auth.password"></label>
+              <div class="input-wrap">
+                <input class="input" id="su-pass" type="password" dir="ltr" autocomplete="new-password"
+                       placeholder="••••••••••" value="Arastudio-1405" />
+                <span class="input-wrap__trail">
+                  <button type="button" class="icon-btn icon-btn--sm" data-pass-toggle="su-pass"
+                          data-t-aria="auth.showPassword">
+                    <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+                  </button>
+                </span>
+              </div>
+              <div class="cluster cluster-2" style="margin-block-start:2px">
+                <span class="meter" style="flex:1 1 auto">
+                  <span class="meter__fill" style="display:block;width:66%"></span>
+                </span>
+                <span class="t-caption" data-t="auth.strength.fair"></span>
+              </div>
+              <p class="field__hint" data-t="auth.passHint"></p>
+            </div>
+
+            <label class="check">
+              <input type="checkbox" />
+              <span data-t="auth.terms"></span>
+            </label>
+
+            <button class="btn btn--primary btn--lg btn--block" data-demo-loading data-demo-toast="toast.saved">
+              <span data-t="auth.signup.cta"></span>
+            </button>
+          </form>
+
+          <div class="auth__foot">
+            <span data-t="auth.haveAccount"></span>
+            <button class="btn btn--quiet btn--sm" data-goto="signin" data-t="auth.goSignin"></button>
+          </div>
+        </section>
+
+        <!-- 3 · Forgot password -->
+        <section class="auth-view" data-view="forgot" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.forgot.title"></h2>
+            <p class="auth__card-sub" data-t="auth.forgot.sub"></p>
+          </div>
+          <form class="stack stack-4" onsubmit="return false">
+            <div class="field">
+              <label class="field__label" for="fp-email" data-t="auth.email"></label>
+              <input class="input" id="fp-email" type="email" dir="ltr" placeholder="name@company.com" />
+            </div>
+            <button class="btn btn--primary btn--lg btn--block" data-demo-toast="toast.saved">
+              <span data-t="auth.forgot.cta"></span>
+            </button>
+          </form>
+          <p class="field__hint" style="margin-block-start:var(--nx-space-4)" data-t="auth.forgot.note"></p>
+          <div class="auth__foot">
+            <button class="btn btn--quiet btn--sm" data-goto="signin" data-t="auth.backToSignin"></button>
+          </div>
+        </section>
+
+        <!-- 4 · Email verification -->
+        <section class="auth-view" data-view="verify" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.verify.title"></h2>
+            <p class="auth__card-sub" data-t="auth.verify.sub"></p>
+          </div>
+          <form class="stack stack-5" onsubmit="return false">
+            <div class="otp" data-otp>
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit1" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit2" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit3" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit4" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit5" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit6" />
+            </div>
+            <button class="btn btn--primary btn--lg btn--block" data-demo-toast="toast.saved">
+              <span data-t="auth.verify.cta"></span>
+            </button>
+          </form>
+          <div class="cluster-between" style="margin-block-start:var(--nx-space-4)">
+            <span class="t-caption" data-t="auth.resendIn"></span>
+            <button class="btn btn--quiet btn--sm" data-t="auth.resend"></button>
+          </div>
+          <div class="auth__foot">
+            <button class="btn btn--quiet btn--sm" data-goto="signin" data-t="auth.backToSignin"></button>
+          </div>
+        </section>
+
+        <!-- 5 · One-time code -->
+        <section class="auth-view" data-view="otp" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.otp.title"></h2>
+            <p class="auth__card-sub" data-t="auth.otp.sub"></p>
+          </div>
+          <form class="stack stack-5" onsubmit="return false">
+            <div class="otp" data-otp>
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit1" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit2" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit3" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit4" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit5" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit6" />
+            </div>
+            <button class="btn btn--primary btn--lg btn--block" data-demo-toast="toast.saved">
+              <span data-t="auth.otp.cta"></span>
+            </button>
+          </form>
+          <div class="cluster-between" style="margin-block-start:var(--nx-space-4)">
+            <button class="btn btn--quiet btn--sm" data-t="auth.changeNumber"></button>
+            <button class="btn btn--quiet btn--sm" data-t="auth.resend"></button>
+          </div>
+        </section>
+
+        <!-- 6 · Two-factor -->
+        <section class="auth-view" data-view="twofa" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.twofa.title"></h2>
+            <p class="auth__card-sub" data-t="auth.twofa.sub"></p>
+          </div>
+          <form class="stack stack-5" onsubmit="return false">
+            <div class="otp" data-otp>
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit1" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit2" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit3" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit4" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit5" />
+              <input inputmode="numeric" maxlength="1" data-t-aria="auth.digit6" />
+            </div>
+            <label class="check">
+              <input type="checkbox" />
+              <span data-t="auth.trustDevice"></span>
+            </label>
+            <button class="btn btn--primary btn--lg btn--block" data-demo-toast="toast.saved">
+              <span data-t="auth.twofa.cta"></span>
+            </button>
+          </form>
+          <div class="auth__foot">
+            <button class="btn btn--quiet btn--sm" data-t="auth.recoveryCode"></button>
+          </div>
+        </section>
+
+        <!-- 7 · Passkey -->
+        <section class="auth-view" data-view="passkey" hidden>
+          <div class="auth__card-head">
+            <h2 class="t-h2 auth__card-title" data-t="auth.passkey.title"></h2>
+            <p class="auth__card-sub" data-t="auth.passkey.sub"></p>
+          </div>
+
+          <div class="panel" style="margin-block-end:var(--nx-space-5)">
+            <div class="list__row" style="padding-inline:var(--nx-space-4)">
+              <span class="tile-ico tile-ico--primary">
+                <svg class="icon" aria-hidden="true"><use href="#i-fingerprint"></use></svg>
+              </span>
+              <div class="list__main">
+                <div class="list__title" data-t="auth.passkey.device"></div>
+                <div class="list__sub"><span data-t="auth.passkey.deviceSub"></span></div>
+              </div>
+              <span class="badge badge--ok"><span class="dot"></span><span data-t="auth.passkey.thisDevice"></span></span>
+            </div>
+          </div>
+
+          <button class="btn btn--primary btn--lg btn--block" data-demo-loading data-demo-toast="toast.saved">
+            <svg class="icon icon-18" aria-hidden="true"><use href="#i-fingerprint"></use></svg>
+            <span data-t="auth.passkey.cta"></span>
+          </button>
+
+          <div class="auth__foot">
+            <button class="btn btn--quiet btn--sm" data-goto="signin" data-t="auth.otherMethod"></button>
+          </div>
+        </section>
+
+        <!-- Prototype state switcher -->
+        <div class="state-switch" role="group" aria-label="Authentication states">
+          <span class="state-switch__label" data-t="auth.states"></span>
+          <button data-goto="signin" aria-pressed="true" data-t="auth.state.signin"></button>
+          <button data-goto="signup" aria-pressed="false" data-t="auth.state.signup"></button>
+          <button data-goto="forgot" aria-pressed="false" data-t="auth.state.forgot"></button>
+          <button data-goto="verify" aria-pressed="false" data-t="auth.state.verify"></button>
+          <button data-goto="otp" aria-pressed="false" data-t="auth.state.otp"></button>
+          <button data-goto="twofa" aria-pressed="false" data-t="auth.state.twofa"></button>
+          <button data-goto="passkey" aria-pressed="false" data-t="auth.state.passkey"></button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <div id="devbar-slot"></div>
+
+  <script src="../assets/icons.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/lang/common.js"></script>
+  <script src="../assets/lang/auth.js"></script>
+  <script src="../assets/chrome.js"></script>
+  <script>
+    document.getElementById('brand-mark').innerHTML = NX.mark(26);
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'auth');
+
+    /* View switching is prototype scaffolding: it exposes every state of the
+       authentication flow without pretending to be real auth. */
+    function showView(name) {
+      document.querySelectorAll('.auth-view').forEach(function (v) {
+        v.hidden = v.getAttribute('data-view') !== name;
+      });
+      document.querySelectorAll('.state-switch button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-goto') === name));
+      });
+      document.querySelector('.auth__card').scrollIntoView({ block: 'nearest' });
+    }
+    document.querySelectorAll('[data-goto]').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        showView(b.getAttribute('data-goto'));
+      });
+    });
+  </script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

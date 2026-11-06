@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · Phase 01 design</title>
+  <script>
+    (function () {
+      var l = localStorage.getItem('nx.lang') || 'fa';
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/tokens.css" />
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/components.css" />
+  <link rel="stylesheet" href="assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#home-main" data-t="a11y.skip"></a>
+
+  <header class="topbar" style="padding-inline:var(--nx-space-6)">
+    <a class="brand" href="index.html" aria-label="NEXORA">
+      <span class="brand__mark" id="brand-mark"></span>
+      <span class="brand__word">NEXORA</span>
+    </a>
+    <div class="spacer"></div>
+    <a class="btn btn--ghost btn--sm" href="components/components.html" data-t="home.nav.ds"></a>
+    <button class="icon-btn" id="theme-btn" aria-label="Theme"></button>
+    <button class="icon-btn" id="lang-btn" aria-label="Language"><span id="lang-label">EN</span></button>
+  </header>
+
+  <section class="home-hero">
+    <svg class="home-hero__rings" viewBox="0 0 600 600" aria-hidden="true">
+      <g fill="none" stroke-linecap="round">
+        <circle cx="300" cy="300" r="270" stroke="rgba(63,194,176,0.18)" stroke-width="1" stroke-dasharray="1600 96" transform="rotate(-38 300 300)" />
+        <circle cx="300" cy="300" r="190" stroke="rgba(63,194,176,0.3)" stroke-width="1" stroke-dasharray="1110 84" transform="rotate(-38 300 300)" />
+        <circle cx="300" cy="300" r="110" stroke="rgba(63,194,176,0.55)" stroke-width="1" stroke-dasharray="630 61" transform="rotate(-38 300 300)" />
+      </g>
+      <path d="M300 300 L481 99" stroke="rgba(63,194,176,0.22)" />
+      <circle cx="300" cy="300" r="5" fill="#3fc2b0" />
+    </svg>
+
+    <div class="home-hero__inner">
+      <div class="home-hero__mark" id="hero-mark"></div>
+      <h1 class="home-hero__title" data-t="home.title"></h1>
+      <p class="home-hero__sub" data-t="home.sub"></p>
+      <div class="home-hero__actions">
+        <a class="btn btn--primary btn--lg" href="screens/shell.html" data-t="home.cta.dashboard"></a>
+        <a class="btn btn--secondary btn--lg" href="screens/auth.html" data-t="home.cta.auth"></a>
+        <a class="btn btn--ghost btn--lg" href="components/components.html" data-t="home.cta.ds"></a>
+      </div>
+      <div class="home-hero__meta">
+        <span data-t="home.meta.phase"></span>
+        <span data-t="home.meta.screens"></span>
+        <span data-t="home.meta.stack"></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="palette-strip" aria-hidden="true">
+    <span style="background:#0b6b62"></span>
+    <span style="background:#3fc2b0"></span>
+    <span style="background:#e9a13b"></span>
+    <span style="background:#8a9c95"></span>
+    <span style="background:#1e2a26"></span>
+    <span style="background:#e9f0ed"></span>
+  </div>
+
+  <main class="content" id="home-main" style="max-width:1160px">
+    <div class="page-head">
+      <div>
+        <h2 class="t-h2 page-head__title" data-t="home.screens.title"></h2>
+        <p class="page-head__sub" data-t="home.screens.sub"></p>
+      </div>
+    </div>
+
+    <div class="home-grid">
+      <a class="home-card" href="screens/auth.html">
+        <span class="home-card__kicker" data-t="home.card.auth.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-primary)"><use href="#i-lock"></use></svg>
+          <span data-t="home.card.auth.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.auth.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.auth.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+
+      <a class="home-card" href="screens/onboarding.html">
+        <span class="home-card__kicker" data-t="home.card.onb.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-primary)"><use href="#i-flag"></use></svg>
+          <span data-t="home.card.onb.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.onb.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.onb.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+
+      <a class="home-card" href="screens/shell.html">
+        <span class="home-card__kicker" data-t="home.card.dash.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-primary)"><use href="#i-home"></use></svg>
+          <span data-t="home.card.dash.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.dash.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.dash.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+
+      <a class="home-card" href="screens/ai.html">
+        <span class="home-card__kicker" data-t="home.card.ai.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-signal)"><use href="#i-sparkle"></use></svg>
+          <span data-t="home.card.ai.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.ai.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.ai.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+
+      <a class="home-card" href="screens/workspace.html">
+        <span class="home-card__kicker" data-t="home.card.ws.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-primary)"><use href="#i-users"></use></svg>
+          <span data-t="home.card.ws.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.ws.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.ws.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+
+      <a class="home-card" href="components/components.html">
+        <span class="home-card__kicker" data-t="home.card.ds.kicker"></span>
+        <span class="home-card__title">
+          <svg class="icon icon-18" aria-hidden="true" style="color:var(--nx-primary)"><use href="#i-grid"></use></svg>
+          <span data-t="home.card.ds.title"></span>
+        </span>
+        <span class="home-card__text" data-t="home.card.ds.text"></span>
+        <span class="home-card__foot">
+          <span class="t-caption" data-t="home.card.ds.meta"></span>
+          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-arrowRight"></use></svg>
+        </span>
+      </a>
+    </div>
+
+    <section class="section-gap">
+      <div class="page-head">
+        <div>
+          <h2 class="t-h2 page-head__title" data-t="home.status.title"></h2>
+          <p class="page-head__sub" data-t="home.status.sub"></p>
+        </div>
+      </div>
+
+      <div class="status-cols">
+        <div class="status-col" data-kind="approved">
+          <h3 data-t="home.status.approved"></h3>
+          <ul>
+            <li data-t="home.status.a1"></li>
+            <li data-t="home.status.a2"></li>
+            <li data-t="home.status.a3"></li>
+            <li data-t="home.status.a4"></li>
+            <li data-t="home.status.a5"></li>
+          </ul>
+        </div>
+        <div class="status-col" data-kind="proposal">
+          <h3 data-t="home.status.proposal"></h3>
+          <ul>
+            <li data-t="home.status.p1"></li>
+            <li data-t="home.status.p2"></li>
+            <li data-t="home.status.p3"></li>
+            <li data-t="home.status.p4"></li>
+            <li data-t="home.status.p5"></li>
+          </ul>
+        </div>
+        <div class="status-col" data-kind="open">
+          <h3 data-t="home.status.open"></h3>
+          <ul>
+            <li data-t="home.status.o1"></li>
+            <li data-t="home.status.o2"></li>
+            <li data-t="home.status.o3"></li>
+            <li data-t="home.status.o4"></li>
+            <li data-t="home.status.o5"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-block-start:var(--nx-space-10);padding-block-start:var(--nx-space-5);border-block-start:1px solid var(--nx-border);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <span class="t-caption" data-t="footer.rights"></span>
+      <span class="t-caption" data-t="home.footer.note"></span>
+    </footer>
+  </main>
+
+  <div id="devbar-slot"></div>
+
+  <script src="assets/icons.js"></script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/lang/common.js"></script>
+  <script src="assets/lang/index.js"></script>
+  <script src="assets/chrome.js"></script>
+  <script>
+    document.getElementById('brand-mark').innerHTML = NX.mark(26);
+    document.getElementById('hero-mark').innerHTML = NX.mark(40);
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'index');
+  </script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
