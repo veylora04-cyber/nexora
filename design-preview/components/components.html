@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-dir-lock="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · Design system</title>
+  <script>
+    (function () {
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/tokens.css" />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="../assets/components.css" />
+  <link rel="stylesheet" href="../assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#ds-main">Skip to content</a>
+
+  <header class="topbar" style="padding-inline:var(--nx-space-6)">
+    <a class="brand" href="../index.html" aria-label="NEXORA">
+      <span class="brand__mark" id="brand-mark"></span>
+      <span class="brand__word">NEXORA</span>
+    </a>
+    <span class="badge badge--plain only-desktop" style="margin-inline-start:var(--nx-space-3)">Design system · v0.1</span>
+    <div class="spacer"></div>
+    <span class="t-caption only-desktop" style="margin-inline-end:var(--nx-space-3)">Reference page — English only</span>
+    <button class="icon-btn" id="theme-btn" aria-label="Theme"></button>
+  </header>
+
+  <div class="ds" id="ds-main">
+    <nav class="ds__nav" aria-label="Sections">
+      <a href="#c-colour" aria-current="true">Colour</a>
+      <a href="#c-type">Typography</a>
+      <a href="#c-space">Spacing &amp; layout</a>
+      <a href="#c-buttons">Buttons</a>
+      <a href="#c-forms">Form controls</a>
+      <a href="#c-select">Selection</a>
+      <a href="#c-nav">Navigation</a>
+      <a href="#c-surface">Surfaces</a>
+      <a href="#c-data">Data display</a>
+      <a href="#c-feedback">Feedback</a>
+      <a href="#c-overlay">Overlays</a>
+      <a href="#c-a11y">Accessibility</a>
+    </nav>
+
+    <main>
+      <div class="page-head" style="margin-block-end:var(--nx-space-6)">
+        <div>
+          <h1 class="t-h1 page-head__title">Design system</h1>
+          <p class="page-head__sub">The component layer every NEXORA screen is assembled from. Values come from
+            <code style="font-family:var(--nx-font-mono);font-size:12px">tokens.css</code>; no screen defines its own colour,
+            radius or spacing.</p>
+        </div>
+      </div>
+
+      <!-- Colour -->
+      <section class="ds__section" id="c-colour">
+        <div class="ds__title"><h2 class="t-h2">Colour</h2><span class="badge badge--plain">semantic tokens</span></div>
+        <p class="ds__note">Two families carry the identity: <strong>turquoise</strong> for product surfaces and actions,
+          <strong>saffron</strong> reserved for AI, live and attention states. Neutrals are a cool graphite so the
+          turquoise sits native rather than pasted on. Swatches read live values — switch the theme to compare.</p>
+        <div class="swatches" id="swatches"></div>
+      </section>
+
+      <!-- Typography -->
+      <section class="ds__section" id="c-type">
+        <div class="ds__title"><h2 class="t-h2">Typography</h2><span class="badge badge--plain">2 families</span></div>
+        <p class="ds__note">Instrument Sans for Latin, Vazirmatn for Persian. Persian never receives letter-spacing
+          (it breaks joining) and is set one step larger with more leading. Numbers use tabular figures; Persian
+          renders Eastern Arabic numerals through <code style="font-family:var(--nx-font-mono);font-size:12px">Intl</code>.</p>
+
+        <div class="ds-row">
+          <div class="ds-row__label">Display / 44</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="t-display">Structure over decoration</div>
+            <div class="t-display" lang="fa" dir="rtl" style="font-family:var(--nx-font-fa)">ساختار، پیش از تزئین</div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Heading 1 / 32</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="t-h1">One account, three levels</div>
+            <div class="t-h1" lang="fa" dir="rtl" style="font-family:var(--nx-font-fa)">یک حساب، سه سطح اختیار</div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Heading 2 / 24</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="t-h2">Workspace overview</div>
+            <div class="t-h2" lang="fa" dir="rtl" style="font-family:var(--nx-font-fa)">نمای کلی فضای کاری</div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Heading 3 / 20</div>
+          <div class="ds-row__body"><div class="t-h3">Recent work</div></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Lead / 17</div>
+          <div class="ds-row__body ds-row__body--col">
+            <p class="t-lead">Both paths lead to a complete workspace — the difference is how much guidance you get.</p>
+            <p class="t-lead" lang="fa" dir="rtl" style="font-family:var(--nx-font-fa)">هر دو مسیر به یک فضای کاری کامل می‌رسند؛ تفاوت در میزان راهنمایی است.</p>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Body / 15</div>
+          <div class="ds-row__body ds-row__body--col">
+            <p class="t-body">Effective access is computed from roles plus organization policy. The default is no access,
+              and hiding a button in the interface is never treated as a security control.</p>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Label / 13</div>
+          <div class="ds-row__body"><span class="t-label">Workspace name</span><span class="t-label">Default language</span></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Caption / 12</div>
+          <div class="ds-row__body"><span class="t-caption">6 members · 2 pending invites</span></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Numeric</div>
+          <div class="ds-row__body">
+            <span class="t-num" style="font-size:24px">36.40</span>
+            <span class="t-num" style="font-size:24px" lang="fa">۳۶٫۴۰</span>
+            <span class="t-meta">1,240 tokens</span>
+            <span class="t-meta" lang="fa">۱٬۲۴۰ نشانه</span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Rules</div>
+          <div class="ds-row__body ds-row__body--col">
+            <ul class="spec-list">
+              <li>Latin display: <code>letter-spacing: -0.028em</code>; Persian: <code>0</code>.</li>
+              <li>Persian body leading <code>1.7</code> vs Latin <code>1.55</code>.</li>
+              <li>No all-caps labels. No tracked-out eyebrows above headings.</li>
+              <li>Line length capped at <code>68ch</code> for body, <code>34ch</code> for brand statements.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing -->
+      <section class="ds__section" id="c-space">
+        <div class="ds__title"><h2 class="t-h2">Spacing &amp; layout</h2><span class="badge badge--plain">4px base</span></div>
+        <p class="ds__note">A 4px scale (4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80 · 96). Content column
+          caps at 1160px; the application rail is 268px expanded, 76px collapsed, and becomes an overlay below 900px.</p>
+        <div class="ds-row">
+          <div class="ds-row__label">Scale</div>
+          <div class="ds-row__body" style="gap:10px">
+            <span style="width:4px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:8px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:12px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:16px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:24px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:32px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:48px;height:24px;background:var(--nx-primary);display:block"></span>
+            <span style="width:64px;height:24px;background:var(--nx-primary);display:block"></span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Radii</div>
+          <div class="ds-row__body">
+            <span style="width:56px;height:40px;border:1px solid var(--nx-border-strong);border-radius:4px;display:block"></span>
+            <span style="width:56px;height:40px;border:1px solid var(--nx-border-strong);border-radius:8px;display:block"></span>
+            <span style="width:56px;height:40px;border:1px solid var(--nx-border-strong);border-radius:12px;display:block"></span>
+            <span style="width:56px;height:40px;border:1px solid var(--nx-border-strong);border-radius:16px;display:block"></span>
+            <span class="t-caption">4 · 8 · 12 · 16 — radius encodes hierarchy, not decoration</span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Breakpoints</div>
+          <div class="ds-row__body"><ul class="spec-list">
+            <li><code>1440</code> desktop · <code>1200</code> laptop · <code>1024</code> small laptop</li>
+            <li><code>900</code> tablet — rail becomes overlay · <code>768</code> mobile</li>
+            <li><code>640</code> small mobile — modals become bottom sheets</li>
+          </ul></div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section class="ds__section" id="c-buttons">
+        <div class="ds__title"><h2 class="t-h2">Buttons</h2></div>
+        <p class="ds__note">One primary action per view. Hover, focus and active states are live — tab through this page
+          to see the focus ring, which is a 2px outline at 55% opacity.</p>
+
+        <div class="ds-row">
+          <div class="ds-row__label">Variants</div>
+          <div class="ds-row__body">
+            <button class="btn btn--primary">Primary</button>
+            <button class="btn btn--secondary">Secondary</button>
+            <button class="btn btn--ghost">Ghost</button>
+            <button class="btn btn--quiet">Quiet action</button>
+            <button class="btn btn--signal">Signal</button>
+            <button class="btn btn--danger">Danger</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Sizes</div>
+          <div class="ds-row__body">
+            <button class="btn btn--secondary btn--sm">Small 32</button>
+            <button class="btn btn--secondary">Default 40</button>
+            <button class="btn btn--secondary btn--lg">Large 48</button>
+            <button class="btn btn--secondary btn--icon" aria-label="Icon only">
+              <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">With icon</div>
+          <div class="ds-row__body">
+            <button class="btn btn--primary">
+              <svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+              <span>Ask AI</span>
+            </button>
+            <button class="btn btn--secondary">
+              <span>Open report</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-arrowUpRight"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">States</div>
+          <div class="ds-row__body">
+            <button class="btn btn--primary" disabled>Disabled</button>
+            <button class="btn btn--secondary" disabled>Disabled</button>
+            <button class="btn btn--primary" data-demo-loading>Loading</button>
+            <button class="btn btn--secondary" data-demo-loading>Loading</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Icon buttons</div>
+          <div class="ds-row__body">
+            <button class="icon-btn" aria-label="Search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
+            <button class="icon-btn" aria-label="Notifications"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></button>
+            <button class="icon-btn" aria-pressed="true" aria-label="Active toggle"><svg class="icon" aria-hidden="true"><use href="#i-filter"></use></svg></button>
+            <button class="icon-btn icon-btn--sm" aria-label="More"><svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Forms -->
+      <section class="ds__section" id="c-forms">
+        <div class="ds__title"><h2 class="t-h2">Form controls</h2></div>
+        <p class="ds__note">Labels sit above fields in sentence case. Errors are specific about what happened and how to fix
+          it, and are tied to the field with a message — never colour alone.</p>
+
+        <div class="ds-row">
+          <div class="ds-row__label">Text input</div>
+          <div class="ds-row__body ds-row__body--col" style="max-width:380px">
+            <div class="field">
+              <label class="field__label" for="f1">Workspace name</label>
+              <input class="input" id="f1" type="text" value="Ara Studio" />
+              <p class="field__hint">You can rename it later in settings.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">With icon</div>
+          <div class="ds-row__body ds-row__body--col" style="max-width:380px">
+            <div class="input-wrap">
+              <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+              <input class="input" type="search" placeholder="Search or run a command…" aria-label="Search" />
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Error</div>
+          <div class="ds-row__body ds-row__body--col" style="max-width:380px">
+            <div class="field field--error">
+              <label class="field__label" for="f2">Email</label>
+              <input class="input" id="f2" type="email" value="sara@arastudio" aria-invalid="true" />
+              <p class="field__msg"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                <span>Enter a complete address, for example name@company.com.</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Success</div>
+          <div class="ds-row__body ds-row__body--col" style="max-width:380px">
+            <div class="field field--success">
+              <label class="field__label" for="f3">API key</label>
+              <input class="input" id="f3" type="password" value="sk-1234567890" />
+              <p class="field__msg"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                <span>Key stored and encrypted. Only the last four characters will be shown.</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Select</div>
+          <div class="ds-row__body" style="max-width:380px;width:100%">
+            <select class="select" aria-label="Model">
+              <option>Fast</option>
+              <option selected>Balanced</option>
+              <option>Deep</option>
+            </select>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Textarea</div>
+          <div class="ds-row__body" style="max-width:420px;width:100%">
+            <textarea class="textarea" rows="3" placeholder="Ask AI to do something…" aria-label="Prompt"></textarea>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Disabled</div>
+          <div class="ds-row__body" style="max-width:380px;width:100%">
+            <input class="input" type="text" value="Managed by organization policy" aria-label="Managed by organization policy" disabled />
+          </div>
+        </div>
+      </section>
+
+      <!-- Selection -->
+      <section class="ds__section" id="c-select">
+        <div class="ds__title"><h2 class="t-h2">Selection</h2></div>
+        <div class="ds-row">
+          <div class="ds-row__label">Checkbox</div>
+          <div class="ds-row__body ds-row__body--col">
+            <label class="check"><input type="checkbox" checked /><span>Keep me signed in</span></label>
+            <label class="check"><input type="checkbox" /><span>Trust this device for 30 days</span></label>
+            <label class="check" style="opacity:.45"><input type="checkbox" disabled /><span>Disabled option</span></label>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Radio</div>
+          <div class="ds-row__body ds-row__body--col">
+            <label class="check"><input type="radio" name="r1" checked /><span>Central AI — platform quota</span></label>
+            <label class="check"><input type="radio" name="r1" /><span>Personal AI — your own key</span></label>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Switch</div>
+          <div class="ds-row__body">
+            <label class="switch"><input type="checkbox" checked /><span>Allow fallback</span></label>
+            <label class="switch"><input type="checkbox" /><span>Off by default</span></label>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Segmented</div>
+          <div class="ds-row__body">
+            <div class="segmented" role="group" aria-label="Type">
+              <button aria-selected="false">Personal</button>
+              <button aria-selected="true">Team</button>
+              <button aria-selected="false">Organization</button>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Chips</div>
+          <div class="ds-row__body">
+            <button class="chip chip--action" aria-pressed="true">Product design</button>
+            <button class="chip chip--action" aria-pressed="false">Marketing</button>
+            <span class="chip"><span class="dot dot--live"></span>Central AI</span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">OTP</div>
+          <div class="ds-row__body">
+            <div class="otp" data-otp style="width:280px">
+              <input inputmode="numeric" maxlength="1" aria-label="Digit 1" />
+              <input inputmode="numeric" maxlength="1" aria-label="Digit 2" />
+              <input inputmode="numeric" maxlength="1" aria-label="Digit 3" />
+              <input inputmode="numeric" maxlength="1" aria-label="Digit 4" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <section class="ds__section" id="c-nav">
+        <div class="ds__title"><h2 class="t-h2">Navigation</h2></div>
+        <p class="ds__note">Tabs carry the underline; the rail carries the lattice — a short rule ending in a node that
+          marks each group. It encodes grouping, so it is structure rather than ornament.</p>
+        <div class="ds-row">
+          <div class="ds-row__label">Tabs</div>
+          <div class="ds-row__body" style="width:100%">
+            <div class="tabs" data-tabs="demo" style="width:100%">
+              <button class="tab" role="tab" data-tab="a" aria-selected="true">Members <span class="tab__count">6</span></button>
+              <button class="tab" role="tab" data-tab="b" aria-selected="false">Roles &amp; access</button>
+              <button class="tab" role="tab" data-tab="c" aria-selected="false">Invite</button>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Badges</div>
+          <div class="ds-row__body">
+            <span class="badge">Neutral</span>
+            <span class="badge badge--primary">Owner</span>
+            <span class="badge badge--ok"><span class="dot"></span>Active</span>
+            <span class="badge badge--warn"><span class="dot"></span>Pending</span>
+            <span class="badge badge--err"><span class="dot"></span>Auth error</span>
+            <span class="badge badge--signal"><span class="dot dot--signal"></span>Needs approval</span>
+            <span class="badge badge--info">Info</span>
+            <span class="badge badge--plain">Plain</span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Scope chip</div>
+          <div class="ds-row__body">
+            <button class="scope">
+              <span class="scope__mark"><svg class="icon icon-16" aria-hidden="true"><use href="#i-layers"></use></svg></span>
+              <span class="scope__name">Ara Studio</span>
+              <span class="scope__level">Team</span>
+              <svg class="icon icon-16" aria-hidden="true"><use href="#i-chevronDown"></use></svg>
+            </button>
+            <span class="kbd">Ctrl</span><span class="kbd">K</span>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Avatars</div>
+          <div class="ds-row__body">
+            <span class="avatar avatar--lg">SM</span>
+            <span class="avatar">SM</span>
+            <span class="avatar avatar--sm avatar--neutral">AR</span>
+            <span class="avatar avatar--sm avatar--signal">NA</span>
+            <span class="avatar-stack">
+              <span class="avatar avatar--sm">SM</span>
+              <span class="avatar avatar--sm avatar--neutral">AR</span>
+              <span class="avatar avatar--sm avatar--neutral">MK</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Surfaces -->
+      <section class="ds__section" id="c-surface">
+        <div class="ds__title"><h2 class="t-h2">Surfaces</h2></div>
+        <p class="ds__note">Three levels only. <strong>Panel</strong> is a bounded surface with a header rule;
+          <strong>flat</strong> is document-like with a single rule and no radius, used where a card would add noise;
+          <strong>float</strong> is for overlays, with the only large shadow in the system.</p>
+        <div class="ds-row">
+          <div class="ds-row__label">Panel</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="panel">
+              <div class="panel__head">
+                <span class="panel__title">AI usage</span>
+                <span class="badge badge--warn">72%</span>
+              </div>
+              <div class="panel__body">
+                <div class="t-h2 t-num">$36.40</div>
+                <div class="t-caption" style="margin-block-end:10px">of this month’s $50 cap</div>
+                <div class="meter"><div class="meter__fill meter__fill--warn" style="width:72%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Flat</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="flat" style="width:100%">
+              <div class="flat__head"><span class="t-h3">Today</span><button class="btn btn--quiet btn--sm">All tasks</button></div>
+              <div class="list list--flush">
+                <div class="list__row">
+                  <label class="check"><input type="checkbox" aria-label="Mark task complete" /></label>
+                  <div class="list__main">
+                    <div class="list__title">Review the autumn campaign brief</div>
+                    <div class="list__sub"><span class="badge badge--plain">Campaign</span><span class="t-meta">09:30</span></div>
+                  </div>
+                </div>
+                <div class="list__row">
+                  <label class="check"><input type="checkbox" aria-label="Mark task complete" /></label>
+                  <div class="list__main">
+                    <div class="list__title">Approve the market research agent run</div>
+                    <div class="list__sub">2 steps left · est. $0.42</div>
+                  </div>
+                  <button class="btn btn--signal btn--sm">Review</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Callouts</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="callout">
+              <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+              <div>Neutral information. Used for policy context, not for errors.</div>
+            </div>
+            <div class="callout callout--signal">
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <div><span class="callout__title">Needs your approval.</span> Outbound requests stay paused until you confirm.</div>
+            </div>
+            <div class="callout callout--error">
+              <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+              <div><span class="callout__title">Key rejected (401).</span> Replace the key or switch the workspace back to Central AI.</div>
+            </div>
+            <div class="callout callout--success">
+              <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+              <div><span class="callout__title">Connection verified.</span> 310 ms round trip.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data -->
+      <section class="ds__section" id="c-data">
+        <div class="ds__title"><h2 class="t-h2">Data display</h2></div>
+        <div class="ds-row">
+          <div class="ds-row__label">Table</div>
+          <div class="ds-row__body" style="width:100%">
+            <div class="panel" style="width:100%">
+              <div class="table-scroll">
+              <table class="table">
+                <thead><tr><th>Member</th><th>Role</th><th>Status</th><th>Last active</th></tr></thead>
+                <tbody>
+                  <tr><td>Sara Mehrabi</td><td><span class="badge badge--primary">Owner</span></td>
+                    <td><span class="badge badge--ok"><span class="dot"></span>Active</span></td><td class="t-meta">Now</td></tr>
+                  <tr><td>Ali Rezaei</td><td><span class="badge">Admin</span></td>
+                    <td><span class="badge badge--ok"><span class="dot"></span>Active</span></td><td class="t-meta">12 min</td></tr>
+                  <tr><td>Hossein Sadeghi</td><td><span class="badge">Member</span></td>
+                    <td><span class="badge badge--warn"><span class="dot"></span>Pending</span></td><td class="t-meta">2 d</td></tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Bars</div>
+          <div class="ds-row__body" style="width:100%;max-width:420px">
+            <div class="bars" style="width:100%">
+              <div class="bars__row"><span>Chat</span><span class="bars__track"><span class="bars__fill" style="width:100%"></span></span><span class="bars__val">16.38</span></div>
+              <div class="bars__row"><span>Agents</span><span class="bars__track"><span class="bars__fill" style="width:73%"></span></span><span class="bars__val">12.01</span></div>
+              <div class="bars__row"><span>Workflows</span><span class="bars__track"><span class="bars__fill" style="width:49%"></span></span><span class="bars__val">8.01</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Sparkline</div>
+          <div class="ds-row__body">
+            <div class="spark" style="width:180px">
+              <span style="height:30%"></span><span style="height:45%"></span><span style="height:38%"></span>
+              <span style="height:62%"></span><span style="height:55%"></span><span style="height:74%"></span>
+              <span data-peak="true" style="height:92%"></span><span style="height:68%"></span>
+              <span style="height:52%"></span><span data-signal="true" style="height:80%"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feedback -->
+      <section class="ds__section" id="c-feedback">
+        <div class="ds__title"><h2 class="t-h2">Feedback &amp; states</h2></div>
+        <p class="ds__note">Empty and error states give direction rather than mood. An empty screen is an invitation to act.</p>
+        <div class="ds-row">
+          <div class="ds-row__label">Toast</div>
+          <div class="ds-row__body">
+            <button class="btn btn--secondary" onclick="NX.toast('Changes saved.','ok')">Success toast</button>
+            <button class="btn btn--secondary" onclick="NX.toast('Key rejected (401). Replace it to continue.','err')">Error toast</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Empty</div>
+          <div class="ds-row__body ds-row__body--col">
+            <div class="panel" style="width:100%">
+              <div class="empty">
+                <span class="empty__mark"><svg class="icon" aria-hidden="true"><use href="#i-flow"></use></svg></span>
+                <div class="empty__title">No workflows yet</div>
+                <p class="t-caption" style="max-width:44ch">Start from a template, or build one from scratch. You can run it
+                  manually before adding a schedule.</p>
+                <button class="btn btn--secondary btn--sm">Create a workflow</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Skeleton</div>
+          <div class="ds-row__body ds-row__body--col" style="width:100%;max-width:420px">
+            <div class="skeleton" style="height:12px;width:60%"></div>
+            <div class="skeleton" style="height:12px;width:100%"></div>
+            <div class="skeleton" style="height:12px;width:80%"></div>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Loading</div>
+          <div class="ds-row__body"><span class="spinner"></span><span class="t-caption">Loading…</span></div>
+        </div>
+      </section>
+
+      <!-- Overlays -->
+      <section class="ds__section" id="c-overlay">
+        <div class="ds__title"><h2 class="t-h2">Overlays</h2></div>
+        <div class="ds-row">
+          <div class="ds-row__label">Dialog</div>
+          <div class="ds-row__body">
+            <button class="btn btn--secondary" id="open-modal">Open confirmation</button>
+            <button class="btn btn--secondary" id="open-drawer">Open notification drawer</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Tooltip</div>
+          <div class="ds-row__body">
+            <button class="btn btn--ghost" data-tip="Tooltips describe, never carry the only copy">Hover or focus me</button>
+          </div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Menu</div>
+          <div class="ds-row__body" style="position:relative">
+            <button class="btn btn--secondary" id="menu-btn" aria-haspopup="menu" aria-expanded="false">Open menu</button>
+            <div class="menu" id="demo-menu" role="menu" style="inset-block-start:calc(100% + 6px);inset-inline-start:0">
+              <button class="menu__item" role="menuitem"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg>Profile</button>
+              <button class="menu__item" role="menuitem"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Security</button>
+              <div class="menu__sep"></div>
+              <button class="menu__item" role="menuitem"><svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg>Sign out</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- A11y -->
+      <section class="ds__section" id="c-a11y">
+        <div class="ds__title"><h2 class="t-h2">Accessibility</h2><span class="badge badge--plain">target WCAG 2.2 AA</span></div>
+        <div class="ds-row">
+          <div class="ds-row__label">Focus</div>
+          <div class="ds-row__body"><ul class="spec-list">
+            <li>Every interactive element has a visible <code>:focus-visible</code> ring — 2px, 55% opacity, offset by the control radius.</li>
+            <li>Focus order follows reading order in both directions; the skip link is the first tab stop.</li>
+            <li>Overlays close on <code>Esc</code> and on scrim click; the drawer moves focus to its close button.</li>
+          </ul></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Contrast</div>
+          <div class="ds-row__body"><ul class="spec-list">
+            <li>Body text on background: 12.9:1 (dark) · 15.8:1 (light).</li>
+            <li>Primary action label on primary fill: 6.4:1 (light) · 9.1:1 (dark).</li>
+            <li>Signal (saffron) is never used for small text on light backgrounds below 4.5:1.</li>
+            <li>State is always conveyed by text or icon as well as colour.</li>
+          </ul></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Motion</div>
+          <div class="ds-row__body"><ul class="spec-list">
+            <li>All transitions collapse to 0ms under <code>prefers-reduced-motion</code>.</li>
+            <li>One orchestrated entrance per page; nothing loops.</li>
+          </ul></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-row__label">Targets</div>
+          <div class="ds-row__body"><ul class="spec-list">
+            <li>Controls are 40px high by default, 48px on large; icon buttons are 36px with 28px for dense table rows.</li>
+            <li>Touch targets on mobile are padded to 44px minimum.</li>
+          </ul></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <!-- Confirmation dialog -->
+  <div class="modal float" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__head">
+      <div>
+        <h2 class="t-h3" id="modal-title">Run this tool call?</h2>
+        <p class="t-caption" style="margin-block-start:4px">web.search · 4 outbound requests</p>
+      </div>
+      <button class="icon-btn" data-close-modal aria-label="Close">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="callout callout--signal" style="margin-block-end:16px">
+        <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+        <div>Approving sends the quoted query text to an external provider. Nothing else from this workspace is shared.</div>
+      </div>
+      <div class="field">
+        <span class="field__label">Scope</span>
+        <p class="t-caption">Workspace <strong>Ara Studio</strong> · read-only · expires in 10 minutes.</p>
+      </div>
+    </div>
+    <div class="modal__foot">
+      <button class="btn btn--ghost" data-close-modal>Cancel</button>
+      <button class="btn btn--primary" data-close-modal>Approve and run</button>
+    </div>
+  </div>
+
+  <div class="drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-label="Notifications">
+    <div class="modal__head" style="padding:20px">
+      <div>
+        <div class="t-h3">Notifications</div>
+        <div class="t-caption">Drawer pattern — same shell as the product</div>
+      </div>
+      <button class="icon-btn" data-close-drawer aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+    </div>
+    <div class="list">
+      <div class="list__row">
+        <span class="dot dot--signal" style="margin-block-start:6px"></span>
+        <div class="list__main">
+          <div class="list__title">Workflow “Weekly report” ran</div>
+          <div class="t-caption">3 of 4 steps succeeded. The last step is waiting for approval.</div>
+        </div>
+        <span class="list__meta">12 min</span>
+      </div>
+      <div class="list__row">
+        <span class="dot dot--idle" style="margin-block-start:6px"></span>
+        <div class="list__main">
+          <div class="list__title">Personal API key tested</div>
+          <div class="t-caption">The connection responded in 310 ms.</div>
+        </div>
+        <span class="list__meta">2 d</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="devbar-slot"></div>
+
+  <script src="../assets/icons.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/lang/common.js"></script>
+  <script src="../assets/chrome.js"></script>
+  <script>
+    document.getElementById('brand-mark').innerHTML = NX.mark(26);
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'components');
+
+    /* Colour swatches read live token values so the page stays truthful. */
+    var TOKENS = [
+      ['--nx-bg', 'bg'], ['--nx-surface', 'surface'], ['--nx-surface-2', 'surface-2'],
+      ['--nx-surface-3', 'surface-3'], ['--nx-border', 'border'], ['--nx-border-strong', 'border-strong'],
+      ['--nx-text-1', 'text-1'], ['--nx-text-2', 'text-2'], ['--nx-text-3', 'text-3'],
+      ['--nx-primary', 'primary'], ['--nx-primary-hover', 'primary-hover'], ['--nx-primary-soft', 'primary-soft'],
+      ['--nx-signal', 'signal'], ['--nx-signal-fill', 'signal-fill'], ['--nx-signal-soft', 'signal-soft'],
+      ['--nx-success', 'success'], ['--nx-warning', 'warning'], ['--nx-error', 'error'], ['--nx-info', 'info'],
+      ['--nx-data-1', 'data-1'], ['--nx-data-2', 'data-2'], ['--nx-data-3', 'data-3'], ['--nx-data-4', 'data-4']
+    ];
+    function paintSwatches() {
+      var cs = getComputedStyle(document.documentElement);
+      document.getElementById('swatches').innerHTML = TOKENS.map(function (t) {
+        var v = cs.getPropertyValue(t[0]).trim();
+        return '<div class="swatch"><div class="swatch__chip" style="background:' + v + '"></div>' +
+          '<div class="swatch__meta"><div class="swatch__name">' + t[1] + '</div>' +
+          '<div class="swatch__val">' + v + '</div></div></div>';
+      }).join('');
+    }
+    paintSwatches();
+    document.addEventListener('nx:theme', paintSwatches);
+
+    document.getElementById('open-modal').addEventListener('click', function () {
+      document.getElementById('demo-modal').setAttribute('data-open', 'true');
+      document.getElementById('scrim').setAttribute('data-open', 'true');
+    });
+    document.getElementById('open-drawer').addEventListener('click', function () {
+      document.getElementById('demo-drawer').setAttribute('data-open', 'true');
+      document.getElementById('scrim').setAttribute('data-open', 'true');
+    });
+    document.querySelectorAll('[data-close-modal]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.getElementById('demo-modal').setAttribute('data-open', 'false');
+        document.getElementById('scrim').setAttribute('data-open', 'false');
+      });
+    });
+    document.querySelectorAll('[data-close-drawer]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.getElementById('demo-drawer').setAttribute('data-open', 'false');
+        document.getElementById('scrim').setAttribute('data-open', 'false');
+      });
+    });
+    document.getElementById('menu-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var m = document.getElementById('demo-menu');
+      var open = m.getAttribute('data-open') === 'true';
+      m.setAttribute('data-open', String(!open));
+      this.setAttribute('aria-expanded', String(!open));
+    });
+  </script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

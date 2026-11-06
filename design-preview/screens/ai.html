@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · AI workspace</title>
+  <script>
+    (function () {
+      var l = localStorage.getItem('nx.lang') || 'fa';
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/tokens.css" />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="../assets/components.css" />
+  <link rel="stylesheet" href="../assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-t="a11y.skip"></a>
+
+  <div class="shell" id="shell">
+    <div id="rail-slot"></div>
+    <div class="main">
+      <div id="topbar-slot"></div>
+
+      <main class="content content--flush" id="main">
+        <div class="ai-head">
+          <div class="tabs" data-tabs="ai" role="tablist">
+            <button class="tab" role="tab" data-tab="chat" aria-selected="true" data-t="ai.tab.chat"></button>
+            <button class="tab" role="tab" data-tab="connect" aria-selected="false" data-t="ai.tab.connect"></button>
+          </div>
+          <div class="cluster cluster-2">
+            <span class="badge badge--ok"><span class="dot dot--live"></span><span data-t="ai.status.live"></span></span>
+            <button class="btn btn--secondary btn--sm" data-t="ai.newChat">
+              <svg class="icon icon-16" aria-hidden="true"><use href="#i-plus"></use></svg>
+              <span data-t="ai.new"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ============ Chat ============ -->
+        <div class="ai" data-tab-panel="chat" data-group="ai">
+          <!-- Sessions -->
+          <div class="ai__col ai__col--list">
+            <div class="ai__list-head">
+              <div class="input-wrap">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-search"></use></svg>
+                <input class="input" style="height:34px;font-size:var(--nx-text-2xs)" type="search"
+                       data-t-ph="ai.searchPh" />
+              </div>
+            </div>
+            <div class="ai__list">
+              <div class="rule-label" style="padding-inline:8px"><span data-t="ai.group.today"></span></div>
+              <button class="ai__session" aria-current="true">
+                <div class="ai__session-title" data-t="ai.s1.title"></div>
+                <div class="ai__session-meta">
+                  <svg class="icon" style="width:12px;height:12px" aria-hidden="true"><use href="#i-sparkle"></use></svg>
+                  <span data-t="ai.s1.meta"></span>
+                </div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s2.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s2.meta"></span></div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s3.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s3.meta"></span></div>
+              </button>
+
+              <div class="rule-label" style="padding-inline:8px;margin-block-start:16px"><span data-t="ai.group.week"></span></div>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s4.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s4.meta"></span></div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s5.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s5.meta"></span></div>
+              </button>
+            </div>
+            <div style="padding:var(--nx-space-3);border-block-start:1px solid var(--nx-border-faint);flex:none">
+              <div class="cluster-between">
+                <span class="t-caption" data-t="ai.retention.short"></span>
+                <button class="btn btn--quiet btn--sm" data-t="common.edit"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thread -->
+          <div class="ai__col">
+            <div class="ai__thread-head">
+              <div style="min-width:0">
+                <div class="t-h3" style="font-size:var(--nx-text-md)" data-t="ai.thread.title"></div>
+                <div class="t-caption" data-t="ai.thread.sub"></div>
+              </div>
+              <div class="cluster cluster-2">
+                <button class="chip chip--action">
+                  <span class="dot dot--live"></span>
+                  <span>Central AI</span>
+                </button>
+                <button class="chip chip--action">
+                  <span data-t="ai.model.balanced"></span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-chevronDown"></use></svg>
+                </button>
+                <button class="icon-btn icon-btn--sm" data-t-aria="common.edit">
+                  <svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="ai__thread">
+              <div class="ai__thread-inner">
+
+                <div class="msg">
+                  <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+                  <div class="msg__body">
+                    <div class="msg__name"><span data-t="common.you"></span></div>
+                    <p class="msg__text" data-t="ai.m1"></p>
+                  </div>
+                </div>
+
+                <div class="msg msg--ai">
+                  <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <div class="msg__body">
+                    <div class="msg__name">
+                      <span>NEXORA</span>
+                      <span class="badge badge--plain" data-t="ai.model.balanced"></span>
+                    </div>
+                    <div class="msg__text" data-t-html="ai.m2"></div>
+                    <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-3)">
+                      <span class="t-caption" data-t="ai.sources"></span>
+                      <button class="chip chip--action">
+                        <svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg>
+                        <span data-t="ai.src1"></span>
+                      </button>
+                      <button class="chip chip--action">
+                        <svg class="icon" aria-hidden="true"><use href="#i-file"></use></svg>
+                        <span data-t="ai.src2"></span>
+                      </button>
+                    </div>
+                    <div class="msg__actions">
+                      <button class="icon-btn icon-btn--sm" data-t-aria="common.copy">
+                        <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                      </button>
+                      <button class="icon-btn icon-btn--sm" data-t-aria="common.retry">
+                        <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="msg msg--ai">
+                  <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <div class="msg__body">
+                    <div class="msg__name"><span>NEXORA</span></div>
+                    <p class="msg__text" data-t="ai.m3"></p>
+
+                    <div class="tool-call">
+                      <div class="tool-call__head">
+                        <svg class="icon icon-16" aria-hidden="true"><use href="#i-zap"></use></svg>
+                        <span data-t="ai.tool.title"></span>
+                        <span class="badge badge--signal" style="margin-inline-start:auto">
+                          <span class="dot dot--signal"></span>
+                          <span data-t="common.pending"></span>
+                        </span>
+                      </div>
+                      <div class="tool-call__body" data-t="ai.tool.body"></div>
+                      <div class="tool-call__foot">
+                        <button class="btn btn--signal btn--sm" data-demo-toast="toast.saved">
+                          <svg class="icon icon-16" aria-hidden="true"><use href="#i-check"></use></svg>
+                          <span data-t="ai.tool.approve"></span>
+                        </button>
+                        <button class="btn btn--ghost btn--sm" data-demo-toast="toast.saved" data-t="ai.tool.reject"></button>
+                      </div>
+                    </div>
+                    <p class="t-caption cluster cluster-2" style="margin-block-start:var(--nx-space-2)">
+                      <svg class="icon icon-16" aria-hidden="true"><use href="#i-lock"></use></svg>
+                      <span data-t="ai.tool.note"></span>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="ai__composer">
+              <div class="ai__composer-inner">
+                <div class="composer">
+                  <label class="visually-hidden" for="ai-input" data-t="ai.composer.label"></label>
+                  <textarea class="composer__input" id="ai-input" rows="2" data-t-ph="ai.composer.ph"
+                            style="min-height:56px"></textarea>
+                  <div class="composer__bar">
+                    <button class="chip chip--action" data-t-aria="ai.composer.attach">
+                      <svg class="icon" aria-hidden="true"><use href="#i-clip"></use></svg>
+                    </button>
+                    <button class="chip chip--action">
+                      <svg class="icon" aria-hidden="true"><use href="#i-folder"></use></svg>
+                      <span data-t="ai.composer.context"></span>
+                    </button>
+                    <span class="t-meta" style="margin-inline-start:auto" data-t="ai.composer.tokens"></span>
+                    <button class="composer__send" data-demo-toast="toast.paletteRun">
+                      <span data-t="ai.composer.send"></span>
+                      <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Context inspector -->
+          <aside class="ai__col ai__col--ctx">
+            <div class="ai__ctx-block">
+              <div class="rule-label"><span data-t="ai.ctx.title"></span></div>
+              <dl style="margin:0">
+                <div class="ai__ctx-row"><dt data-t="ai.ctx.ws"></dt><dd data-t="ws.team"></dd></div>
+                <div class="ai__ctx-row"><dt data-t="ai.ctx.access"></dt><dd data-t="ai.ctx.accessVal"></dd></div>
+                <div class="ai__ctx-row"><dt data-t="ai.ctx.source"></dt><dd>Central AI</dd></div>
+                <div class="ai__ctx-row"><dt data-t="ai.ctx.model"></dt><dd data-t="ai.model.balanced"></dd></div>
+                <div class="ai__ctx-row"><dt data-t="ai.ctx.retention"></dt><dd data-t="ai.ctx.retentionVal"></dd></div>
+              </dl>
+            </div>
+
+            <div class="ai__ctx-block">
+              <div class="rule-label"><span data-t="ai.ctx.files"></span></div>
+              <div class="list list--flush">
+                <div class="list__row">
+                  <svg class="icon icon-16" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-folder"></use></svg>
+                  <div class="list__main"><div class="list__title" style="font-size:var(--nx-text-2xs)" data-t="ai.src1"></div></div>
+                </div>
+                <div class="list__row">
+                  <svg class="icon icon-16" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-file"></use></svg>
+                  <div class="list__main"><div class="list__title" style="font-size:var(--nx-text-2xs)" data-t="ai.src2"></div></div>
+                </div>
+              </div>
+              <button class="btn btn--quiet btn--sm" style="margin-block-start:8px" data-t="ai.ctx.addFile"></button>
+            </div>
+
+            <div class="ai__ctx-block">
+              <div class="rule-label"><span data-t="ai.ctx.usage"></span></div>
+              <div class="cluster-between" style="margin-block-end:8px">
+                <span class="t-caption" data-t="ai.ctx.tokens"></span>
+                <span class="t-num" style="font-size:var(--nx-text-sm)" data-t="ai.ctx.cost"></span>
+              </div>
+              <div class="meter"><div class="meter__fill" style="width:26%"></div></div>
+              <p class="t-caption" style="margin-block-start:8px" data-t="ai.ctx.usageNote"></p>
+            </div>
+
+            <div class="ai__ctx-block" style="border-block-end:0">
+              <div class="callout">
+                <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                <div data-t="ai.ctx.rule"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- ============ Models & connection ============ -->
+        <div class="ai-config" data-tab-panel="connect" data-group="ai" hidden>
+          <div class="ai-config__inner stack stack-6">
+
+            <div>
+              <h2 class="t-h2" data-t="ai.cfg.title"></h2>
+              <p class="t-body" data-t="ai.cfg.sub"></p>
+            </div>
+
+            <div class="prov-grid">
+              <div class="prov-option" role="button" tabindex="0" aria-pressed="true">
+                <div class="prov-option__head">
+                  <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <div class="grow">
+                    <div class="prov-option__title" data-t="ai.cfg.central"></div>
+                    <div class="t-caption" data-t="ai.cfg.centralSub"></div>
+                  </div>
+                  <span class="badge badge--ok"><span class="dot"></span><span data-t="ai.cfg.active"></span></span>
+                </div>
+                <dl style="margin:0">
+                  <div class="ai__ctx-row"><dt data-t="ai.cfg.quota"></dt><dd data-t="ai.cfg.quotaVal"></dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.cfg.used"></dt><dd data-t="ai.cfg.usedVal"></dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.cfg.models"></dt><dd data-t="ai.cfg.modelsVal"></dd></div>
+                </dl>
+              </div>
+
+              <div class="prov-option" role="button" tabindex="0" aria-pressed="false">
+                <div class="prov-option__head">
+                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></span>
+                  <div class="grow">
+                    <div class="prov-option__title" data-t="ai.cfg.personal"></div>
+                    <div class="t-caption" data-t="ai.cfg.personalSub"></div>
+                  </div>
+                  <span class="badge badge--plain" data-t="common.disconnected"></span>
+                </div>
+                <p class="t-caption" data-t="ai.cfg.personalNote"></p>
+                <button class="btn btn--secondary btn--sm" style="align-self:flex-start" data-demo-toast="toast.saved" data-t="ai.cfg.addKey"></button>
+              </div>
+            </div>
+
+            <!-- Personal AI form -->
+            <section class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title" data-t="ai.cfg.form.title"></h3>
+                <span class="badge badge--plain" data-t="ai.cfg.form.badge"></span>
+              </div>
+              <div class="panel__body stack stack-4">
+                <div class="grid grid-2">
+                  <div class="field">
+                    <label class="field__label" for="p-provider" data-t="ai.cfg.form.provider"></label>
+                    <select class="select" id="p-provider">
+                      <option selected>Anthropic</option>
+                      <option>OpenAI</option>
+                      <option>Google</option>
+                      <option data-t="ai.cfg.form.custom"></option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="p-model" data-t="ai.cfg.form.model"></label>
+                    <select class="select" id="p-model">
+                      <option data-t="ai.model.fast"></option>
+                      <option selected data-t="ai.model.balanced"></option>
+                      <option data-t="ai.model.deep"></option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="p-base" data-t="ai.cfg.form.base"></label>
+                  <input class="input" id="p-base" type="url" dir="ltr" placeholder="https://api.provider.com/v1" />
+                  <p class="field__hint" data-t="ai.cfg.form.baseHint"></p>
+                </div>
+
+                <div class="field field--success">
+                  <label class="field__label" for="p-key" data-t="ai.cfg.form.key"></label>
+                  <div class="input-wrap">
+                    <input class="input" id="p-key" type="password" dir="ltr" placeholder="sk-••••••••••••••••" />
+                    <span class="input-wrap__trail">
+                      <button type="button" class="icon-btn icon-btn--sm" data-pass-toggle="p-key" data-t-aria="common.showPassword">
+                        <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+                      </button>
+                    </span>
+                  </div>
+                  <p class="field__msg">
+                    <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                    <span data-t="ai.cfg.form.keyOk"></span>
+                  </p>
+                  <p class="field__hint" data-t="ai.cfg.form.keyHint"></p>
+                </div>
+
+                <div class="cluster-between" style="border-block-start:1px solid var(--nx-border-faint);padding-block-start:var(--nx-space-4)">
+                  <div class="cluster cluster-2">
+                    <span class="dot dot--live"></span>
+                    <span class="t-caption" data-t="ai.cfg.form.status"></span>
+                  </div>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--secondary btn--sm" data-demo-loading data-demo-toast="toast.saved" data-t="common.test"></button>
+                    <button class="btn btn--primary btn--sm" data-demo-toast="toast.saved" data-t="common.save"></button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Fail-closed policy -->
+            <section class="panel">
+              <div class="panel__body stack stack-4">
+                <div class="cluster-between">
+                  <div style="max-width:56ch">
+                    <div class="panel__title" data-t="ai.cfg.fail.title"></div>
+                    <p class="t-caption" style="margin-block-start:4px" data-t="ai.cfg.fail.body"></p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" />
+                    <span class="t-caption" data-t="ai.cfg.fail.switch"></span>
+                  </label>
+                </div>
+                <div class="callout callout--signal">
+                  <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+                  <div data-t="ai.cfg.fail.note"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Provider status -->
+            <section class="panel">
+              <div class="panel__head">
+                <h3 class="panel__title" data-t="ai.cfg.status.title"></h3>
+                <button class="btn btn--ghost btn--sm" data-t="common.retry"></button>
+              </div>
+              <div class="table-scroll">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th data-t="ai.cfg.status.col1"></th>
+                    <th data-t="ai.cfg.status.col2"></th>
+                    <th data-t="ai.cfg.status.col3"></th>
+                    <th data-t="ai.cfg.status.col4"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Central AI</td>
+                    <td data-t="ai.cfg.status.central"></td>
+                    <td><span class="badge badge--ok"><span class="dot"></span><span data-t="common.connected"></span></span></td>
+                    <td class="t-meta" data-t="ai.cfg.status.lat1"></td>
+                  </tr>
+                  <tr>
+                    <td>Anthropic</td>
+                    <td data-t="ai.cfg.status.personal"></td>
+                    <td><span class="badge badge--plain"><span class="dot dot--idle"></span><span data-t="common.disconnected"></span></span></td>
+                    <td class="t-meta">—</td>
+                  </tr>
+                  <tr>
+                    <td>OpenAI</td>
+                    <td data-t="ai.cfg.status.personal"></td>
+                    <td><span class="badge badge--err"><span class="dot"></span><span data-t="ai.cfg.status.error"></span></span></td>
+                    <td class="t-meta" data-t="ai.cfg.status.lat3"></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <div id="drawer-slot"></div>
+  <div id="palette-slot"></div>
+  <div id="devbar-slot"></div>
+
+  <script src="../assets/icons.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/lang/common.js"></script>
+  <script src="../assets/lang/ai.js"></script>
+  <script src="../assets/chrome.js"></script>
+  <script>
+    document.getElementById('rail-slot').outerHTML = NX.rail('ai');
+    document.getElementById('topbar-slot').outerHTML = NX.topbar();
+    document.getElementById('drawer-slot').outerHTML = NX.drawer();
+    document.getElementById('palette-slot').outerHTML = NX.palette();
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'ai');
+  </script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

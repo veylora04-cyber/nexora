@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA · Onboarding</title>
+  <script>
+    (function () {
+      var l = localStorage.getItem('nx.lang') || 'fa';
+      var t = localStorage.getItem('nx.theme') || 'dark';
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/tokens.css" />
+  <link rel="stylesheet" href="../assets/base.css" />
+  <link rel="stylesheet" href="../assets/components.css" />
+  <link rel="stylesheet" href="../assets/layouts.css" />
+</head>
+<body>
+  <a class="skip-link" href="#onb-body" data-t="a11y.skip"></a>
+
+  <div class="onb">
+    <header class="onb__top">
+      <a class="brand" href="../index.html" aria-label="NEXORA">
+        <span class="brand__mark" id="brand-mark"></span>
+        <span class="brand__word">NEXORA</span>
+      </a>
+
+      <div class="onb__steps" id="onb-steps" hidden>
+        <span class="onb__step" data-state="current"><span class="onb__step-num">۱</span><span data-t="onb.step1"></span></span>
+        <span class="onb__step-sep"></span>
+        <span class="onb__step" data-state="next"><span class="onb__step-num">۲</span><span data-t="onb.step2"></span></span>
+        <span class="onb__step-sep"></span>
+        <span class="onb__step" data-state="next"><span class="onb__step-num">۳</span><span data-t="onb.step3"></span></span>
+        <span class="onb__step-sep"></span>
+        <span class="onb__step" data-state="next"><span class="onb__step-num">۴</span><span data-t="onb.step4"></span></span>
+      </div>
+
+      <button class="btn btn--quiet btn--sm onb__exit" type="button">
+        <svg class="icon icon-dir" aria-hidden="true"><use href="#i-logout"></use></svg>
+        <span data-t="onb.exit"></span>
+      </button>
+    </header>
+
+    <main class="onb__body" id="onb-body">
+      <div class="onb__wrap">
+
+        <!-- 1 · Path choice (approved hybrid onboarding) -->
+        <section class="onb-view" data-view="choice">
+          <div class="onb__head">
+            <h1 class="t-h1 onb__title" data-t="onb.choice.title"></h1>
+            <p class="t-lead" data-t="onb.choice.sub"></p>
+          </div>
+
+          <div class="onb-paths">
+            <button class="onb-path onb-path--primary" data-goto="smart">
+              <div class="onb-path__title">
+                <span data-t="onb.smart.title"></span>
+                <span class="badge badge--primary" data-t="onb.recommended"></span>
+              </div>
+              <p class="onb-path__text" data-t="onb.smart.text"></p>
+              <ul class="onb-path__list">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span data-t="onb.smart.l1"></span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span data-t="onb.smart.l2"></span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span data-t="onb.smart.l3"></span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span data-t="onb.smart.l4"></span></li>
+              </ul>
+              <div class="onb-path__foot">
+                <span class="t-caption" data-t="onb.smart.meta"></span>
+                <span class="btn btn--primary btn--sm" data-t="onb.smart.cta"></span>
+              </div>
+            </button>
+
+            <button class="onb-path" data-goto="free">
+              <div class="onb-path__title"><span data-t="onb.free.title"></span></div>
+              <p class="onb-path__text" data-t="onb.free.text"></p>
+              <ul class="onb-path__list onb-path__list--muted">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-dot"></use></svg><span data-t="onb.free.l1"></span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-dot"></use></svg><span data-t="onb.free.l2"></span></li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-dot"></use></svg><span data-t="onb.free.l3"></span></li>
+              </ul>
+              <div class="onb-path__foot">
+                <span class="t-caption" data-t="onb.free.meta"></span>
+                <span class="btn btn--secondary btn--sm" data-t="onb.free.cta"></span>
+              </div>
+            </button>
+          </div>
+
+          <div class="callout callout--signal" style="margin-block-start:var(--nx-space-5)">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+            <div>
+              <div class="callout__title" data-t="onb.consent.title"></div>
+              <div data-t="onb.consent.body"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 · Smart Start · step 1 -->
+        <section class="onb-view" data-view="smart" hidden>
+          <div class="onb__head">
+            <h1 class="t-h2 onb__title" data-t="onb.smart.title2"></h1>
+            <p class="t-body" data-t="onb.smart.sub2"></p>
+          </div>
+
+          <div class="onb-flow">
+            <form class="stack stack-5" onsubmit="return false">
+              <div class="field">
+                <label class="field__label" for="onb-name" data-t="onb.field.name"></label>
+                <input class="input" id="onb-name" type="text" value="استودیو آرا" />
+                <p class="field__hint" data-t="onb.field.nameHint"></p>
+              </div>
+
+              <div class="field">
+                <span class="field__label" data-t="onb.field.type"></span>
+                <div class="segmented" role="group" aria-label="Workspace type">
+                  <button type="button" aria-selected="false" data-t="ws.level.personal"></button>
+                  <button type="button" aria-selected="true" data-t="ws.level.team"></button>
+                  <button type="button" aria-selected="false" data-t="ws.level.org"></button>
+                </div>
+              </div>
+
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="onb-size" data-t="onb.field.size"></label>
+                  <select class="select" id="onb-size">
+                    <option data-t="onb.size.1"></option>
+                    <option selected data-t="onb.size.2"></option>
+                    <option data-t="onb.size.3"></option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="onb-lang" data-t="onb.field.lang"></label>
+                  <select class="select" id="onb-lang">
+                    <option selected>فارسی</option>
+                    <option>English</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <span class="field__label" data-t="onb.field.domain"></span>
+                <div class="cluster cluster-2">
+                  <button type="button" class="chip chip--action" aria-pressed="true" data-t="onb.domain.1"></button>
+                  <button type="button" class="chip chip--action" aria-pressed="true" data-t="onb.domain.2"></button>
+                  <button type="button" class="chip chip--action" aria-pressed="false" data-t="onb.domain.3"></button>
+                  <button type="button" class="chip chip--action" aria-pressed="false" data-t="onb.domain.4"></button>
+                </div>
+              </div>
+            </form>
+
+            <aside class="onb-summary">
+              <div class="rule-label"><span data-t="onb.summary.title"></span></div>
+              <div class="onb-summary__item">
+                <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.summary.1.title"></div>
+                  <div class="list__sub"><span data-t="onb.summary.1.sub"></span></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.summary.2.title"></div>
+                  <div class="list__sub"><span data-t="onb.summary.2.sub"></span></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-flow"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.summary.3.title"></div>
+                  <div class="list__sub"><span data-t="onb.summary.3.sub"></span></div>
+                </div>
+              </div>
+
+              <div class="callout" style="margin-block-start:var(--nx-space-4)">
+                <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                <div data-t="onb.summary.note"></div>
+              </div>
+
+              <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-6)">
+                <button class="btn btn--secondary" data-goto="choice" data-t="common.back"></button>
+                <button class="btn btn--primary" data-demo-toast="toast.saved" data-t="common.continue"></button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- 3 · Free Start -->
+        <section class="onb-view" data-view="free" hidden>
+          <div class="onb__head">
+            <h1 class="t-h2 onb__title" data-t="onb.free.title2"></h1>
+            <p class="t-body" data-t="onb.free.sub2"></p>
+          </div>
+
+          <div style="max-width:440px">
+            <form class="stack stack-5" onsubmit="return false">
+              <div class="field">
+                <label class="field__label" for="free-name" data-t="onb.field.name"></label>
+                <input class="input" id="free-name" type="text" data-t-ph="onb.free.namePh" />
+              </div>
+              <div class="field">
+                <span class="field__label" data-t="onb.field.type"></span>
+                <div class="segmented" role="group" aria-label="Workspace type">
+                  <button type="button" aria-selected="true" data-t="ws.level.personal"></button>
+                  <button type="button" aria-selected="false" data-t="ws.level.team"></button>
+                  <button type="button" aria-selected="false" data-t="ws.level.org"></button>
+                </div>
+              </div>
+              <div class="callout">
+                <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                <div data-t="onb.free.note"></div>
+              </div>
+              <div class="cluster cluster-2">
+                <button class="btn btn--secondary" data-goto="choice" data-t="common.back"></button>
+                <button class="btn btn--primary" data-demo-toast="toast.saved" data-t="onb.free.create"></button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Prototype state switcher -->
+        <div class="state-switch" role="group" aria-label="Onboarding states">
+          <span class="state-switch__label" data-t="onb.states"></span>
+          <button data-goto="choice" aria-pressed="true" data-t="onb.state.choice"></button>
+          <button data-goto="smart" aria-pressed="false" data-t="onb.state.smart"></button>
+          <button data-goto="free" aria-pressed="false" data-t="onb.state.free"></button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+  <div id="devbar-slot"></div>
+
+  <script src="../assets/icons.js"></script>
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/lang/common.js"></script>
+  <script src="../assets/lang/onboarding.js"></script>
+  <script src="../assets/chrome.js"></script>
+  <script>
+    document.getElementById('brand-mark').innerHTML = NX.mark(26);
+    document.getElementById('devbar-slot').outerHTML = NX.devbar(NX.screens, 'onboarding');
+
+    function showView(name) {
+      document.querySelectorAll('.onb-view').forEach(function (v) {
+        v.hidden = v.getAttribute('data-view') !== name;
+      });
+      document.querySelectorAll('.state-switch button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-goto') === name));
+      });
+      document.getElementById('onb-steps').hidden = name !== 'smart';
+      window.scrollTo({ top: 0 });
+    }
+    document.querySelectorAll('[data-goto]').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        showView(b.getAttribute('data-goto'));
+      });
+    });
+    document.querySelectorAll('.segmented button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        b.parentElement.querySelectorAll('button').forEach(function (x) {
+          x.setAttribute('aria-selected', 'false');
+        });
+        b.setAttribute('aria-selected', 'true');
+      });
+    });
+    document.querySelectorAll('.chip[aria-pressed]').forEach(function (c) {
+      c.addEventListener('click', function () {
+        c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      });
+    });
+  </script>
+  <script src="../assets/app.js"></script>
+</body>
+</html>
