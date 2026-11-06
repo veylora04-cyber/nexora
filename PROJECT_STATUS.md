@@ -125,11 +125,14 @@ docs/design/                brand-direction · design-system · ux-architecture
                             design-decisions · decision-review
 docs/architecture/          phase-02-architecture · security-traceability
                             error-taxonomy
+docs/evidence/              before/after pairs and AI state captures (13 PNGs)
 PROJECT_STATUS.md  DECISIONS.md  DESIGN_PROGRESS.md  NEXT_STEPS.md  README.md
+ACCEPTANCE_REPORT.md
 NEXORA_Master_Product_Technical_Specification (1).md
 ```
 
-40 tracked files. No build step, no package manager, no external network request at runtime.
+54 tracked files — 41 source and document files plus 13 evidence captures. No build step, no package
+manager, no external network request at runtime.
 
 ---
 
