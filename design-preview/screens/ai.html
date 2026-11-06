@@ -21,7 +21,7 @@
 <body>
   <a class="skip-link" href="#main" data-t="a11y.skip"></a>
 
-  <div class="shell" id="shell">
+  <div class="shell shell--app" id="shell">
     <div id="rail-slot"></div>
     <div class="main">
       <div id="topbar-slot"></div>
@@ -182,22 +182,67 @@
                     <div class="msg__name"><span>NEXORA</span></div>
                     <p class="msg__text" data-t="ai.m3"></p>
 
-                    <div class="tool-call">
-                      <div class="tool-call__head">
-                        <svg class="icon icon-16" aria-hidden="true"><use href="#i-zap"></use></svg>
-                        <span data-t="ai.tool.title"></span>
-                        <span class="badge badge--signal" style="margin-inline-start:auto">
+                    <div class="approval">
+                      <div class="approval__head">
+                        <span class="approval__mark"><svg class="icon" aria-hidden="true"><use href="#i-zap"></use></svg></span>
+                        <div class="approval__headmain">
+                          <div class="approval__kicker" data-t="ai.tool.kicker"></div>
+                          <div class="approval__what" data-t="ai.tool.what"></div>
+                        </div>
+                        <span class="badge badge--signal">
                           <span class="dot dot--signal"></span>
                           <span data-t="common.pending"></span>
                         </span>
                       </div>
-                      <div class="tool-call__body" data-t="ai.tool.body"></div>
-                      <div class="tool-call__foot">
+
+                      <dl class="approval__facts">
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.tool"></dt>
+                          <dd><code class="code">send_email</code> <span class="t-meta">v2</span></dd>
+                        </div>
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.dest"></dt>
+                          <dd><span data-t="ai.tool.v.dest"></span></dd>
+                        </div>
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.effect"></dt>
+                          <dd data-t="ai.tool.v.effect"></dd>
+                        </div>
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.risk"></dt>
+                          <dd><span class="badge badge--warn" data-t="ai.tool.v.risk"></span></dd>
+                        </div>
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.reversible"></dt>
+                          <dd data-t="ai.tool.v.reversible"></dd>
+                        </div>
+                        <div class="approval__fact">
+                          <dt data-t="ai.tool.f.expiry"></dt>
+                          <dd data-t="ai.tool.v.expiry"></dd>
+                        </div>
+                      </dl>
+
+                      <details class="approval__args">
+                        <summary>
+                          <svg class="icon icon-16 icon-dir" aria-hidden="true"><use href="#i-chevronRight"></use></svg>
+                          <span data-t="ai.tool.args"></span>
+                          <code class="code code--hash" data-t="ai.tool.hash"></code>
+                        </summary>
+                        <pre class="approval__json">{
+  "to": ["ops@parsdata.ir", "sara@arastudio.ir", "billing@parsdata.ir"],
+  "subject": "گزارش هفتگی — هفته ۳۲",
+  "body_ref": "doc_8f21c0",
+  "send_at": "2026-11-07T09:30:00Z"
+}</pre>
+                      </details>
+
+                      <div class="approval__foot">
                         <button class="btn btn--signal btn--sm" data-demo-toast="toast.saved">
                           <svg class="icon icon-16" aria-hidden="true"><use href="#i-check"></use></svg>
                           <span data-t="ai.tool.approve"></span>
                         </button>
                         <button class="btn btn--ghost btn--sm" data-demo-toast="toast.saved" data-t="ai.tool.reject"></button>
+                        <span class="approval__bind" data-t="ai.tool.bind"></span>
                       </div>
                     </div>
                     <p class="t-caption cluster cluster-2" style="margin-block-start:var(--nx-space-2)">
@@ -334,6 +379,8 @@
             <div class="ai__ctx-block" data-variant-group="ai" data-variant="empty" hidden>
               <p class="t-caption" data-t="ai.empty.ctx"></p>
             </div>
+
+            <div class="ai__ctx-block" data-hide-in="ai:empty">
               <div class="rule-label"><span data-t="ai.ctx.title"></span></div>
               <dl style="margin:0">
                 <div class="ai__ctx-row"><dt data-t="ai.ctx.ws"></dt><dd data-t="ws.team"></dd></div>

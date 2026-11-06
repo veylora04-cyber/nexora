@@ -68,6 +68,7 @@ NX.i18n.add({
   'common.pending': { fa: 'در انتظار تأیید', en: 'Pending approval' },
   'common.enabled': { fa: 'فعال', en: 'On' },
   'common.disabled': { fa: 'خاموش', en: 'Off' },
+  'common.members': { fa: 'عضو', en: 'members' },
   'common.you': { fa: 'شما', en: 'You' },
   'common.showPassword': { fa: 'نمایش رمز عبور', en: 'Show password' },
   'common.dismiss': { fa: 'بستن پیام', en: 'Dismiss' },

@@ -32,8 +32,6 @@
           <div>
             <div class="page-head__meta">
               <span data-date="2026-11-07" data-date-style="long"></span>
-              <span aria-hidden="true">·</span>
-              <span data-t="dash.meta.scope"></span>
             </div>
             <h1 class="t-h1 page-head__title" data-t="dash.greeting"></h1>
             <p class="page-head__sub" data-t="dash.sub"></p>
@@ -47,6 +45,30 @@
               <span data-t="dash.new"></span>
             </button>
           </div>
+        </div>
+
+        <!-- Context strip: which scope am I in, and under whose policy -->
+        <div class="ctxbar reveal reveal-1">
+          <span class="ctxbar__item ctxbar__item--lead">
+            <span class="ctxbar__mark"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+            <span class="ctxbar__name" data-t="ws.team"></span>
+            <span class="badge badge--primary" data-t="ws.level.team"></span>
+          </span>
+          <span class="ctxbar__sep" aria-hidden="true"></span>
+          <span class="ctxbar__item">
+            <svg class="icon icon-16" aria-hidden="true"><use href="#i-shield"></use></svg>
+            <span data-t="dash.ctx.policy"></span>
+          </span>
+          <span class="ctxbar__sep" aria-hidden="true"></span>
+          <span class="ctxbar__item">
+            <svg class="icon icon-16" aria-hidden="true"><use href="#i-user"></use></svg>
+            <span><span data-num="6"></span> <span data-t="common.members"></span></span>
+          </span>
+          <span class="ctxbar__sep ctxbar__sep--auto" aria-hidden="true"></span>
+          <span class="ctxbar__item ctxbar__item--end">
+            <span class="dot dot--live"></span>
+            <span data-t="dash.ctx.provider"></span>
+          </span>
         </div>
 
         <!-- AI entry point: fixed presence in the shell, per spec 14.5 -->
@@ -67,6 +89,7 @@
               <span data-t="dash.composer.model"></span>
               <svg class="icon" aria-hidden="true"><use href="#i-chevronDown"></use></svg>
             </button>
+            <span class="composer__hint" aria-hidden="true"><span class="kbd">⌘</span><span class="kbd">K</span></span>
             <button class="composer__send" data-demo-toast="toast.paletteRun">
               <span data-t="dash.composer.send"></span>
               <svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg>
@@ -78,33 +101,22 @@
           <span data-t="dash.composer.note"></span>
         </p>
 
-        <div class="split section-gap">
-          <!-- Main column -->
+        <div class="split split--command section-gap">
+          <!-- Primary column -->
           <div class="stack stack-6 reveal reveal-2">
-            <section class="flat" aria-labelledby="today-title">
+            <section class="flat" aria-labelledby="needs-title">
               <div class="flat__head">
-                <h2 class="t-h3" id="today-title" data-t="dash.today.title"></h2>
+                <div>
+                  <h2 class="t-h3" id="needs-title" data-t="dash.needs.title"></h2>
+                  <p class="flat__sub" data-t="dash.needs.sub"></p>
+                </div>
                 <a class="btn btn--quiet btn--sm" href="#" data-t="dash.today.all"></a>
               </div>
 
               <ul class="list list--flush" data-hide-in="dash:empty">
-                <li class="list__row">
-                  <label class="check" style="align-items:center">
-                    <input type="checkbox" data-t-aria="dash.task1" />
-                  </label>
-                  <div class="list__main">
-                    <div class="list__title" data-t="dash.task1"></div>
-                    <div class="list__sub">
-                      <span class="badge badge--plain" data-t="dash.task1.tag"></span>
-                      <span class="t-meta" data-date="2026-11-07T09:30" data-date-style="time"></span>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list__row">
-                  <label class="check" style="align-items:center">
-                    <input type="checkbox" data-t-aria="dash.task2" />
-                  </label>
+                <!-- The one thing that is actually blocked on a human goes first. -->
+                <li class="list__row list__row--approval">
+                  <span class="tile-ico tile-ico--signal"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
                   <div class="list__main">
                     <div class="list__title">
                       <span data-t="dash.task2"></span>
@@ -120,6 +132,19 @@
                   <button class="btn btn--signal btn--sm" data-demo-toast="toast.saved">
                     <span data-t="dash.task2.cta"></span>
                   </button>
+                </li>
+
+                <li class="list__row">
+                  <label class="check" style="align-items:center">
+                    <input type="checkbox" data-t-aria="dash.task1" />
+                  </label>
+                  <div class="list__main">
+                    <div class="list__title" data-t="dash.task1"></div>
+                    <div class="list__sub">
+                      <span class="badge badge--plain" data-t="dash.task1.tag"></span>
+                      <span class="t-meta" data-date="2026-11-07T09:30" data-date-style="time"></span>
+                    </div>
+                  </div>
                 </li>
 
                 <li class="list__row">
@@ -210,8 +235,44 @@
             </section>
           </div>
 
-          <!-- Side column -->
+          <!-- Secondary column: what the machine is doing, and what it costs -->
           <aside class="stack stack-4 reveal reveal-3">
+            <section class="panel panel--live" aria-labelledby="ai-title">
+              <div class="panel__head">
+                <h2 class="panel__title" id="ai-title" data-t="dash.ai.title"></h2>
+                <span class="badge badge--ok"><span class="dot dot--live"></span><span data-t="dash.ai.live"></span></span>
+              </div>
+              <div class="panel__body stack stack-4">
+                <div class="run">
+                  <div class="run__top">
+                    <span class="run__name" data-t="dash.ai.runName"></span>
+                    <span class="t-meta t-num"><span data-num="2"></span> / <span data-num="4"></span></span>
+                  </div>
+                  <div class="run__step" data-t="dash.ai.step"></div>
+                  <div class="meter meter--thin" role="img" aria-label="50%">
+                    <div class="meter__fill" style="width:50%"></div>
+                  </div>
+                </div>
+
+                <div class="stat3">
+                  <div class="stat3__cell">
+                    <div class="stat3__v t-num" data-num="7"></div>
+                    <div class="stat3__l" data-t="dash.ai.runs"></div>
+                  </div>
+                  <div class="stat3__cell">
+                    <div class="stat3__v t-num" data-num="18400"></div>
+                    <div class="stat3__l" data-t="dash.ai.tokens"></div>
+                  </div>
+                  <div class="stat3__cell">
+                    <div class="stat3__v t-num" data-t="dash.ai.cost"></div>
+                    <div class="stat3__l" data-t="dash.ai.costLabel"></div>
+                  </div>
+                </div>
+
+                <a class="btn btn--quiet btn--sm" href="#" data-t="dash.ai.link"></a>
+              </div>
+            </section>
+
             <section class="panel" aria-labelledby="usage-title">
               <div class="panel__body stack stack-3">
                 <div class="cluster-between">
@@ -224,6 +285,10 @@
                 </div>
                 <div class="meter" role="img" aria-label="72%">
                   <div class="meter__fill meter__fill--warn" style="width:72%"></div>
+                </div>
+                <div class="usage__foot">
+                  <span data-t="dash.usage.hard"></span>
+                  <span class="usage__reset" data-t="dash.usage.reset"></span>
                 </div>
                 <div class="bars">
                   <div class="bars__row">
@@ -246,57 +311,29 @@
               </div>
             </section>
 
-            <section class="panel" aria-labelledby="ws-title">
+            <section class="panel" aria-labelledby="qa-title">
               <div class="panel__head">
-                <h2 class="panel__title" id="ws-title" data-t="dash.ws.title"></h2>
-                <button class="icon-btn icon-btn--sm" data-t-aria="ws.create">
-                  <svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>
-                </button>
+                <h2 class="panel__title" id="qa-title" data-t="dash.qa.title"></h2>
               </div>
               <ul class="list">
                 <li class="list__row">
-                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
-                  <div class="list__main">
-                    <div class="list__title" data-t="ws.personal"></div>
-                    <div class="list__sub"><span data-t="dash.ws.personal.sub"></span></div>
-                  </div>
-                  <span class="badge badge--plain" data-t="ws.level.personal"></span>
-                </li>
-                <li class="list__row" style="background:var(--nx-primary-soft)">
-                  <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
-                  <div class="list__main">
-                    <div class="list__title" data-t="ws.team"></div>
-                    <div class="list__sub"><span data-t="dash.ws.team.sub"></span></div>
-                  </div>
-                  <span class="badge badge--primary" data-t="ws.level.team"></span>
-                </li>
-                <li class="list__row">
-                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></span>
-                  <div class="list__main">
-                    <div class="list__title" data-t="ws.org"></div>
-                    <div class="list__sub"><span data-t="dash.ws.org.sub"></span></div>
-                  </div>
-                  <span class="badge badge--plain" data-t="ws.level.org"></span>
-                </li>
-              </ul>
-            </section>
-
-            <section aria-labelledby="sc-title">
-              <div class="rule-label"><span id="sc-title" data-t="dash.shortcuts.title"></span></div>
-              <ul class="list list--flush">
-                <li class="list__row">
-                  <svg class="icon" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-sparkle"></use></svg>
-                  <div class="list__main"><div class="list__title" data-t="dash.sc1"></div></div>
-                  <span class="kbd">⌘</span><span class="kbd">K</span>
-                </li>
-                <li class="list__row">
-                  <svg class="icon" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-flow"></use></svg>
-                  <div class="list__main"><div class="list__title" data-t="dash.sc2"></div></div>
+                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                  <div class="list__main"><div class="list__title" data-t="dash.qa.t1"></div></div>
                   <svg class="icon icon-16 icon-dir" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-chevronRight"></use></svg>
                 </li>
                 <li class="list__row">
-                  <svg class="icon" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-plug"></use></svg>
-                  <div class="list__main"><div class="list__title" data-t="dash.sc3"></div></div>
+                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <div class="list__main"><div class="list__title" data-t="dash.qa.t2"></div></div>
+                  <svg class="icon icon-16 icon-dir" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-chevronRight"></use></svg>
+                </li>
+                <li class="list__row">
+                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-flow"></use></svg></span>
+                  <div class="list__main"><div class="list__title" data-t="dash.qa.t3"></div></div>
+                  <svg class="icon icon-16 icon-dir" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-chevronRight"></use></svg>
+                </li>
+                <li class="list__row">
+                  <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-plug"></use></svg></span>
+                  <div class="list__main"><div class="list__title" data-t="dash.qa.t4"></div></div>
                   <svg class="icon icon-16 icon-dir" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-chevronRight"></use></svg>
                 </li>
               </ul>

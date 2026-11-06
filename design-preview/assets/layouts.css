@@ -876,3 +876,136 @@
 .state-card__list li { display: flex; align-items: center; gap: 8px; }
 
 .ai__list-empty { padding: var(--nx-space-5) var(--nx-space-4); }
+
+/* ---------- Command-centre dashboard ------------------------------------ */
+
+/* Context strip: one row that answers "which scope, whose policy, how big,
+   which AI". A bar rather than a card, because it is a fact, not a widget. */
+.ctxbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--nx-space-3);
+  margin-block-start: var(--nx-space-4);
+  padding: 9px var(--nx-space-4);
+  border: var(--nx-border-w) solid var(--nx-border);
+  border-radius: var(--nx-radius-md);
+  background: var(--nx-surface-2);
+  font-size: var(--nx-text-xs);
+  color: var(--nx-text-2);
+}
+.ctxbar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.ctxbar__item--lead { gap: var(--nx-space-2); color: var(--nx-text-1); font-weight: var(--nx-weight-medium); }
+.ctxbar__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--nx-radius-xs);
+  background: var(--nx-primary-soft);
+  color: var(--nx-primary);
+}
+.ctxbar__mark .icon { width: 13px; height: 13px; }
+.ctxbar__name { font-size: var(--nx-text-sm); }
+.ctxbar__sep {
+  width: 1px;
+  height: 14px;
+  background: var(--nx-border);
+  flex: none;
+}
+.ctxbar__sep--auto { margin-inline-start: auto; }
+.ctxbar__item--end { color: var(--nx-text-2); }
+
+/* The dashboard splits harder than the default: the work column should read
+   as primary, the machine column as instrumentation. */
+.split--command {
+  grid-template-columns: minmax(0, 1.95fr) minmax(290px, 1fr);
+}
+@media (max-width: 1080px) {
+  .split--command { grid-template-columns: minmax(0, 1fr); }
+}
+
+.flat__sub {
+  margin: 2px 0 0;
+  font-size: var(--nx-text-xs);
+  color: var(--nx-text-3);
+}
+
+/* An approval is not a task with a badge: it is the only row that is blocked
+   on a human, so it gets an edge and a tint rather than a label. */
+.list__row--approval {
+  position: relative;
+  background: var(--nx-signal-soft);
+  border-radius: var(--nx-radius-md);
+}
+.list__row--approval::before {
+  content: "";
+  position: absolute;
+  inset-block: 6px;
+  inset-inline-start: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--nx-signal-fill);
+}
+.list__row--approval:hover { background: var(--nx-signal-soft); filter: brightness(1.04); }
+
+.composer__hint {
+  margin-inline-start: auto;
+  display: inline-flex;
+  gap: 4px;
+  opacity: .7;
+}
+.composer__hint + .composer__send { margin-inline-start: var(--nx-space-2); }
+
+.panel--live { border-color: var(--nx-border); }
+
+/* A run in progress: name, position, what it is doing, how far. */
+.run { display: flex; flex-direction: column; gap: 6px; }
+.run__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--nx-space-2); }
+.run__name { font-size: var(--nx-text-sm); font-weight: var(--nx-weight-medium); color: var(--nx-text-1); }
+.run__step { font-size: var(--nx-text-xs); color: var(--nx-text-2); }
+.meter--thin { height: 3px; }
+
+.stat3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--nx-space-3);
+  padding-block: var(--nx-space-3);
+  border-block: var(--nx-border-w) solid var(--nx-border-faint);
+}
+.stat3__cell { min-width: 0; }
+.stat3__v {
+  font-size: var(--nx-text-md);
+  font-weight: var(--nx-weight-semibold);
+  color: var(--nx-text-1);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.stat3__l {
+  margin-block-start: 2px;
+  font-size: var(--nx-text-3xs);
+  color: var(--nx-text-3);
+}
+
+.usage__foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--nx-space-3);
+  font-size: var(--nx-text-3xs);
+  color: var(--nx-text-3);
+}
+.usage__reset { text-align: end; }
+
+@media (max-width: 640px) {
+  .ctxbar { gap: var(--nx-space-2); padding: 8px var(--nx-space-3); }
+  .ctxbar__sep { display: none; }
+  .ctxbar__sep--auto { display: none; }
+  .ctxbar__item--end { margin-inline-start: 0; }
+  .stat3 { gap: var(--nx-space-2); }
+}
