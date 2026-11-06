@@ -29,13 +29,13 @@
       </a>
 
       <div class="onb__steps" id="onb-steps" hidden>
-        <span class="onb__step" data-state="current"><span class="onb__step-num">۱</span><span data-t="onb.step1"></span></span>
+        <span class="onb__step" data-step="1" data-state="current"><span class="onb__step-num" data-num="1"></span><span data-t="onb.step1"></span></span>
         <span class="onb__step-sep"></span>
-        <span class="onb__step" data-state="next"><span class="onb__step-num">۲</span><span data-t="onb.step2"></span></span>
+        <span class="onb__step" data-step="2" data-state="next"><span class="onb__step-num" data-num="2"></span><span data-t="onb.step2"></span></span>
         <span class="onb__step-sep"></span>
-        <span class="onb__step" data-state="next"><span class="onb__step-num">۳</span><span data-t="onb.step3"></span></span>
+        <span class="onb__step" data-step="3" data-state="next"><span class="onb__step-num" data-num="3"></span><span data-t="onb.step3"></span></span>
         <span class="onb__step-sep"></span>
-        <span class="onb__step" data-state="next"><span class="onb__step-num">۴</span><span data-t="onb.step4"></span></span>
+        <span class="onb__step" data-step="4" data-state="next"><span class="onb__step-num" data-num="4"></span><span data-t="onb.step4"></span></span>
       </div>
 
       <button class="btn btn--quiet btn--sm onb__exit" type="button">
@@ -181,7 +181,277 @@
 
               <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-6)">
                 <button class="btn btn--secondary" data-goto="choice" data-t="common.back"></button>
-                <button class="btn btn--primary" data-demo-toast="toast.saved" data-t="common.continue"></button>
+                <button class="btn btn--primary" data-goto="smart2" data-t="common.continue"></button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Smart Start · step 2 · team and access -->
+        <section class="onb-view" data-view="smart2" hidden>
+          <div class="onb__head">
+            <h1 class="t-h2 onb__title" data-t="onb.s2.title"></h1>
+            <p class="t-body" data-t="onb.s2.sub"></p>
+          </div>
+
+          <div class="onb-flow">
+            <form class="stack stack-5" onsubmit="return false">
+              <div class="field">
+                <label class="field__label" for="onb-invite" data-t="onb.s2.inviteLabel"></label>
+                <div class="cluster cluster-2" style="flex-wrap:nowrap">
+                  <input class="input" id="onb-invite" type="email" dir="ltr" style="flex:1"
+                         data-t-ph="onb.s2.invitePh" />
+                  <button class="btn btn--secondary" type="button" data-demo-toast="toast.invited" data-t="onb.s2.add"></button>
+                </div>
+                <p class="field__hint" data-t="onb.s2.inviteHint"></p>
+              </div>
+
+              <div class="field">
+                <span class="field__label" data-t="onb.s2.roleLabel"></span>
+                <div class="segmented" role="group" aria-label="Default role">
+                  <button type="button" aria-selected="true" data-t="onb.role.member"></button>
+                  <button type="button" aria-selected="false" data-t="onb.role.admin"></button>
+                  <button type="button" aria-selected="false" data-t="onb.role.guest"></button>
+                </div>
+                <p class="field__hint" data-t="onb.s2.roleNote"></p>
+              </div>
+
+              <div class="list list--flush">
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s2.link"></div>
+                    <div class="list__sub" data-t="onb.s2.linkSub"></div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked data-t-aria="onb.s2.link" /></label>
+                </div>
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s2.approve"></div>
+                    <div class="list__sub" data-t="onb.s2.approveSub"></div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked data-t-aria="onb.s2.approve" /></label>
+                </div>
+              </div>
+            </form>
+
+            <aside class="onb-summary">
+              <div class="rule-label"><span data-t="onb.s2.sum.title"></span></div>
+              <div class="onb-summary__item">
+                <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s2.sum.1.title"></div>
+                  <div class="list__sub" data-t="onb.s2.sum.1.sub"></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s2.sum.2.title"></div>
+                  <div class="list__sub" data-t="onb.s2.sum.2.sub"></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-link"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s2.sum.3.title"></div>
+                  <div class="list__sub" data-t="onb.s2.sum.3.sub"></div>
+                </div>
+              </div>
+
+              <div class="callout" style="margin-block-start:var(--nx-space-4)">
+                <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                <div data-t="onb.s2.note"></div>
+              </div>
+
+              <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-6)">
+                <button class="btn btn--secondary" data-goto="smart" data-t="common.back"></button>
+                <button class="btn btn--primary" data-goto="smart3" data-t="common.continue"></button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Smart Start · step 3 · AI -->
+        <section class="onb-view" data-view="smart3" hidden>
+          <div class="onb__head">
+            <h1 class="t-h2 onb__title" data-t="onb.s3.title"></h1>
+            <p class="t-body" data-t="onb.s3.sub"></p>
+          </div>
+
+          <div class="onb-flow">
+            <form class="stack stack-5" onsubmit="return false">
+              <div class="prov-grid">
+                <div class="prov-option" role="button" tabindex="0" aria-pressed="true">
+                  <div class="prov-option__head">
+                    <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                    <div class="grow">
+                      <div class="prov-option__title" data-t="onb.s3.central"></div>
+                      <div class="t-caption" data-t="onb.s3.centralSub"></div>
+                    </div>
+                  </div>
+                  <p class="t-caption" data-t="onb.s3.centralNote"></p>
+                </div>
+
+                <div class="prov-option" role="button" tabindex="0" aria-pressed="false">
+                  <div class="prov-option__head">
+                    <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-key"></use></svg></span>
+                    <div class="grow">
+                      <div class="prov-option__title" data-t="onb.s3.personal"></div>
+                      <div class="t-caption" data-t="onb.s3.personalSub"></div>
+                    </div>
+                  </div>
+                  <p class="t-caption" data-t="onb.s3.personalNote"></p>
+                </div>
+              </div>
+
+              <div class="grid grid-2">
+                <div class="field">
+                  <label class="field__label" for="onb-model" data-t="onb.s3.model"></label>
+                  <select class="select" id="onb-model">
+                    <option selected data-t="onb.model.balanced"></option>
+                    <option data-t="onb.model.fast"></option>
+                    <option data-t="onb.model.deep"></option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="onb-cap" data-t="onb.s3.cap"></label>
+                  <input class="input" id="onb-cap" type="text" inputmode="numeric" value="50" dir="ltr" />
+                  <p class="field__hint" data-t="onb.s3.capHint"></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="onb-retention" data-t="onb.s3.retention"></label>
+                <select class="select" id="onb-retention">
+                  <option data-t="onb.s3.ret.1"></option>
+                  <option selected data-t="onb.s3.ret.2"></option>
+                  <option data-t="onb.s3.ret.3"></option>
+                </select>
+                <p class="field__hint" data-t="onb.s3.retHint"></p>
+              </div>
+
+              <div class="list list--flush">
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s3.fail"></div>
+                    <div class="list__sub" data-t="onb.s3.failSub"></div>
+                  </div>
+                  <label class="switch"><input type="checkbox" checked data-t-aria="onb.s3.fail" /></label>
+                </div>
+              </div>
+            </form>
+
+            <aside class="onb-summary">
+              <div class="rule-label"><span data-t="onb.s3.sum.title"></span></div>
+              <div class="onb-summary__item">
+                <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s3.sum.1.title"></div>
+                  <div class="list__sub" data-t="onb.s3.sum.1.sub"></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s3.sum.2.title"></div>
+                  <div class="list__sub" data-t="onb.s3.sum.2.sub"></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s3.sum.3.title"></div>
+                  <div class="list__sub" data-t="onb.s3.sum.3.sub"></div>
+                </div>
+              </div>
+
+              <div class="callout" style="margin-block-start:var(--nx-space-4)">
+                <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                <div data-t="onb.s3.note"></div>
+              </div>
+
+              <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-6)">
+                <button class="btn btn--secondary" data-goto="smart2" data-t="common.back"></button>
+                <button class="btn btn--primary" data-goto="smart4" data-t="common.continue"></button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Smart Start · step 4 · review and create -->
+        <section class="onb-view" data-view="smart4" hidden>
+          <div class="onb__head">
+            <h1 class="t-h2 onb__title" data-t="onb.s4.title"></h1>
+            <p class="t-body" data-t="onb.s4.sub"></p>
+          </div>
+
+          <div class="onb-flow">
+            <div class="stack stack-5">
+              <div class="list list--flush">
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s4.r1.title"></div>
+                    <div class="list__sub" data-t="onb.s4.r1.sub"></div>
+                  </div>
+                  <button class="btn btn--quiet btn--sm" data-goto="smart" data-t="common.edit"></button>
+                </div>
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s4.r2.title"></div>
+                    <div class="list__sub" data-t="onb.s4.r2.sub"></div>
+                  </div>
+                  <button class="btn btn--quiet btn--sm" data-goto="smart2" data-t="common.edit"></button>
+                </div>
+                <div class="list__row">
+                  <div class="list__main">
+                    <div class="list__title" data-t="onb.s4.r3.title"></div>
+                    <div class="list__sub" data-t="onb.s4.r3.sub"></div>
+                  </div>
+                  <button class="btn btn--quiet btn--sm" data-goto="smart3" data-t="common.edit"></button>
+                </div>
+              </div>
+
+              <div class="stack stack-3">
+                <label class="check">
+                  <input type="checkbox" checked />
+                  <span data-t="onb.s4.consent1"></span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" checked />
+                  <span data-t="onb.s4.consent2"></span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" />
+                  <span data-t="onb.s4.consent3"></span>
+                </label>
+              </div>
+            </div>
+
+            <aside class="onb-summary">
+              <div class="rule-label"><span data-t="onb.s4.sum.title"></span></div>
+              <div class="onb-summary__item">
+                <span class="tile-ico tile-ico--primary"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s4.sum.1.title"></div>
+                  <div class="list__sub" data-t="onb.s4.sum.1.sub"></div>
+                </div>
+              </div>
+              <div class="onb-summary__item">
+                <span class="tile-ico"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+                <div>
+                  <div class="list__title" data-t="onb.s4.sum.2.title"></div>
+                  <div class="list__sub" data-t="onb.s4.sum.2.sub"></div>
+                </div>
+              </div>
+
+              <div class="callout" style="margin-block-start:var(--nx-space-4)">
+                <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+                <div data-t="onb.s4.note"></div>
+              </div>
+
+              <div class="cluster cluster-2" style="margin-block-start:var(--nx-space-6)">
+                <button class="btn btn--secondary" data-goto="smart3" data-t="common.back"></button>
+                <button class="btn btn--primary" data-demo-toast="toast.saved" data-t="onb.s4.create"></button>
               </div>
             </aside>
           </div>
@@ -225,6 +495,9 @@
           <span class="state-switch__label" data-t="onb.states"></span>
           <button data-goto="choice" aria-pressed="true" data-t="onb.state.choice"></button>
           <button data-goto="smart" aria-pressed="false" data-t="onb.state.smart"></button>
+          <button data-goto="smart2" aria-pressed="false" data-t="onb.state.s2"></button>
+          <button data-goto="smart3" aria-pressed="false" data-t="onb.state.s3"></button>
+          <button data-goto="smart4" aria-pressed="false" data-t="onb.state.s4"></button>
           <button data-goto="free" aria-pressed="false" data-t="onb.state.free"></button>
         </div>
       </div>
@@ -250,7 +523,16 @@
       document.querySelectorAll('.state-switch button').forEach(function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-goto') === name));
       });
-      document.getElementById('onb-steps').hidden = name !== 'smart';
+
+      /* The step marker is derived from the view, so it can never disagree
+         with the screen it labels. */
+      var step = name === 'smart' ? 1 : name === 'smart2' ? 2 : name === 'smart3' ? 3 : name === 'smart4' ? 4 : 0;
+      document.getElementById('onb-steps').hidden = step === 0;
+      document.querySelectorAll('.onb__step').forEach(function (s) {
+        var n = Number(s.getAttribute('data-step'));
+        s.setAttribute('data-state', n < step ? 'done' : n === step ? 'current' : 'next');
+      });
+
       window.scrollTo({ top: 0 });
     }
     document.querySelectorAll('[data-goto]').forEach(function (b) {

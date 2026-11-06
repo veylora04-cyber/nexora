@@ -513,6 +513,18 @@
 .prov-option__head { display: flex; align-items: center; gap: var(--nx-space-3); }
 .prov-option__title { font-size: var(--nx-text-sm); font-weight: var(--nx-weight-semibold); color: var(--nx-text-1); }
 
+/* Drawer triggers. Each one appears only at the width where its column
+   disappears, so the content is never unreachable. */
+.ai__trigger { display: none; }
+
+@media (max-width: 1240px) {
+  .ai__trigger--ctx { display: inline-flex; }
+}
+@media (max-width: 900px) {
+  .ai__trigger--sessions { display: inline-flex; }
+  .ai__trigger--model { display: none; }
+}
+
 @media (max-width: 1240px) {
   .ai { grid-template-columns: 244px minmax(0, 1fr); }
   .ai__col--ctx { display: none; }
@@ -579,8 +591,11 @@
 .matrix tbody tr:hover td { background: var(--nx-surface-2); }
 .matrix .yes { color: var(--nx-primary); display: inline-flex; }
 .matrix .no { color: var(--nx-text-3); opacity: .5; }
+.matrix .no--note { opacity: 1; font-size: var(--nx-text-3xs); }
 .matrix .partial { color: var(--nx-warning); font-size: var(--nx-text-3xs); }
 .matrix .icon { width: 15px; height: 15px; }
+.matrix__notes { display: flex; flex-direction: column; gap: 6px; padding-inline: var(--nx-space-5); }
+.matrix__notes p { margin: 0; color: var(--nx-text-3); font-size: var(--nx-text-2xs); line-height: 1.7; }
 
 .invite-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--nx-space-3); }
 .invite-method {
@@ -820,3 +835,44 @@
 
 /* Usage meter reads as an annotation of the figure above it. */
 .panel__body > .meter { margin-block: 2px var(--nx-space-1); }
+
+/* ---------- Prototype state strip and error cards ------------------- */
+
+/* Sits inside the scrolling thread so a reviewer can switch states without
+   leaving the screen; sticky so it never scrolls out of reach. */
+.thread-states {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  margin-block: 0 var(--nx-space-5);
+  padding-block-end: var(--nx-space-3);
+  background: var(--nx-bg);
+}
+
+.state-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nx-space-3);
+  padding: var(--nx-space-5);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-radius-lg);
+  background: var(--nx-surface);
+}
+.state-card--err { border-color: var(--nx-error-border); background: var(--nx-error-soft); }
+.state-card--warn { border-color: var(--nx-warning-border); background: var(--nx-warning-soft); }
+.state-card .t-h3 { margin: 0; }
+.state-card .t-body { margin: 0; color: var(--nx-text-2); }
+.state-card .cluster { margin-block-start: var(--nx-space-1); }
+.state-card__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--nx-text-2xs);
+  color: var(--nx-text-2);
+}
+.state-card__list li { display: flex; align-items: center; gap: 8px; }
+
+.ai__list-empty { padding: var(--nx-space-5) var(--nx-space-4); }

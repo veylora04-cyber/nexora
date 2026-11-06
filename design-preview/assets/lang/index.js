@@ -52,12 +52,12 @@ NX.i18n.add({
   'home.status.a4': { fa: 'یک حساب با عضویت در چند Workspace', en: 'One account, membership in several workspaces' },
   'home.status.a5': { fa: 'احراز هویت سطح پیشرفته و امنیت سراسری', en: 'Advanced authentication and global security' },
 
-  'home.status.proposal': { fa: 'پیشنهاد طراحی — نیازمند تأیید', en: 'Design proposal — needs approval' },
-  'home.status.p1': { fa: 'چیدمان داشبورد و انتخاب ویجت‌ها', en: 'Dashboard layout and widget selection' },
-  'home.status.p2': { fa: 'مرکز فرمان Ctrl+K و Sidebar قابل شخصی‌سازی', en: 'Ctrl+K command centre and customisable rail' },
-  'home.status.p3': { fa: 'ماتریس نقش اولیه و سه مسیر دعوت', en: 'Initial role matrix and three invite paths' },
+  'home.status.proposal': { fa: 'پیشنهاد طراحی — بررسی‌شده، در انتظار تأیید', en: 'Design proposal — reviewed, awaiting sign-off' },
+  'home.status.p1': { fa: 'چیدمان داشبورد: پیش‌فرض ترکیب‌شده؛ شبکه ویجت در فاز ۲ (الزام §۱۴.۵)', en: 'Dashboard: composed default now, widget grid in Phase 02 (required by §14.5)' },
+  'home.status.p2': { fa: 'مرکز فرمان Ctrl+K؛ ریل ثابت و فقط جمع‌شدنی', en: 'Ctrl+K command centre; rail fixed and collapsible only' },
+  'home.status.p3': { fa: 'نمایش ماتریس نقش؛ مقادیر خانه‌ها از §۱۷.۳', en: 'Role matrix rendering; cell values from §17.3' },
   'home.status.p4': { fa: 'هویت بصری: نشان، پالت و تایپوگرافی', en: 'Identity: mark, palette and typography' },
-  'home.status.p5': { fa: 'نمایش مصرف و سقف هزینه در سطح تیم', en: 'Team-level usage and spend visibility' },
+  'home.status.p5': { fa: 'نمایش مصرف به‌صورت هزینه، با برچسب «تخمینی» برای Personal AI', en: 'Usage shown as cost, labelled estimated for Personal AI' },
 
   'home.status.open': { fa: 'باز یا پارامتر بازار', en: 'Open or market-dependent' },
   'home.status.o1': { fa: 'فهرست نهایی Provider و مدل‌ها', en: 'Final provider and model list' },

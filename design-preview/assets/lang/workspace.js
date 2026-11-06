@@ -81,6 +81,10 @@ NX.i18n.add({
   'wsPage.val.ownUsage': { fa: 'مصرف شخصی', en: 'Own usage' },
   'wsPage.val.byPolicy': { fa: 'طبق سیاست', en: 'Per policy' },
   'wsPage.val.financeOnly': { fa: 'فقط مالی', en: 'Finance only' },
+  'wsPage.val.noneStar': { fa: 'خیر*', en: 'No*' },
+  'wsPage.val.noneStarStar': { fa: 'خیر**', en: 'No**' },
+  'wsPage.roles.fn1': { fa: '* عضو فقط در صورت اعطای مجوز مستقل می‌تواند دعوت محدود انجام دهد.', en: '* A Member may send a limited invite only if granted an independent permission.' },
+  'wsPage.roles.fn2': { fa: '** مدیر فقط با واگذاری از سوی مالک می‌تواند عملیات مجاز صورت‌حساب را انجام دهد؛ مالکیت اشتراک و انتقال مالکیت همچنان در اختیار مالک است.', en: '** An Admin may perform permitted billing operations only under delegation from the Owner; subscription ownership and Owner transfer stay with the Owner.' },
   'wsPage.roles.note': { fa: 'این ماتریس نقطه شروع است؛ نقش سفارشی قابل افزودن است اما مجوزهای سیستمی حیاتی حذف‌شدنی نیستند.', en: 'This matrix is a starting point. Custom roles can be added, but critical system permissions cannot be removed.' },
 
   'wsPage.invite.email': { fa: 'دعوت با ایمیل', en: 'Invite by email' },
@@ -115,4 +119,12 @@ NX.i18n.add({
   'wsPage.set.danger': { fa: 'حذف فضای کاری', en: 'Delete workspace' },
   'wsPage.set.dangerSub': { fa: 'فضا ابتدا ۳۰ روز در دوره بازیابی می‌ماند؛ پس از آن داده‌ها طبق سیاست نگهداری حذف می‌شوند.', en: 'The workspace stays recoverable for 30 days, then data is deleted according to the retention policy.' },
   'wsPage.set.delete': { fa: 'حذف فضا', en: 'Delete workspace' },
+
+  'wsPage.empty.title': { fa: 'هنوز عضوی نیست', en: 'No members yet' },
+  'wsPage.empty.body': {
+    fa: 'این فضا فقط شما را دارد. با دعوت ایمیل یا لینک محدود، تیم را اضافه کنید.',
+    en: 'You are the only person here. Add the team with an email invite or a limited link.',
+  },
+  'wsPage.empty.cta': { fa: 'دعوت عضو', en: 'Invite a member' },
+  'wsPage.empty.alt': { fa: 'ساخت لینک دعوت', en: 'Create an invite link' },
 });

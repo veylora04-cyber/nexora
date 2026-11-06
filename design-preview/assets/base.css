@@ -455,3 +455,7 @@ a:hover {
 
 /* Buttons inside a vertical stack keep their intrinsic width. */
 .stack > .btn { align-self: flex-start; }
+
+/* The prototype bar floats over the bottom of the page. Scrolling content
+   clears it, so the last control on a page is never underneath it. */
+.content:not(.content--flush) { padding-block-end: calc(var(--nx-space-10) + 40px); }

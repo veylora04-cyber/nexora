@@ -52,7 +52,7 @@
                        data-t-ph="ai.searchPh" />
               </div>
             </div>
-            <div class="ai__list">
+            <div class="ai__list" data-hide-in="ai:empty">
               <div class="rule-label" style="padding-inline:8px"><span data-t="ai.group.today"></span></div>
               <button class="ai__session" aria-current="true">
                 <div class="ai__session-title" data-t="ai.s1.title"></div>
@@ -80,6 +80,9 @@
                 <div class="ai__session-meta"><span data-t="ai.s5.meta"></span></div>
               </button>
             </div>
+            <div class="ai__list-empty" data-variant-group="ai" data-variant="empty" hidden>
+              <p class="t-caption" data-t="ai.empty.sessions"></p>
+            </div>
             <div style="padding:var(--nx-space-3);border-block-start:1px solid var(--nx-border-faint);flex:none">
               <div class="cluster-between">
                 <span class="t-caption" data-t="ai.retention.short"></span>
@@ -91,18 +94,30 @@
           <!-- Thread -->
           <div class="ai__col">
             <div class="ai__thread-head">
-              <div style="min-width:0">
+              <div style="min-width:0" data-hide-in="ai:empty">
                 <div class="t-h3" style="font-size:var(--nx-text-md)" data-t="ai.thread.title"></div>
                 <div class="t-caption" data-t="ai.thread.sub"></div>
               </div>
+              <div style="min-width:0" data-variant-group="ai" data-variant="empty" hidden>
+                <div class="t-h3" style="font-size:var(--nx-text-md)" data-t="ai.empty.head"></div>
+                <div class="t-caption" data-t="ai.empty.headSub"></div>
+              </div>
               <div class="cluster cluster-2">
+                <button class="icon-btn icon-btn--sm ai__trigger ai__trigger--sessions"
+                        data-drawer-open="sessions-drawer" data-t-aria="ai.sessions.open">
+                  <svg class="icon" aria-hidden="true"><use href="#i-list"></use></svg>
+                </button>
                 <button class="chip chip--action">
                   <span class="dot dot--live"></span>
                   <span>Central AI</span>
                 </button>
-                <button class="chip chip--action">
+                <button class="chip chip--action ai__trigger--model">
                   <span data-t="ai.model.balanced"></span>
                   <svg class="icon" aria-hidden="true"><use href="#i-chevronDown"></use></svg>
+                </button>
+                <button class="icon-btn icon-btn--sm ai__trigger ai__trigger--ctx"
+                        data-drawer-open="ctx-drawer" data-t-aria="ai.ctx.open">
+                  <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
                 </button>
                 <button class="icon-btn icon-btn--sm" data-t-aria="common.edit">
                   <svg class="icon" aria-hidden="true"><use href="#i-more"></use></svg>
@@ -111,7 +126,17 @@
             </div>
 
             <div class="ai__thread">
-              <div class="ai__thread-inner">
+              <div class="state-switch thread-states" role="group" aria-label="AI states">
+                <span class="state-switch__label" data-t="demo.states.ai"></span>
+                <button data-demo-variant="ai:normal" aria-pressed="true" data-t="demo.ai.normal"></button>
+                <button data-demo-variant="ai:rate" aria-pressed="false" data-t="demo.ai.rate"></button>
+                <button data-demo-variant="ai:timeout" aria-pressed="false" data-t="demo.ai.timeout"></button>
+                <button data-demo-variant="ai:partial" aria-pressed="false" data-t="demo.ai.partial"></button>
+                <button data-demo-variant="ai:offline" aria-pressed="false" data-t="demo.ai.offline"></button>
+                <button data-demo-variant="ai:empty" aria-pressed="false" data-t="demo.ai.empty"></button>
+              </div>
+
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="normal">
 
                 <div class="msg">
                   <span class="msg__avatar"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
@@ -183,6 +208,100 @@
                 </div>
 
               </div>
+
+              <!-- Rate limit -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="rate" hidden>
+                <div class="state-card state-card--err">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--err"><span data-t="ai.err.rate.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.rate.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.rate.title"></h3>
+                  <p class="t-body" data-t="ai.err.rate.body"></p>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--secondary btn--sm" data-demo-toast="toast.saved" data-t="ai.err.retry"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.rate.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.rate.note"></p>
+                </div>
+              </div>
+
+              <!-- Timeout -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="timeout" hidden>
+                <div class="state-card state-card--warn">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--warn"><span data-t="ai.err.timeout.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.timeout.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.timeout.title"></h3>
+                  <p class="t-body" data-t="ai.err.timeout.body"></p>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--secondary btn--sm" data-demo-toast="toast.saved" data-t="ai.err.retry"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.timeout.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.timeout.note"></p>
+                </div>
+              </div>
+
+              <!-- Partial failure -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="partial" hidden>
+                <div class="state-card state-card--warn">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--warn"><span data-t="ai.err.partial.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.partial.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.partial.title"></h3>
+                  <p class="t-body" data-t="ai.err.partial.body"></p>
+                  <ul class="state-card__list">
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-file"></use></svg><span data-t="ai.src1"></span></li>
+                    <li><svg class="icon icon-16" aria-hidden="true"><use href="#i-file"></use></svg><span data-t="ai.src2"></span></li>
+                  </ul>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--secondary btn--sm" data-demo-toast="toast.saved" data-t="ai.err.partial.alt"></button>
+                  </div>
+                </div>
+
+                <div class="msg msg--ai" style="margin-block-start:var(--nx-space-5)">
+                  <div class="msg__head">
+                    <span class="avatar avatar--ai"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                    <div class="msg__name"><span>NEXORA</span></div>
+                    <span class="badge badge--warn" data-t="ai.err.partial.tag"></span>
+                  </div>
+                  <div class="msg__body">
+                    <div class="msg__text" data-t="ai.err.partial.answer"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Provider disconnected, fail-closed -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="offline" hidden>
+                <div class="state-card state-card--err">
+                  <div class="cluster cluster-2">
+                    <span class="badge badge--err"><span class="dot dot--signal"></span><span data-t="ai.err.offline.badge"></span></span>
+                    <span class="t-caption" data-t="ai.err.offline.code"></span>
+                  </div>
+                  <h3 class="t-h3" data-t="ai.err.offline.title"></h3>
+                  <p class="t-body" data-t="ai.err.offline.body"></p>
+                  <div class="cluster cluster-2">
+                    <button class="btn btn--primary btn--sm" data-t="ai.err.offline.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.err.offline.alt"></button>
+                  </div>
+                  <p class="t-caption" data-t="ai.err.offline.note"></p>
+                </div>
+              </div>
+
+              <!-- Empty: a workspace with no AI history -->
+              <div class="ai__thread-inner" data-variant-group="ai" data-variant="empty" hidden>
+                <div class="empty empty--center" style="border:0;background:none">
+                  <span class="empty__mark"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
+                  <h3 class="t-h3" data-t="ai.empty.title"></h3>
+                  <p class="t-body" data-t="ai.empty.body"></p>
+                  <div class="cluster cluster-2" style="justify-content:center">
+                    <button class="btn btn--primary btn--sm" data-demo-toast="toast.saved" data-t="ai.empty.cta"></button>
+                    <button class="btn btn--ghost btn--sm" data-t="ai.empty.alt"></button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="ai__composer">
@@ -212,7 +331,9 @@
 
           <!-- Context inspector -->
           <aside class="ai__col ai__col--ctx">
-            <div class="ai__ctx-block">
+            <div class="ai__ctx-block" data-variant-group="ai" data-variant="empty" hidden>
+              <p class="t-caption" data-t="ai.empty.ctx"></p>
+            </div>
               <div class="rule-label"><span data-t="ai.ctx.title"></span></div>
               <dl style="margin:0">
                 <div class="ai__ctx-row"><dt data-t="ai.ctx.ws"></dt><dd data-t="ws.team"></dd></div>
@@ -223,7 +344,7 @@
               </dl>
             </div>
 
-            <div class="ai__ctx-block">
+            <div class="ai__ctx-block" data-hide-in="ai:empty">
               <div class="rule-label"><span data-t="ai.ctx.files"></span></div>
               <div class="list list--flush">
                 <div class="list__row">
@@ -238,7 +359,7 @@
               <button class="btn btn--quiet btn--sm" style="margin-block-start:8px" data-t="ai.ctx.addFile"></button>
             </div>
 
-            <div class="ai__ctx-block">
+            <div class="ai__ctx-block" data-hide-in="ai:empty">
               <div class="rule-label"><span data-t="ai.ctx.usage"></span></div>
               <div class="cluster-between" style="margin-block-end:8px">
                 <span class="t-caption" data-t="ai.ctx.tokens"></span>
@@ -255,6 +376,111 @@
               </div>
             </div>
           </aside>
+
+          <!-- Session list, below 900px: the column is hidden, this drawer replaces it -->
+          <div class="drawer" id="sessions-drawer" role="dialog" aria-modal="true"
+               aria-labelledby="sessions-drawer-title">
+            <div class="modal__head" style="padding:var(--nx-space-5)">
+              <div>
+                <div class="t-h3" id="sessions-drawer-title" data-t="ai.sessions.open"></div>
+                <div class="t-caption" data-t="ai.sessions.sub"></div>
+              </div>
+              <button class="icon-btn" data-drawer-close data-t-aria="common.close">
+                <svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg>
+              </button>
+            </div>
+            <div style="padding-inline:var(--nx-space-4);padding-block-end:var(--nx-space-3)">
+              <div class="input-wrap">
+                <svg class="icon icon-16" aria-hidden="true"><use href="#i-search"></use></svg>
+                <input class="input" type="search" data-t-ph="ai.searchPh" />
+              </div>
+            </div>
+            <div class="ai__list" style="padding-block-start:0" data-hide-in="ai:empty">
+              <div class="rule-label" style="padding-inline:8px"><span data-t="ai.group.today"></span></div>
+              <button class="ai__session" aria-current="true">
+                <div class="ai__session-title" data-t="ai.s1.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s1.meta"></span></div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s2.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s2.meta"></span></div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s3.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s3.meta"></span></div>
+              </button>
+              <div class="rule-label" style="padding-inline:8px;margin-block-start:16px"><span data-t="ai.group.week"></span></div>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s4.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s4.meta"></span></div>
+              </button>
+              <button class="ai__session">
+                <div class="ai__session-title" data-t="ai.s5.title"></div>
+                <div class="ai__session-meta"><span data-t="ai.s5.meta"></span></div>
+              </button>
+            </div>
+            <div class="ai__list-empty" data-variant-group="ai" data-variant="empty" hidden>
+              <p class="t-caption" data-t="ai.empty.sessions"></p>
+            </div>
+            <div class="modal__foot">
+              <button class="btn btn--secondary btn--sm" style="width:100%" data-t="ai.newChat"></button>
+            </div>
+          </div>
+
+          <!-- Context inspector, below 1240px: same content, full-width drawer -->
+          <div class="drawer" id="ctx-drawer" role="dialog" aria-modal="true"
+               aria-labelledby="ctx-drawer-title">
+            <div class="modal__head" style="padding:var(--nx-space-5)">
+              <div>
+                <div class="t-h3" id="ctx-drawer-title" data-t="ai.ctx.title"></div>
+                <div class="t-caption" data-t="ai.ctx.sub"></div>
+              </div>
+              <button class="icon-btn" data-drawer-close data-t-aria="common.close">
+                <svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg>
+              </button>
+            </div>
+            <div class="grow" style="overflow-y:auto">
+              <div class="ai__ctx-block" data-hide-in="ai:empty">
+                <div class="rule-label"><span data-t="ai.ctx.scope"></span></div>
+                <dl style="margin:0">
+                  <div class="ai__ctx-row"><dt data-t="ai.ctx.ws"></dt><dd data-t="ws.team"></dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.ctx.access"></dt><dd data-t="ai.ctx.accessVal"></dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.ctx.source"></dt><dd>Central AI</dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.ctx.model"></dt><dd data-t="ai.model.balanced"></dd></div>
+                  <div class="ai__ctx-row"><dt data-t="ai.ctx.retention"></dt><dd data-t="ai.ctx.retentionVal"></dd></div>
+                </dl>
+              </div>
+              <div class="ai__ctx-block" data-hide-in="ai:empty">
+                <div class="rule-label"><span data-t="ai.ctx.files"></span></div>
+                <div class="list list--flush">
+                  <div class="list__row">
+                    <svg class="icon icon-16" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-folder"></use></svg>
+                    <div class="list__main"><div class="list__title" style="font-size:var(--nx-text-2xs)" data-t="ai.src1"></div></div>
+                  </div>
+                  <div class="list__row">
+                    <svg class="icon icon-16" aria-hidden="true" style="color:var(--nx-text-3)"><use href="#i-file"></use></svg>
+                    <div class="list__main"><div class="list__title" style="font-size:var(--nx-text-2xs)" data-t="ai.src2"></div></div>
+                  </div>
+                </div>
+                <button class="btn btn--quiet btn--sm" style="margin-block-start:8px" data-t="ai.ctx.addFile"></button>
+              </div>
+              <div class="ai__ctx-block" data-hide-in="ai:empty">
+                <div class="rule-label"><span data-t="ai.ctx.usage"></span></div>
+                <div class="cluster-between" style="margin-block-end:8px">
+                  <span class="t-caption" data-t="ai.ctx.tokens"></span>
+                  <span class="t-num" style="font-size:var(--nx-text-sm)" data-t="ai.ctx.cost"></span>
+                </div>
+                <div class="meter"><div class="meter__fill" style="width:26%"></div></div>
+                <p class="t-caption" style="margin-block-start:8px" data-t="ai.ctx.usageNote"></p>
+              </div>
+              <div class="ai__ctx-block" style="border-block-end:0">
+                <div class="callout">
+                  <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                  <div data-t="ai.ctx.rule"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- ============ Models & connection ============ -->

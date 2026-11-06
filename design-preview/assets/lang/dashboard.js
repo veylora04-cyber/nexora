@@ -56,4 +56,12 @@ NX.i18n.add({
   'dash.sc1': { fa: 'مرکز فرمان', en: 'Command centre' },
   'dash.sc2': { fa: 'اجرای جریان کاری', en: 'Run a workflow' },
   'dash.sc3': { fa: 'تنظیم اتصال هوش مصنوعی', en: 'Configure AI connection' },
+
+  'dash.empty.title': { fa: 'کاری برای امروز نیست', en: 'Nothing due today' },
+  'dash.empty.body': {
+    fa: 'روز خالی است. یک کار بسازید، یا بگذارید دستیار برایتان برنامه بچیند.',
+    en: 'The day is clear. Add a task, or let the assistant plan one for you.',
+  },
+  'dash.empty.cta': { fa: 'افزودن کار', en: 'Add a task' },
+  'dash.empty.alt': { fa: 'برنامه‌ریزی با دستیار', en: 'Plan with the assistant' },
 });

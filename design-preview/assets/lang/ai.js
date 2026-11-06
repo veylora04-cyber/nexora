@@ -51,6 +51,11 @@ NX.i18n.add({
   'ai.composer.send': { fa: 'ارسال', en: 'Send' },
 
   'ai.ctx.title': { fa: 'بافتار این گفتگو', en: 'Conversation context' },
+  'ai.ctx.open': { fa: 'نمایش بافتار گفتگو', en: 'Show conversation context' },
+  'ai.ctx.sub': { fa: 'چه چیزی در این پاسخ دیده می‌شود', en: 'What this answer can see' },
+  'ai.ctx.scope': { fa: 'دامنه', en: 'Scope' },
+  'ai.sessions.open': { fa: 'گفتگوها', en: 'Conversations' },
+  'ai.sessions.sub': { fa: 'همهٔ گفتگوهای این فضای کاری', en: 'Every conversation in this workspace' },
   'ai.ctx.ws': { fa: 'فضای کاری', en: 'Workspace' },
   'ai.ctx.access': { fa: 'سطح دسترسی', en: 'Access level' },
   'ai.ctx.accessVal': { fa: 'عضو · خواندن و نوشتن', en: 'Member · read and write' },
@@ -109,4 +114,72 @@ NX.i18n.add({
   'ai.cfg.status.error': { fa: 'خطای احراز هویت', en: 'Auth error' },
   'ai.cfg.status.lat1': { fa: '۲۸۰ میلی‌ثانیه', en: '280 ms' },
   'ai.cfg.status.lat3': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
+
+  /* Failure states — every one of these is a designed screen, not an alert box */
+  'ai.err.retry': { fa: 'تلاش دوباره', en: 'Retry' },
+
+  'ai.err.rate.badge': { fa: 'محدودیت نرخ', en: 'Rate limit' },
+  'ai.err.rate.code': { fa: '۴۲۹ · سقف Provider', en: '429 · provider limit' },
+  'ai.err.rate.title': { fa: 'درخواست‌ها بیش از حد شد', en: 'Too many requests' },
+  'ai.err.rate.body': {
+    fa: 'این فضای کاری سقف ۶۰ درخواست در دقیقه را پر کرده است. پنجرهٔ Provider در ۴۰ ثانیه باز می‌شود.',
+    en: 'This workspace has used its 60 requests for the minute. The provider window resets in 40 seconds.',
+  },
+  'ai.err.rate.alt': { fa: 'رفتن به هوش مصنوعی شخصی', en: 'Use Personal AI instead' },
+  'ai.err.rate.note': { fa: 'درخواست‌های ردشده صورت‌حساب نمی‌شوند.', en: 'Rejected requests are not billed.' },
+
+  'ai.err.timeout.badge': { fa: 'پایان زمان', en: 'Timed out' },
+  'ai.err.timeout.code': { fa: '۴۵ ثانیه · بدون نخستین نشانه', en: '45s · no first token' },
+  'ai.err.timeout.title': { fa: 'مدل در زمان مقرر پاسخ نداد', en: 'The model did not answer in time' },
+  'ai.err.timeout.body': {
+    fa: 'درخواست پیش از مصرف هیچ خروجی لغو شد. پرسش‌های طولانی با پیوست‌های سنگین معمولاً همین‌جا متوقف می‌شوند.',
+    en: 'The request was cancelled before any output was used. Long questions with heavy attachments usually stall here.',
+  },
+  'ai.err.timeout.alt': { fa: 'انتخاب مدل سریع‌تر', en: 'Choose a faster model' },
+  'ai.err.timeout.note': {
+    fa: 'برای درخواست لغوشده نشانه‌ای مصرف نمی‌شود.',
+    en: 'No tokens are consumed by a cancelled request.',
+  },
+
+  'ai.err.partial.badge': { fa: 'پاسخ ناقص', en: 'Partial answer' },
+  'ai.err.partial.code': { fa: '۲ از ۴ منبع', en: '2 of 4 sources' },
+  'ai.err.partial.title': { fa: 'دو منبع خوانده نشد', en: 'Two sources could not be read' },
+  'ai.err.partial.body': {
+    fa: 'پاسخ زیر بدون آن‌ها نوشته شده است. آن را ناتمام بدانید، نه لزوماً نادرست.',
+    en: 'The answer below was written without them. Treat it as incomplete rather than wrong.',
+  },
+  'ai.err.partial.alt': { fa: 'خواندن دوبارهٔ منابع جاافتاده', en: 'Retry the missing sources' },
+  'ai.err.partial.tag': { fa: 'ناتمام', en: 'Incomplete' },
+  'ai.err.partial.answer': {
+    fa: 'سه رقیب اصلی بازار را می‌شود در سه محور مقایسه کرد: قیمت پایه، سقف مصرف و پشتیبانی سازمانی. جمع‌بندی زیر فقط بر پایهٔ دو منبعی است که خوانده شد.',
+    en: 'The three main competitors differ on base price, usage ceiling and enterprise support. This summary rests only on the two sources that were read.',
+  },
+
+  'ai.err.offline.badge': { fa: 'هوش مصنوعی شخصی قطع است', en: 'Personal AI disconnected' },
+  'ai.err.offline.code': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
+  'ai.err.offline.title': { fa: 'درخواست‌ها متوقف شده‌اند', en: 'Requests are stopped' },
+  'ai.err.offline.body': {
+    fa: 'برای این فضای کاری «بستن در خطا» روشن است؛ بنابراین هیچ درخواستی به Central AI نرفت. داده‌ها نزد همان Providerی ماند که خودتان انتخاب کرده بودید.',
+    en: 'Fail-closed is on for this workspace, so nothing was sent to Central AI. Your data stayed with the provider you chose.',
+  },
+  'ai.err.offline.cta': { fa: 'تنظیمات اتصال', en: 'Open connection settings' },
+  'ai.err.offline.alt': { fa: 'اجازهٔ Central AI برای این نشست', en: 'Allow Central AI for this session' },
+  'ai.err.offline.note': {
+    fa: 'بازگشت خودکار وجود ندارد؛ هر بازگشت نیازمند اجازهٔ صریح شماست.',
+    en: 'There is no automatic fallback. Every fallback needs your explicit permission first.',
+  },
+
+  'ai.empty.title': { fa: 'هنوز گفتگویی نیست', en: 'No conversations yet' },
+  'ai.empty.head': { fa: 'گفتگوی تازه', en: 'New conversation' },
+  'ai.empty.headSub': { fa: 'هنوز چیزی پرسیده نشده', en: 'Nothing asked yet' },
+  'ai.empty.ctx': {
+    fa: 'با شروع نخستین گفتگو، بافتار آن همین‌جا نمایش داده می‌شود.',
+    en: 'Context appears here as soon as the first conversation starts.',
+  },  'ai.empty.body': {
+    fa: 'یک پرسش بپرسید تا شروع شود، یا اول کلید خودتان را وصل کنید.',
+    en: 'Ask something to start, or connect your own key first.',
+  },
+  'ai.empty.cta': { fa: 'شروع گفتگو', en: 'Start a conversation' },
+  'ai.empty.alt': { fa: 'اتصال هوش مصنوعی شخصی', en: 'Connect Personal AI' },
+  'ai.empty.sessions': { fa: 'در این فضای کاری گفتگویی ثبت نشده است.', en: 'No conversations in this workspace yet.' },
 });

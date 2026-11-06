@@ -87,7 +87,7 @@
                 <a class="btn btn--quiet btn--sm" href="#" data-t="dash.today.all"></a>
               </div>
 
-              <ul class="list list--flush">
+              <ul class="list list--flush" data-hide-in="dash:empty">
                 <li class="list__row">
                   <label class="check" style="align-items:center">
                     <input type="checkbox" data-t-aria="dash.task1" />
@@ -151,6 +151,16 @@
                   </div>
                 </li>
               </ul>
+
+              <div class="empty empty--center" style="border:0;background:none" data-variant-group="dash" data-variant="empty" hidden>
+                <span class="empty__mark"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                <h3 class="t-h3" data-t="dash.empty.title"></h3>
+                <p class="t-body" data-t="dash.empty.body"></p>
+                <div class="cluster cluster-2" style="justify-content:center">
+                  <button class="btn btn--primary btn--sm" data-demo-toast="toast.saved" data-t="dash.empty.cta"></button>
+                  <button class="btn btn--ghost btn--sm" data-t="dash.empty.alt"></button>
+                </div>
+              </div>
             </section>
 
             <section class="flat" aria-labelledby="recent-title">
@@ -292,6 +302,12 @@
               </ul>
             </section>
           </aside>
+        </div>
+
+        <div class="state-switch" role="group" aria-label="Dashboard states">
+          <span class="state-switch__label" data-t="demo.states.dash"></span>
+          <button data-demo-variant="dash:normal" aria-pressed="true" data-t="demo.dash.normal"></button>
+          <button data-demo-variant="dash:empty" aria-pressed="false" data-t="demo.dash.empty"></button>
         </div>
       </main>
     </div>

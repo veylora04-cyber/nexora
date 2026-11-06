@@ -999,6 +999,9 @@
 }
 [dir="rtl"] .drawer { transform: translateX(-100%); }
 .drawer[data-open="true"] { transform: none; visibility: visible; }
+/* The prototype bar is a review affordance, not product chrome. An open
+   drawer must be able to cover it, or its footer button becomes unreachable. */
+.drawer[data-open="true"] { z-index: calc(var(--nx-z-toast) + 1); }
 
 /* Dropdown menu */
 .menu {
@@ -1134,6 +1137,8 @@
   padding: var(--nx-space-7) var(--nx-space-5);
   text-align: start;
 }
+.empty--center { align-items: center; text-align: center; }
+.empty--center .cluster { justify-content: center; }
 .empty__mark {
   display: inline-flex;
   align-items: center;
@@ -1271,6 +1276,8 @@
 .composer__input {
   width: 100%;
   min-height: 52px;
+  max-height: 168px;
+  overflow-y: auto;
   padding: var(--nx-space-3) var(--nx-space-4);
   border: 0;
   background: none;
@@ -1565,3 +1572,15 @@
 
 /* A trailing action column should hug its content, not absorb slack. */
 .table .table__col-actions { width: 1%; }
+
+/* ---------- Notification rows --------------------------------------- */
+/* Unread is louder and carries a signal dot; read is quieter and loses it.
+   The distinction survives a theme change because it is weight + colour,
+   not a background tint. */
+.notif__row[data-unread="true"] .list__title {
+  font-weight: var(--nx-weight-semibold);
+  color: var(--nx-text-1);
+}
+.notif__row[data-unread="false"] .list__title { color: var(--nx-text-2); }
+.notif__row[data-unread="false"] .notif__dot { visibility: hidden; }
+.notif__row:hover { background: var(--nx-surface-2); }
