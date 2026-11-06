@@ -39,6 +39,22 @@ NX.i18n.add({
 
   'ai.tool.title': { fa: 'اجرای ابزار · web.search', en: 'Tool call · web.search' },
   'ai.tool.body': { fa: '۴ جست‌وجوی بیرونی برای تکمیل مقایسه. سطح ریسک: خواندن از منبع خارجی.', en: 'Four external searches to complete the comparison. Risk level: reading from an external source.' },
+  'ai.tool.kicker': { fa: 'درخواست اجرا · نیازمند تأیید شما', en: 'Action request · needs your approval' },
+  'ai.tool.what': { fa: 'ارسال گزارش هفتگی به سه مخاطب بیرونی', en: 'Send the weekly report to three external recipients' },
+  'ai.tool.f.tool': { fa: 'ابزار', en: 'Tool' },
+  'ai.tool.f.dest': { fa: 'مقصد', en: 'Destination' },
+  'ai.tool.f.effect': { fa: 'آنچه تغییر می‌کند', en: 'What changes' },
+  'ai.tool.f.risk': { fa: 'سطح ریسک', en: 'Risk' },
+  'ai.tool.f.reversible': { fa: 'بازگشت‌پذیر؟', en: 'Reversible?' },
+  'ai.tool.f.expiry': { fa: 'اعتبار تصمیم', en: 'Decision expires' },
+  'ai.tool.v.dest': { fa: 'سرویس ایمیل بیرونی · mail.arastudio.ir', en: 'External mail service · mail.arastudio.ir' },
+  'ai.tool.v.effect': { fa: '۳ ایمیل به ۳ مخاطب · فایل پیوست از «گزارش هفته ۳۲»', en: '3 emails to 3 recipients · one attachment from “Weekly report 32”' },
+  'ai.tool.v.risk': { fa: 'نوشتن بیرونی', en: 'External write' },
+  'ai.tool.v.reversible': { fa: 'خیر — پس از ارسال قابل بازگشت نیست', en: 'No — cannot be recalled once sent' },
+  'ai.tool.v.expiry': { fa: '۱۵ دقیقه دیگر', en: 'in 15 minutes' },
+  'ai.tool.args': { fa: 'مشاهده دقیق آرگومان‌ها', en: 'Show the exact arguments' },
+  'ai.tool.hash': { fa: 'هش 8f3a…c21', en: 'hash 8f3a…c21' },
+  'ai.tool.bind': { fa: 'تأیید شما به همین آرگومان‌ها، نسخه عامل و نسخه سیاست گره می‌خورد.', en: 'Your approval is bound to these arguments, this agent version and this policy version.' },
   'ai.tool.approve': { fa: 'تأیید و اجرا', en: 'Approve and run' },
   'ai.tool.reject': { fa: 'رد کردن', en: 'Decline' },
   'ai.tool.note': { fa: 'تا تأیید شما هیچ درخواستی به بیرون ارسال نمی‌شود.', en: 'No outbound request is sent until you approve.' },
@@ -51,6 +67,11 @@ NX.i18n.add({
   'ai.composer.send': { fa: 'ارسال', en: 'Send' },
 
   'ai.ctx.title': { fa: 'بافتار این گفتگو', en: 'Conversation context' },
+  'ai.ctx.open': { fa: 'نمایش بافتار گفتگو', en: 'Show conversation context' },
+  'ai.ctx.sub': { fa: 'چه چیزی در این پاسخ دیده می‌شود', en: 'What this answer can see' },
+  'ai.ctx.scope': { fa: 'دامنه', en: 'Scope' },
+  'ai.sessions.open': { fa: 'گفتگوها', en: 'Conversations' },
+  'ai.sessions.sub': { fa: 'همهٔ گفتگوهای این فضای کاری', en: 'Every conversation in this workspace' },
   'ai.ctx.ws': { fa: 'فضای کاری', en: 'Workspace' },
   'ai.ctx.access': { fa: 'سطح دسترسی', en: 'Access level' },
   'ai.ctx.accessVal': { fa: 'عضو · خواندن و نوشتن', en: 'Member · read and write' },
@@ -109,4 +130,126 @@ NX.i18n.add({
   'ai.cfg.status.error': { fa: 'خطای احراز هویت', en: 'Auth error' },
   'ai.cfg.status.lat1': { fa: '۲۸۰ میلی‌ثانیه', en: '280 ms' },
   'ai.cfg.status.lat3': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
+
+  /* Failure states — every one of these is a designed screen, not an alert box */
+  'ai.err.retry': { fa: 'تلاش دوباره', en: 'Retry' },
+
+  'ai.err.rate.badge': { fa: 'محدودیت نرخ', en: 'Rate limit' },
+  'ai.err.rate.code': { fa: '۴۲۹ · سقف Provider', en: '429 · provider limit' },
+  'ai.err.rate.title': { fa: 'درخواست‌ها بیش از حد شد', en: 'Too many requests' },
+  'ai.err.rate.body': {
+    fa: 'این فضای کاری سقف ۶۰ درخواست در دقیقه را پر کرده است. پنجرهٔ Provider در ۴۰ ثانیه باز می‌شود.',
+    en: 'This workspace has used its 60 requests for the minute. The provider window resets in 40 seconds.',
+  },
+  'ai.err.rate.alt': { fa: 'رفتن به هوش مصنوعی شخصی', en: 'Use Personal AI instead' },
+  'ai.err.rate.note': { fa: 'درخواست‌های ردشده صورت‌حساب نمی‌شوند.', en: 'Rejected requests are not billed.' },
+
+  'ai.err.timeout.badge': { fa: 'پایان زمان', en: 'Timed out' },
+  'ai.err.timeout.code': { fa: '۴۵ ثانیه · بدون نخستین نشانه', en: '45s · no first token' },
+  'ai.err.timeout.title': { fa: 'مدل در زمان مقرر پاسخ نداد', en: 'The model did not answer in time' },
+  'ai.err.timeout.body': {
+    fa: 'درخواست پیش از مصرف هیچ خروجی لغو شد. پرسش‌های طولانی با پیوست‌های سنگین معمولاً همین‌جا متوقف می‌شوند.',
+    en: 'The request was cancelled before any output was used. Long questions with heavy attachments usually stall here.',
+  },
+  'ai.err.timeout.alt': { fa: 'انتخاب مدل سریع‌تر', en: 'Choose a faster model' },
+  'ai.err.timeout.note': {
+    fa: 'برای درخواست لغوشده نشانه‌ای مصرف نمی‌شود.',
+    en: 'No tokens are consumed by a cancelled request.',
+  },
+
+  'ai.err.partial.badge': { fa: 'پاسخ ناقص', en: 'Partial answer' },
+  'ai.err.partial.code': { fa: '۲ از ۴ منبع', en: '2 of 4 sources' },
+  'ai.err.partial.title': { fa: 'دو منبع خوانده نشد', en: 'Two sources could not be read' },
+  'ai.err.partial.body': {
+    fa: 'پاسخ زیر بدون آن‌ها نوشته شده است. آن را ناتمام بدانید، نه لزوماً نادرست.',
+    en: 'The answer below was written without them. Treat it as incomplete rather than wrong.',
+  },
+  'ai.err.partial.alt': { fa: 'خواندن دوبارهٔ منابع جاافتاده', en: 'Retry the missing sources' },
+  'ai.err.partial.tag': { fa: 'ناتمام', en: 'Incomplete' },
+  'ai.err.partial.answer': {
+    fa: 'سه رقیب اصلی بازار را می‌شود در سه محور مقایسه کرد: قیمت پایه، سقف مصرف و پشتیبانی سازمانی. جمع‌بندی زیر فقط بر پایهٔ دو منبعی است که خوانده شد.',
+    en: 'The three main competitors differ on base price, usage ceiling and enterprise support. This summary rests only on the two sources that were read.',
+  },
+
+  'ai.err.credential.badge': { fa: 'هوش مصنوعی شخصی قطع است', en: 'Personal AI disconnected' },
+  'ai.err.credential.code': { fa: '۴۰۱ · کلید نامعتبر', en: '401 · invalid key' },
+  'ai.err.credential.title': { fa: 'درخواست‌ها متوقف شده‌اند', en: 'Requests are stopped' },
+  'ai.err.credential.body': {
+    fa: 'برای این فضای کاری «بستن در خطا» روشن است؛ بنابراین هیچ درخواستی به Central AI نرفت. داده‌ها نزد همان Providerی ماند که خودتان انتخاب کرده بودید.',
+    en: 'Fail-closed is on for this workspace, so nothing was sent to Central AI. Your data stayed with the provider you chose.',
+  },
+  'ai.err.credential.cta': { fa: 'تنظیمات اتصال', en: 'Open connection settings' },
+  'ai.err.credential.alt': { fa: 'اجازهٔ Central AI برای این نشست', en: 'Allow Central AI for this session' },
+  'ai.err.credential.note': {
+    fa: 'بازگشت خودکار وجود ندارد؛ هر بازگشت نیازمند اجازهٔ صریح شماست.',
+    en: 'There is no automatic fallback. Every fallback needs your explicit permission first.',
+  },
+
+  /* 402 — the only failure with a commercial recovery, and the only one the
+     user cannot fix alone. No retry button: retrying spends nothing and
+     changes nothing. */
+  'ai.err.quota.badge': { fa: 'سهمیهٔ ماه تمام شد', en: 'Monthly quota spent' },
+  'ai.err.quota.code': { fa: '۴۰۲ · سقف ۵۰ دلار', en: '402 · $50 cap' },
+  'ai.err.quota.title': { fa: 'سهمیهٔ این ماه مصرف شد', en: "This month's allowance is spent" },
+  'ai.err.quota.body': {
+    fa: 'تا پایان دوره (۱۲ روز) درخواست‌های Central AI پذیرفته نمی‌شوند. گفتگوها، فایل‌ها و تنظیمات دست‌نخورده می‌مانند.',
+    en: 'Central AI will not accept requests for the remaining 12 days of this period. Conversations, files and settings are untouched.',
+  },
+  'ai.err.quota.cta': { fa: 'افزایش سقف', en: 'Raise the cap' },
+  'ai.err.quota.alt': { fa: 'ادامه با هوش مصنوعی شخصی', en: 'Continue with Personal AI' },
+  'ai.err.quota.note': {
+    fa: 'تغییر سقف یک اقدام مدیریتی است و در گزارش ممیزی ثبت می‌شود.',
+    en: 'Raising the cap is a manager action and is recorded in the audit log.',
+  },
+
+  /* 422 — the approval ran and the tool failed. The point of this screen is
+     that the approval is spent: running again needs a new one. */
+  'ai.err.tool.badge': { fa: 'اجرا ناموفق', en: 'Execution failed' },
+  'ai.err.tool.code': { fa: '۴۲۲ · اجرای ابزار', en: '422 · tool execution' },
+  'ai.err.tool.title': { fa: 'تأیید شما اجرا شد، اما ابزار خطا داد', en: 'Your approval ran, but the tool failed' },
+  'ai.err.tool.body': {
+    fa: 'درخواست به سیستم مقصد رسید و همان‌جا برگشت خورد. هیچ تغییری اعمال نشد و چیزی برای بازگرداندن وجود ندارد.',
+    en: 'The request reached the destination system and was rejected there. Nothing was changed, so there is nothing to undo.',
+  },
+  'ai.err.tool.f1': { fa: 'ابزار: ایمیل — ارسال پیام', en: 'Tool: mail — send message' },
+  'ai.err.tool.f2': { fa: 'شناسهٔ تأیید: apr_01J8QK', en: 'Approval: apr_01J8QK' },
+  'ai.err.tool.f3': { fa: 'تلاش ۱ از ۳', en: 'Attempt 1 of 3' },
+  'ai.err.tool.cta': { fa: 'درخواست دوباره', en: 'Request again' },
+  'ai.err.tool.alt': { fa: 'دیدن پاسخ مقصد', en: "See the destination's reply" },
+  'ai.err.tool.note': {
+    fa: 'اجرای دوباره به تأیید تازه نیاز دارد؛ همین تأیید مصرف شده است.',
+    en: 'Running it again needs a new approval — this one is spent.',
+  },
+
+  /* 413 — the answer would be truncated, so we move the thread instead. */
+  'ai.err.context.badge': { fa: 'زمینه پر شد', en: 'Context full' },
+  'ai.err.context.code': { fa: '۴۱۳ · پنجرهٔ زمینه', en: '413 · context window' },
+  'ai.err.context.title': { fa: 'این گفتگو از حد زمینه گذشت', en: 'This conversation is past the context limit' },
+  'ai.err.context.body': {
+    fa: 'ادامه دادن در همین گفتگو پاسخ را از میانه می‌بُرد. سه نکتهٔ کلیدی به یک گفتگوی تازه منتقل می‌شود.',
+    en: 'Continuing here would cut the answer off mid-sentence. Three key facts move to a new conversation instead.',
+  },
+  'ai.err.context.f1': { fa: 'هدف: بازبینی قرارداد ۱۴۰۴', en: 'Goal: review the 1404 contract' },
+  'ai.err.context.f2': { fa: 'تصمیم‌های گرفته‌شده: ۳ مورد', en: 'Decisions taken: 3' },
+  'ai.err.context.f3': { fa: 'منابع خوانده‌شده: ۴ فایل', en: 'Sources read: 4 files' },
+  'ai.err.context.cta': { fa: 'ادامه در گفتگوی تازه', en: 'Continue in a new conversation' },
+  'ai.err.context.alt': { fa: 'خلاصه کن و ادامه بده', en: 'Summarise and continue' },
+  'ai.err.context.note': {
+    fa: 'این گفتگو بایگانی می‌ماند و حذف نمی‌شود.',
+    en: 'This conversation is archived, not deleted.',
+  },
+
+  'ai.empty.title': { fa: 'هنوز گفتگویی نیست', en: 'No conversations yet' },
+  'ai.empty.head': { fa: 'گفتگوی تازه', en: 'New conversation' },
+  'ai.empty.headSub': { fa: 'هنوز چیزی پرسیده نشده', en: 'Nothing asked yet' },
+  'ai.empty.ctx': {
+    fa: 'با شروع نخستین گفتگو، بافتار آن همین‌جا نمایش داده می‌شود.',
+    en: 'Context appears here as soon as the first conversation starts.',
+  },  'ai.empty.body': {
+    fa: 'یک پرسش بپرسید تا شروع شود، یا اول کلید خودتان را وصل کنید.',
+    en: 'Ask something to start, or connect your own key first.',
+  },
+  'ai.empty.cta': { fa: 'شروع گفتگو', en: 'Start a conversation' },
+  'ai.empty.alt': { fa: 'اتصال هوش مصنوعی شخصی', en: 'Connect Personal AI' },
+  'ai.empty.sessions': { fa: 'در این فضای کاری گفتگویی ثبت نشده است.', en: 'No conversations in this workspace yet.' },
 });

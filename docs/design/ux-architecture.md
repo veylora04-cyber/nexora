@@ -222,13 +222,31 @@ column. If a control does not clearly belong to one of those three, it is in the
 
 ---
 
-## 10. Open UX questions
+## 10. Open UX questions — answered, `PROPOSED`
 
-1. Should the rail collapse automatically below 1200px, or only on user action? (Currently: only on
-   user action, to preserve spatial memory.)
-2. Should the AI composer be available inside every screen, or only on the dashboard and AI
-   workspace? (Currently: dashboard only, to avoid competing with page-level primary actions.)
-3. Should onboarding allow skipping Smart Start midway and keeping what was entered? (Currently: no
-   — the summary is all-or-nothing.)
-4. How should a user switch between an organisation's teams without leaving the current team context?
-   (Not designed yet.)
+These four were open through Phase 01 and now have a recommended answer. **`PROPOSED`, not
+`APPROVED`:** the recommendation is design's, and the product owner has not signed it off. The full
+reasoning is in [`decision-review.md`](decision-review.md) §3; this is the resolution as designed.
+
+**1 · Rail collapse.** Not a single breakpoint, two behaviours. Expanded and user-collapsible at
+≥ 1200px; collapsed by default but user-expandable between 900px and 1200px; replaced by a drawer
+below 900px. Automatic collapse in the middle band was rejected because it fights the user — resize
+the window by a pixel and the rail collapses again, so users leave it collapsed forever and never see
+the labelled navigation. The collapse state is a user preference, not a media-query side effect.
+
+**2 · AI composer placement.** Dashboard and AI workspace only. Everywhere else, an "Ask AI"
+affordance opens the AI workspace with the current page's context attached. An inline composer on
+Members or Billing is ambiguous — it implies the AI can see the page, and it does not say what it
+attached. A jump-with-context is honest: the context inspector shows exactly what came along.
+
+**3 · Skipping Smart Start midway.** Allowed, under three conditions: skipping creates nothing (no
+workspace, no subscription, no cost — §14.5); entered values persist as a draft with a "resume setup"
+entry point on the dashboard; and the final review step stays all-or-nothing, because that is where
+the user consents to creation.
+
+**4 · Switching between an organisation's teams.** The scope switcher becomes two-level and gains the
+organisation as a *destination*, not just a container: the org is selectable (billing, security,
+policy live there), the current team stays pinned at the top of the list, and switching stays an
+explicit selection — never a hover-expanding tree, which is how users end up approving an action in
+the wrong workspace. Below 900px the switcher becomes a sheet rather than a dropdown.
+

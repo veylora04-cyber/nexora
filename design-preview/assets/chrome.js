@@ -164,37 +164,49 @@
     </header>`;
   };
 
-  /* Notification drawer, shared by all app screens. */
+  /* Notification drawer, shared by all app screens.
+     Grouped by day, with an explicit read/unread state that "mark all" can
+     actually change — an approval queue that cannot be cleared is a trap. */
   NX.drawer = function () {
-    const row = (title, body, when, unread) => `<div class="list__row" style="align-items:flex-start">
-      <span class="dot ${unread ? 'dot--signal' : 'dot--idle'}" style="margin-block-start:7px"></span>
+    const row = (n, unread) => `<button class="list__row notif__row" data-unread="${unread ? 'true' : 'false'}"
+        style="align-items:flex-start;text-align:start;width:100%;background:none;border:0;cursor:pointer">
+      <span class="dot notif__dot ${unread ? 'dot--signal' : 'dot--idle'}" style="margin-block-start:7px"></span>
       <div class="list__main">
-        <div class="list__title">${title}</div>
-        <div class="t-caption" style="margin-block-start:2px">${body}</div>
+        <div class="list__title"><span data-t="notif.${n}.title"></span></div>
+        <div class="t-caption" style="margin-block-start:2px" data-t="notif.${n}.body"></div>
       </div>
-      <span class="list__meta">${when}</span>
-    </div>`;
+      <span class="list__meta"><span data-t="notif.${n}.when"></span></span>
+    </button>`;
+
     return `<div class="drawer" id="notif-drawer" role="dialog" aria-modal="true" aria-labelledby="notif-title">
       <div class="modal__head" style="padding:var(--nx-space-5)">
         <div>
           <div class="t-h3" id="notif-title" data-t="notif.title"></div>
-          <div class="t-caption" data-t="notif.sub"></div>
+          <div class="t-caption"><span id="notif-sub" data-t="notif.sub"></span></div>
         </div>
-        <button class="icon-btn" data-drawer-close aria-label="Close">${NX.icon('x')}</button>
+        <button class="icon-btn" data-drawer-close data-t-aria="common.close">${NX.icon('x')}</button>
       </div>
       <div class="tabs" style="padding-inline:var(--nx-space-5);gap:var(--nx-space-4)">
-        <button class="tab" aria-selected="true"><span data-t="notif.all"></span><span class="tab__count">4</span></button>
+        <button class="tab" aria-selected="true">
+          <span data-t="notif.all"></span><span class="tab__count" id="notif-count">2</span>
+        </button>
         <button class="tab" aria-selected="false"><span data-t="notif.mentions"></span></button>
         <button class="tab" aria-selected="false"><span data-t="notif.system"></span></button>
       </div>
       <div class="list grow" style="overflow-y:auto">
-        ${row('<span data-t="notif.1.title"></span>', '<span data-t="notif.1.body"></span>', '<span data-t="notif.1.when"></span>', true)}
-        ${row('<span data-t="notif.2.title"></span>', '<span data-t="notif.2.body"></span>', '<span data-t="notif.2.when"></span>', true)}
-        ${row('<span data-t="notif.3.title"></span>', '<span data-t="notif.3.body"></span>', '<span data-t="notif.3.when"></span>', false)}
-        ${row('<span data-t="notif.4.title"></span>', '<span data-t="notif.4.body"></span>', '<span data-t="notif.4.when"></span>', false)}
+        <div class="rule-label" style="padding:var(--nx-space-3) var(--nx-space-5) var(--nx-space-1)">
+          <span data-t="notif.today"></span>
+        </div>
+        ${row(1, true)}
+        ${row(2, true)}
+        <div class="rule-label" style="padding:var(--nx-space-4) var(--nx-space-5) var(--nx-space-1)">
+          <span data-t="notif.earlier"></span>
+        </div>
+        ${row(3, false)}
+        ${row(4, false)}
       </div>
       <div class="modal__foot" style="justify-content:space-between">
-        <button class="btn btn--ghost btn--sm" data-t="notif.markRead"></button>
+        <button class="btn btn--ghost btn--sm" data-notif-mark-all data-t="notif.markRead"></button>
         <button class="btn btn--secondary btn--sm" data-t="notif.settings"></button>
       </div>
     </div>`;

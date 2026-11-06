@@ -455,3 +455,36 @@ a:hover {
 
 /* Buttons inside a vertical stack keep their intrinsic width. */
 .stack > .btn { align-self: flex-start; }
+
+/* The prototype bar floats over the bottom of the page. Scrolling content
+   clears it, so the last control on a page is never underneath it. */
+.content:not(.content--flush) { padding-block-end: calc(var(--nx-space-10) + 40px); }
+
+/* Flush content is an app frame, not a document: the AI workspace owns the
+   full height and scrolls its own columns. Without a definite height here the
+   grid row collapses to the tallest min-content contribution and the thread
+   is squeezed to a few hundred pixels the moment a tall card appears. */
+.shell--app {
+  /* Reserve the strip the prototype bar floats over, so the composer is never
+     underneath it. In production the bar does not exist and this is 0. */
+  height: calc(100vh - var(--nx-devbar-reserve, 57px));
+  min-height: 0;
+  /* One row, exactly the shell height: without this the row grows to the
+     rail's 100vh and the main column overflows the clipped shell. */
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+}
+@media (max-width: 720px) {
+  .shell--app { height: calc(100vh - var(--nx-devbar-reserve-sm, 96px)); min-height: 0; }
+}
+.shell--app .main { height: 100%; min-height: 0; }
+
+.content--flush {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

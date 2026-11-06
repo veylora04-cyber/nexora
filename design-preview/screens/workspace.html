@@ -109,7 +109,7 @@
         <!-- Tabs -->
         <div class="tabs section-gap" data-tabs="ws" role="tablist">
           <button class="tab" role="tab" data-tab="members" aria-selected="true">
-            <span data-t="wsPage.tab.members"></span><span class="tab__count">۶</span>
+            <span data-t="wsPage.tab.members"></span><span class="tab__count"><span data-hide-in="ws:empty" data-num="6"></span><span data-variant-group="ws" data-variant="empty" hidden data-num="0"></span></span>
           </button>
           <button class="tab" role="tab" data-tab="roles" aria-selected="false" data-t="wsPage.tab.roles"></button>
           <button class="tab" role="tab" data-tab="invite" aria-selected="false" data-t="wsPage.tab.invite"></button>
@@ -132,7 +132,7 @@
             <button class="btn btn--primary btn--sm" data-demo-toast="toast.invited" data-t="wsPage.invite"></button>
           </div>
 
-          <div class="panel table-scroll">
+          <div class="panel table-scroll" data-hide-in="ws:empty">
             <table class="table">
               <thead>
                 <tr>
@@ -238,7 +238,25 @@
             </table>
           </div>
 
+          <div class="panel" data-variant-group="ws" data-variant="empty" hidden>
+            <div class="empty empty--center" style="border:0;background:none">
+              <span class="empty__mark"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg></span>
+              <h3 class="t-h3" data-t="wsPage.empty.title"></h3>
+              <p class="t-body" data-t="wsPage.empty.body"></p>
+              <div class="cluster cluster-2" style="justify-content:center">
+                <button class="btn btn--primary btn--sm" data-demo-toast="toast.invited" data-t="wsPage.empty.cta"></button>
+                <button class="btn btn--ghost btn--sm" data-t="wsPage.empty.alt"></button>
+              </div>
+            </div>
+          </div>
+
           <p class="t-caption" style="margin-block-start:var(--nx-space-3)" data-t="wsPage.members.note"></p>
+
+          <div class="state-switch" role="group" aria-label="Workspace states">
+            <span class="state-switch__label" data-t="demo.states.ws"></span>
+            <button data-demo-variant="ws:normal" aria-pressed="true" data-t="demo.ws.normal"></button>
+            <button data-demo-variant="ws:empty" aria-pressed="false" data-t="demo.ws.empty"></button>
+          </div>
         </section>
 
         <!-- Roles -->
@@ -246,6 +264,18 @@
           <div class="cluster-between" style="margin-block-end:var(--nx-space-3)">
             <p class="t-sm" style="margin:0" data-t="wsPage.roles.sub"></p>
             <span class="badge badge--signal" data-t="wsPage.roles.proposal"></span>
+          </div>
+
+          <!-- The matrix uses six kinds of cell, and each cell names its own
+               variant ("مشاهده هزینه", "طبق مجوز"). The legend names the six
+               kinds, so a variant can be read without guessing. -->
+          <div class="matrix__legend" role="list">
+            <span class="matrix__lg" role="listitem"><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span data-t="wsPage.lg.full"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.limitedWord"></span><span data-t="wsPage.lg.limited"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.delegWord"></span><span data-t="wsPage.lg.deleg"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.ownWord"></span><span data-t="wsPage.lg.own"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="partial" data-t="wsPage.lg.viewWord"></span><span data-t="wsPage.lg.view"></span></span>
+            <span class="matrix__lg" role="listitem"><span class="no">—</span><span data-t="wsPage.lg.none"></span></span>
           </div>
 
           <div class="panel table-scroll">
@@ -275,7 +305,7 @@
                   <td data-t="wsPage.cap.2"></td>
                   <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
                   <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
-                  <td><span class="partial" data-t="wsPage.val.delegated"></span></td>
+                  <td><span class="no no--note" data-t="wsPage.val.noneStar"></span></td>
                   <td><span class="no">—</span></td>
                   <td><span class="no">—</span></td>
                   <td><span class="partial" data-t="wsPage.val.read"></span></td>
@@ -310,7 +340,7 @@
                 <tr>
                   <td data-t="wsPage.cap.6"></td>
                   <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
-                  <td><span class="no">—</span></td>
+                  <td><span class="no no--note" data-t="wsPage.val.noneStarStar"></span></td>
                   <td><span class="no">—</span></td>
                   <td><span class="no">—</span></td>
                   <td><span class="yes"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span></td>
@@ -327,6 +357,11 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="matrix__notes" style="margin-block-start:var(--nx-space-3)">
+            <p data-t="wsPage.roles.fn1"></p>
+            <p data-t="wsPage.roles.fn2"></p>
           </div>
 
           <div class="callout" style="margin-block-start:var(--nx-space-4)">

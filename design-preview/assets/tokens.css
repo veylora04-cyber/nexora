@@ -167,6 +167,8 @@
   --nx-signal-fill: #e9a13b;
   --nx-signal-soft: #fbf0dd;
   --nx-signal-border: #ecd3a8;
+  /* Saffron is a fill in both themes, so its ink never flips. */
+  --nx-on-signal: #1a1204;
 
   /* Semantic */
   --nx-success: #1c7a4d;
@@ -237,6 +239,7 @@
   --nx-signal-fill: #f0b45c;
   --nx-signal-soft: rgba(240, 180, 92, 0.13);
   --nx-signal-border: rgba(240, 180, 92, 0.32);
+  --nx-on-signal: #1a1204;
 
   --nx-success: #55c48c;
   --nx-success-soft: rgba(85, 196, 140, 0.13);
@@ -263,6 +266,18 @@
   --nx-data-3: #23655d;
   --nx-data-4: #17423d;
   --nx-data-signal: #f0b45c;
+}
+
+/* ---------- 4b. Inverse panels ------------------------------------------ */
+/* The auth brand column and the overview hero are dark in *both* themes.
+   Every surface token above flips with the theme, so those two panels cannot
+   use them; before this block they carried eight repeated hex literals and a
+   brand-colour change would have missed half of them. These four do not flip. */
+:root {
+  --nx-inverse-bg: #07100e;
+  --nx-inverse-fg: #e9f0ed;
+  --nx-inverse-fg-strong: #f4faf8;
+  --nx-inverse-accent: #3fc2b0;
 }
 
 /* ---------- 5. Directional corrections ---------------------------------- */

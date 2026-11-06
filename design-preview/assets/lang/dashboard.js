@@ -12,6 +12,31 @@ NX.i18n.add({
   'dash.composer.providerTip': { fa: 'منبع فعال هوش مصنوعی', en: 'Active AI source' },
   'dash.composer.model': { fa: 'متعادل', en: 'Balanced' },
   'dash.composer.send': { fa: 'ارسال', en: 'Send' },
+  'dash.ctx.policy': { fa: 'سیاست سازمان اعمال می‌شود', en: 'Organization policy applies' },
+  'dash.ctx.provider': { fa: 'Central AI · متعادل', en: 'Central AI · Balanced' },
+
+  'dash.needs.title': { fa: 'نیازمند شما', en: 'Needs you' },
+  'dash.needs.sub': { fa: 'یک تأیید در انتظار، و سه کار برای امروز.', en: 'One approval waiting, and three tasks for today.' },
+
+  'dash.ai.title': { fa: 'فعالیت هوش مصنوعی', en: 'AI activity' },
+  'dash.ai.live': { fa: 'در حال اجرا', en: 'Live' },
+  'dash.ai.runName': { fa: 'عامل پژوهش بازار', en: 'Market research agent' },
+  'dash.ai.step': { fa: 'گام ۲ از ۴ — در حال استخراج منابع', en: 'Step 2 of 4 — extracting sources' },
+  'dash.ai.runs': { fa: 'اجرای امروز', en: 'runs today' },
+  'dash.ai.tokens': { fa: 'توکن', en: 'tokens' },
+  'dash.ai.cost': { fa: '۰٫۴۲ دلار', en: '$0.42' },
+  'dash.ai.costLabel': { fa: 'هزینه امروز', en: 'spend today' },
+  'dash.ai.link': { fa: 'همه اجراها', en: 'All runs' },
+
+  'dash.qa.title': { fa: 'اقدام سریع', en: 'Quick actions' },
+  'dash.qa.t1': { fa: 'کار تازه', en: 'New task' },
+  'dash.qa.t2': { fa: 'گفتگوی تازه با هوش مصنوعی', en: 'New AI conversation' },
+  'dash.qa.t3': { fa: 'اجرای جریان کاری', en: 'Run a workflow' },
+  'dash.qa.t4': { fa: 'اتصال ابزار یا API', en: 'Connect a tool or API' },
+
+  'dash.usage.hard': { fa: 'سقف سخت: ۵۰ دلار', en: 'Hard limit: $50' },
+  'dash.usage.reset': { fa: 'بازنشانی ۱ آذر', en: 'Resets Dec 1' },
+
   'dash.composer.note': { fa: 'هیچ اقدامی بدون تأیید شما اجرا نمی‌شود؛ دسترسی هر ابزار جداگانه بررسی می‌شود.', en: 'Nothing runs without your approval. Every tool call is authorised separately.' },
 
   'dash.today.title': { fa: 'امروز', en: 'Today' },
@@ -56,4 +81,12 @@ NX.i18n.add({
   'dash.sc1': { fa: 'مرکز فرمان', en: 'Command centre' },
   'dash.sc2': { fa: 'اجرای جریان کاری', en: 'Run a workflow' },
   'dash.sc3': { fa: 'تنظیم اتصال هوش مصنوعی', en: 'Configure AI connection' },
+
+  'dash.empty.title': { fa: 'کاری برای امروز نیست', en: 'Nothing due today' },
+  'dash.empty.body': {
+    fa: 'روز خالی است. یک کار بسازید، یا بگذارید دستیار برایتان برنامه بچیند.',
+    en: 'The day is clear. Add a task, or let the assistant plan one for you.',
+  },
+  'dash.empty.cta': { fa: 'افزودن کار', en: 'Add a task' },
+  'dash.empty.alt': { fa: 'برنامه‌ریزی با دستیار', en: 'Plan with the assistant' },
 });

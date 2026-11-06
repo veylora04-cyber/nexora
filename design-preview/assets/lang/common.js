@@ -68,6 +68,7 @@ NX.i18n.add({
   'common.pending': { fa: 'در انتظار تأیید', en: 'Pending approval' },
   'common.enabled': { fa: 'فعال', en: 'On' },
   'common.disabled': { fa: 'خاموش', en: 'Off' },
+  'common.members': { fa: 'عضو', en: 'members' },
   'common.you': { fa: 'شما', en: 'You' },
   'common.showPassword': { fa: 'نمایش رمز عبور', en: 'Show password' },
   'common.dismiss': { fa: 'بستن پیام', en: 'Dismiss' },
@@ -93,6 +94,8 @@ NX.i18n.add({
   'notif.4.body': { fa: 'اتصال در ۳۱۰ میلی‌ثانیه پاسخ داد.', en: 'The connection responded in 310 ms.' },
   'notif.4.when': { fa: '۲ روز پیش', en: '2 days ago' },
   'notif.markRead': { fa: 'علامت‌گذاری همه به‌عنوان خوانده‌شده', en: 'Mark all as read' },
+  'notif.today': { fa: 'امروز', en: 'Today' },
+  'notif.earlier': { fa: 'پیش‌تر', en: 'Earlier' },
   'notif.settings': { fa: 'تنظیمات اعلان', en: 'Notification settings' },
 
   'palette.placeholder': { fa: 'جست‌وجو یا اجرای دستور…', en: 'Search or run a command…' },
@@ -112,6 +115,25 @@ NX.i18n.add({
   'toast.saved': { fa: 'تغییرات ذخیره شد.', en: 'Changes saved.' },
   'toast.invited': { fa: 'دعوت ارسال شد.', en: 'Invitation sent.' },
   'toast.copied': { fa: 'در حافظه کپی شد.', en: 'Copied to clipboard.' },
+  'toast.read': { fa: 'همه خوانده شد.', en: 'All marked as read.' },
 
   'footer.rights': { fa: 'نمونه طراحی فاز ۰۱ · نسخه ۰٫۱', en: 'Phase 01 design prototype · v0.1' },
+
+  /* Prototype state switchers — review scaffolding, not product copy */
+  'demo.states.ai': { fa: 'حالت‌های نمونه', en: 'Prototype states' },
+  'demo.states.dash': { fa: 'حالت‌های نمونه', en: 'Prototype states' },
+  'demo.states.ws': { fa: 'حالت‌های نمونه', en: 'Prototype states' },
+  'demo.ai.normal': { fa: 'عادی', en: 'Normal' },
+  'demo.ai.rate': { fa: 'نرخ', en: 'Rate' },
+  'demo.ai.timeout': { fa: 'زمان', en: 'Timeout' },
+  'demo.ai.partial': { fa: 'ناقص', en: 'Partial' },
+  'demo.ai.credential': { fa: 'اتصال', en: 'Auth' },
+  'demo.ai.quota': { fa: 'سهمیه', en: 'Quota' },
+  'demo.ai.tool': { fa: 'ابزار', en: 'Tool' },
+  'demo.ai.context': { fa: 'زمینه', en: 'Context' },
+  'demo.ai.empty': { fa: 'خالی', en: 'Empty' },
+  'demo.dash.normal': { fa: 'با کار', en: 'With tasks' },
+  'demo.dash.empty': { fa: 'بدون کار', en: 'No tasks' },
+  'demo.ws.normal': { fa: 'با عضو', en: 'With members' },
+  'demo.ws.empty': { fa: 'بدون عضو', en: 'No members' },
 });

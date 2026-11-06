@@ -127,7 +127,7 @@ dashboard content is a panel with a labelled head, and several blocks are plain 
 | Component | Notes |
 |---|---|
 | `.table` | Header in `--nx-text-3`, 12px; rows 48–56px; hover tint |
-| `.matrix` | Capability × role grid for permissions; `.yes` / `.partial` / `.no` |
+| `.matrix` | Capability × role grid for permissions. `.yes` (icon), `.partial` (condition in words), `.no` (`—`), `.no--note` (a deny that carries a footnote, e.g. `No*`). Values are words, not booleans: §17.3 distinguishes full, limited, per-delegation, own-scope-only and view-only, and collapsing them into three states would lose the distinction the matrix exists to show. `.matrix__notes` holds the footnotes. |
 | `.meter` | 6px track, `--warn` / `--err` / `--signal` fills |
 | `.bars` | Horizontal bar rows: label · track · value, RTL-anchored |
 | `.spark` | 24px inline trend line |
@@ -140,7 +140,8 @@ dashboard content is a panel with a labelled head, and several blocks are plain 
 | Component | Notes |
 |---|---|
 | `.toast` | Bottom-end, auto-dismiss, `role="status"` |
-| `.empty` | Icon + one sentence + one action. Never a shrug emoji |
+| `.empty` | Icon + one sentence + one action. Never a shrug emoji. `--center` for a full-panel empty state |
+| `.state-card` | A condition that is not an error but is not normal either: `--err` and `--warn` variants. Carries what happened, what it means, and the one action available. Used for the five AI failure states |
 | `.skeleton` | Shimmer only under `prefers-reduced-motion: no-preference` |
 | `.spinner` | 14px inline, 20px standalone |
 | `.scrim` | Overlay behind drawer/modal/palette, click to close |
@@ -150,7 +151,7 @@ dashboard content is a panel with a labelled head, and several blocks are plain 
 | Component | Behaviour |
 |---|---|
 | `.modal` | Centre on desktop, bottom sheet ≤640px, `Esc` closes, focus trapped |
-| `.drawer` | Inline-end side sheet (notifications), 380px, full-width ≤640px |
+| `.drawer` | Inline-end side sheet, 380px, full-width ≤640px. Any element carrying `data-drawer-open="<id>"` opens it, so the same drawer serves a narrow viewport and a hidden column. An open drawer sits above the prototype bar. Focus moves to the close button — deferred by one frame, because the drawer is still `visibility: hidden` when the click handler runs |
 | `.palette` | Command palette, `Ctrl/⌘+K`, arrow-key navigation, `Enter` to run |
 | `[data-tip]` | CSS-only tooltip, `:hover` + `:focus-visible`, logical centring, disabled below 900px |
 

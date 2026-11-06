@@ -234,31 +234,96 @@
       });
     }
 
+    /* Every drawer closes the same way: Escape, the scrim, or the close button.
+       Focus goes back to whatever opened it — without that a keyboard user
+       lands on <body> and has to tab in from the top of the page again. */
+    let drawerOpener = null;
+    const closeDrawers = () => {
+      const open = doc.querySelectorAll('.drawer[data-open="true"]');
+      if (!open.length) return false;
+      open.forEach((d) => d.setAttribute('data-open', 'false'));
+      if (drawerOpener && doc.contains(drawerOpener)) drawerOpener.focus();
+      drawerOpener = null;
+      return true;
+    };
+
     const notifBtn = doc.getElementById('notif-btn');
     const notifDrawer = doc.getElementById('notif-drawer');
     if (notifBtn && notifDrawer) {
       notifBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        drawerOpener = notifBtn;
         notifDrawer.setAttribute('data-open', 'true');
         openScrim();
-        notifDrawer.querySelector('[data-drawer-close]').focus();
+        setTimeout(() => notifDrawer.querySelector('[data-drawer-close]').focus(), 30);
       });
     }
     doc.querySelectorAll('[data-drawer-close]').forEach((b) =>
       b.addEventListener('click', () => {
         b.closest('.drawer').setAttribute('data-open', 'false');
         closeScrim();
+        if (drawerOpener && doc.contains(drawerOpener)) drawerOpener.focus();
+        drawerOpener = null;
       })
     );
+
+    /* Generic opener: any trigger can open any drawer by id. Used by the AI
+       screen, where the session list and context inspector become drawers
+       below the width that hides their column. */
+    doc.querySelectorAll('[data-drawer-open]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const drawer = doc.getElementById(btn.getAttribute('data-drawer-open'));
+        if (!drawer) return;
+        drawerOpener = btn;
+        drawer.setAttribute('data-open', 'true');
+        openScrim();
+        const target = drawer.querySelector('[data-drawer-close]') || drawer;
+        /* The drawer is still visibility:hidden at this point in the frame,
+           so focus has to wait for the style change to land. */
+        setTimeout(() => target.focus(), 30);
+      });
+    });
+
+    /* Prototype state switchers. A button carries `data-demo-variant="group:name"`;
+       every element with `data-variant-group="group"` shows only when its
+       `data-variant` matches. Used for error and empty states that would
+       otherwise need a second page per state. */
+    doc.querySelectorAll('[data-demo-variant]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const [group, name] = btn.getAttribute('data-demo-variant').split(':');
+        doc.querySelectorAll('[data-variant-group="' + group + '"]').forEach((el) => {
+          el.hidden = el.getAttribute('data-variant') !== name;
+        });
+        doc.querySelectorAll('[data-demo-variant^="' + group + ':"]').forEach((b) => {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+        doc.querySelectorAll('[data-hide-in]').forEach((el) => {
+          const [g, n] = el.getAttribute('data-hide-in').split(':');
+          el.hidden = g === group && n === name;
+        });
+      });
+    });
+
+    /* Mark-all-read. Read state is data, not decoration: the row keeps its
+       content, loses its weight, and the unread count goes to zero. */
+    doc.querySelectorAll('[data-notif-mark-all]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        doc.querySelectorAll('.notif__row[data-unread="true"]').forEach((r) => {
+          r.setAttribute('data-unread', 'false');
+        });
+        const c = doc.getElementById('notif-count');
+        if (c) c.textContent = NX.i18n.num(0);
+        NX.toast(NX.i18n.t('toast.read'), 'ok');
+      });
+    });
 
     const scrimEl = scrim();
     if (scrimEl) {
       scrimEl.addEventListener('click', () => {
         closeAll();
         closePalette();
-        doc.querySelectorAll('.drawer[data-open="true"]').forEach((d) =>
-          d.setAttribute('data-open', 'false')
-        );
+        closeDrawers();
         doc.querySelectorAll('.modal[data-open="true"]').forEach((m) =>
           m.setAttribute('data-open', 'false')
         );
@@ -302,9 +367,7 @@
       } else if (e.key === 'Escape') {
         closeAll();
         closePalette();
-        doc.querySelectorAll('.drawer[data-open="true"]').forEach((d) =>
-          d.setAttribute('data-open', 'false')
-        );
+        closeDrawers();
         doc.querySelectorAll('.modal[data-open="true"]').forEach((m) =>
           m.setAttribute('data-open', 'false')
         );
