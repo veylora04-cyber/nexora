@@ -8,6 +8,11 @@ Every verdict below is grounded in a specific clause of the specification. Where
 is silent, that is stated — silence is not permission, so a proposal resting on silence is marked as
 such and stays a proposal.
 
+**These verdicts are recommendations, not approvals.** A verdict of APPROVE means "this reviewer
+recommends adopting it"; the entry in `design-decisions.md` remains `PROPOSED` until the product owner
+decides. The distinction is not pedantic: a document that reads as though a review approved something
+is how an unapproved decision gets implemented and later attributed to the wrong person.
+
 **Verdict vocabulary**
 
 | Verdict | Meaning |

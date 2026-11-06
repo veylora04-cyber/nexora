@@ -1,5 +1,15 @@
 # NEXORA — Design decisions
 
+**Decision status vocabulary.** Every entry carries exactly one of four states. There is no fifth, and
+"reviewed" is not one of them.
+
+| Status | Meaning | Who can change it |
+|---|---|---|
+| `APPROVED` | Stated in the Master Specification, or explicitly approved by the product owner. | Only the product owner, by changing the specification |
+| `PROPOSED` | Designed here, awaiting a decision. The review may recommend approve or modify — a recommendation is not an approval. | The product owner |
+| `REQUIRES_USER_DECISION` | Cannot be settled by design: needs product, commercial or legal input | The product owner / legal |
+| `REJECTED` | Considered and refused. Kept in the record so it is not re-proposed. | The product owner |
+
 Three buckets, kept strictly separate:
 
 - **A — Approved in the specification.** Treated as requirements. Not up for re-litigation.
@@ -33,15 +43,18 @@ Each entry records the decision, the reason, and what would have to change if it
 
 ---
 
-## B · Proposed by this design work — reviewed
+## B · Proposed by this design work — `PROPOSED`
 
-Each entry carries its verdict from [`decision-review.md`](decision-review.md). Implemented in the
-prototype and labelled as a proposal in the UI until approved. Nothing here was silently promoted to a
-requirement — the one entry that looked like a proposal but was already a requirement (D-07) was moved
-to bucket A explicitly, not quietly upgraded.
+Each entry carries its status and the review's recommendation. **A recommendation is not an approval:**
+every entry in this bucket is `PROPOSED` until the product owner says otherwise, including the six the
+review recommends approving. Nothing here has been promoted to a requirement — the one entry that
+looked like a proposal but was already a requirement (D-07) was moved to bucket A explicitly, not
+quietly upgraded.
 
 
 ### D-01 · Signal saffron as a reserved colour — **APPROVE**
+
+**Status:** `PROPOSED` — review recommends APPROVE.
 
 **Decision.** Amber (`--nx-signal-fill`) is used *only* for AI activity, live state, and things
 awaiting a human decision. It is never a decorative or "premium" accent.
@@ -62,6 +75,8 @@ and "the AI is waiting for you", and only the second meaning has to survive.
 
 ### D-02 · Turquoise as the authority colour — **APPROVE**
 
+**Status:** `PROPOSED` — review recommends APPROVE.
+
 **Decision.** Primary is a deep teal in light (`#0b6b62`) and a bright turquoise in dark
 (`#3fc2b0`), with cool green-biased neutrals throughout.
 
@@ -77,6 +92,8 @@ palette makes it non-optional rather than merely advisable.
 ---
 
 ### D-03 · Instrument Sans + Vazirmatn, self-hosted — **APPROVE**
+
+**Status:** `PROPOSED` — review recommends APPROVE.
 
 **Decision.** Two OFL variable fonts, subset to `woff2`, served locally (148 KB total).
 
@@ -95,6 +112,8 @@ licence text to ship, so the notices belong in the repo and in the about screen.
 ---
 
 ### D-04 · Dashboard = composed default layout now, widget grid in Phase 02 — **MODIFY** *(was: "not a widget grid")*
+
+**Status:** `PROPOSED` — review recommends MODIFY — the widget grid is a deferred requirement, not a rejected one.
 
 **Reviewed.** The original text rejected the widget grid. That was wrong: §14.5 requires it —
 *"Dashboard: widgets can be added, removed and reordered; layout settings are stored per user and per
@@ -127,6 +146,8 @@ ships without it, and the product fails §14.5 without anyone having decided to.
 
 ### D-05 · Sidebar customisation — **APPROVE**
 
+**Status:** `PROPOSED` — review recommends APPROVE.
+
 **Decision.** The rail is fixed: three labelled groups, fixed order. Users can collapse it, but not
 reorder or hide items.
 
@@ -147,6 +168,8 @@ dashboard cannot be hidden.
 ---
 
 ### D-06 · Roles & permissions matrix — **MODIFY**
+
+**Status:** `PROPOSED` — review recommends MODIFY — provenance corrected, one cell fixed.
 
 **Decision.** Six roles × seven capabilities, rendered as an explicit grid carrying the
 specification's own value labels (`محدود`, `مشاهده ممیزی`, `طبق Delegation`, `فقط شخصی`,
@@ -182,6 +205,8 @@ nothing about it. Not a cell change, but the one clause of §17.2 with no visual
 
 ### D-07 · Fail-closed as the default behaviour for Personal AI — **APPROVE, moved to bucket A**
 
+**Status:** `APPROVED` — the behaviour is §18.1; only the UI treatment is proposed, and the review recommends APPROVE.
+
 **This is not a proposal.** §18.1 states it: *"On Personal AI disconnection the default is Fail
 Closed; return to Central only if the user has previously authorised it and the workspace policy
 permits."* It is now **A-09** in the approved table. Only the UI treatment stays proposed here, and
@@ -204,6 +229,8 @@ used, nothing is sent to the platform provider. Vague reassurance here is worse 
 ---
 
 ### D-08 · AI usage shown as cost, not tokens — **MODIFY**
+
+**Status:** `PROPOSED` — review recommends MODIFY — estimated cost for Personal AI.
 
 **Decision.** Cost leads for **Central AI**, labelled as metered: `$36.40 of the $50 monthly cap`,
 tokens as secondary detail. For **Personal AI**, cost is labelled **estimated** and shown alongside
@@ -228,6 +255,8 @@ pricing.
 ---
 
 ### D-09 · Saffron "Pending approval" as the only interruption pattern — **MODIFY**
+
+**Status:** `PROPOSED` — review recommends MODIFY — card plus durable queue.
 
 **Decision.** No modals, no toasts for approval requests. A persistent card in the task list and in
 the AI thread that stays until it is answered — **plus** a durable approvals queue reachable from the
@@ -261,6 +290,8 @@ surfaces, one model.
 
 ### D-10 · English-only, LTR-locked component reference — **APPROVE**
 
+**Status:** `PROPOSED` — review recommends APPROVE.
+
 **Decision.** `components/components.html` is pinned to `dir="ltr"` via `data-dir-lock`, regardless
 of the UI language.
 
@@ -277,7 +308,10 @@ mirrored specimen here and not find one. The reference says so at the top.
 
 ---
 
-## C · Open / market-dependent
+## C · Open / market-dependent — `REQUIRES_USER_DECISION`
+
+None of these can be settled by design. They are recorded so that no screen silently assumes an
+answer.
 
 | # | Question | Why it is open | What would settle it |
 |---|---|---|---|
@@ -292,7 +326,10 @@ mirrored specimen here and not find one. The reference says so at the top.
 
 ---
 
-## D · Things this design work changed in the source material
+## D · Things this design work changed in the source material — `PROPOSED`
+
+These are judgement calls made without asking. Each is a proposal in its own right, and each is
+`PROPOSED` until the product owner confirms it.
 
 Recorded for transparency — none of these contradict an approved decision, but all are judgement
 calls made without asking:

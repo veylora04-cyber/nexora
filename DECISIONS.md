@@ -2,11 +2,14 @@
 
 A running log. Each entry is dated by phase, not by day, because the work is delivered in stages.
 
-Legend: **[A]** approved in the specification · **[P]** proposed by design, awaiting approval ·
-**[M]** approved after modification · **[O]** open · **[X]** rejected
+Legend: **[A]** `APPROVED` · **[P]** `PROPOSED` · **[O]** `REQUIRES_USER_DECISION` · **[X]** `REJECTED`
 
-Verdicts for the ten design proposals come from `docs/design/decision-review.md`; the specification
-clause that grounds each one is cited there.
+**A review verdict is not an approval.** `docs/design/decision-review.md` recommends approve or modify
+for each proposal; the recommendation changes the *recommended* shape of a decision, never its status.
+An entry marked **[P]** stays proposed until the product owner says otherwise, however strongly the
+review recommends it.
+
+The specification clause grounding each verdict is cited in the review.
 
 ---
 
@@ -31,20 +34,20 @@ choices.
 **[A] D-005 — AI acts only with human approval.**
 Every tool call renders an approval card. Nothing is dispatched before the user confirms.
 
-**[M] D-006 — Reserved signal colour.**
+**[P] D-006 — Reserved signal colour.**
 Saffron (`#e9a13b` / `#f0b45c`) is used exclusively for AI activity, live state and pending
 approvals. It is never decorative. *Review added a hand-off condition: the prototype's own `Proposal`
 badges must be deleted, not restyled, or amber ends up meaning two things.* See §D-01.
 
-**[M] D-007 — Turquoise authority colour with cool neutrals.**
+**[P] D-007 — Turquoise authority colour with cool neutrals.**
 Deliberately outside the purple/blue AI-category palette. *Review added: primary and success share a
 hue family, so success can never be colour-only.* See §D-02.
 
-**[M] D-008 — Instrument Sans + Vazirmatn, self-hosted.**
+**[P] D-008 — Instrument Sans + Vazirmatn, self-hosted.**
 Both OFL, subset to woff2, 148 KB total, no CDN. *Review added two conditions: a reproducible
 subsetting script, and OFL notices shipped in the repo and the about screen.* See §D-03.
 
-**[M] D-009 — Dashboard ships as a composed layout; the widget grid is deferred, not rejected.**
+**[P] D-009 — Dashboard ships as a composed layout; the widget grid is deferred, not rejected.**
 The original entry said the grid was rejected. It is not: §14.5 requires add/remove/reorder with
 per-user-and-workspace layout and permission-filtered widgets. It is a Phase 02 deliverable, and the
 Phase 01 layout must be grid-ready (stable block keys, `(user_id, workspace_id)` as the persistence
@@ -55,7 +58,7 @@ Collapsible, but items cannot be hidden or reordered. §14.5 requires only a col
 customisable one lives in §3.3, which is explicitly unapproved. See §D-05, and C-08 for the open
 question.
 
-**[M] D-011 — Roles rendered as an explicit capability matrix.**
+**[P] D-011 — Roles rendered as an explicit capability matrix.**
 Six roles × seven capabilities, carrying §17.3's own value labels and its two footnotes. *Review
 corrected the framing: the roles and cells are spec-stated (§17.2, §17.3) — only the rendering is
 proposed. One cell (Member × invite) read as a grant where §17.3 says default-deny; corrected to
@@ -65,7 +68,7 @@ proposed. One cell (Member × invite) read as a grant where §17.3 says default-
 No silent fallback to Central AI. Opt-in, off by default, explained in place. *Promoted from proposal
 to approved: §18.1 states it outright. Only the UI treatment was ever a proposal.* See A-09, §D-07.
 
-**[M] D-013 — Usage is shown as cost, not tokens.**
+**[P] D-013 — Usage is shown as cost, not tokens.**
 Currency leads; tokens are secondary. *Review narrowed it: cost-first is metered and authoritative for
 Central AI, but must be labelled **estimated** for Personal AI, where the platform cannot know the
 user's real provider bill. The hard limit is shown explicitly, not inferred from a progress bar.*
@@ -96,25 +99,25 @@ a rule that dashboard cannot be hidden. See C-08.
 
 ## Phase 01 closure
 
-**[A] D-020 — The four open UX questions are decided.**
+**[P] D-020 — The four open UX questions are answered, pending sign-off.**
 Rail: no auto-collapse between 900–1200px, drawer below 900px. AI composer: dashboard and AI
 workspace only, elsewhere a jump-with-context. Onboarding: midway skip allowed, draft kept, nothing
 created. Scope switcher: two-level, with the organisation as a destination. Reasoning in
 `decision-review.md` §3, resolution in `ux-architecture.md` §10.
 
-**[A] D-021 — Responsive behaviour is three behaviours, not one breakpoint.**
+**[P] D-021 — Responsive behaviour is three behaviours, not one breakpoint.**
 Expanded rail ≥1200px; collapsed-but-expandable 900–1200px; drawer below 900px. Automatic collapse in
 the middle band was rejected because it fights the user and teaches them to leave the rail collapsed.
 
-**[A] D-022 — Below 1240px the AI context inspector and below 900px the session list become drawers.**
+**[P] D-022 — Below 1240px the AI context inspector and below 900px the session list become drawers.**
 No content is dropped at any width; the columns become slide-overs with their content intact.
 
-**[A] D-023 — AI failure states are first-class screens, not error strings.**
+**[P] D-023 — AI failure states are first-class screens, not error strings.**
 Rate limit, timeout, partial failure and provider disconnection each get a state card with what
 happened, what it means, and the one action available. A provider failure that cannot be explained is
 a support ticket.
 
-**[M] D-024 — Approvals use a persistent card, plus a durable queue.**
+**[P] D-024 — Approvals use a persistent card, plus a durable queue.**
 The card stays as the presentation — an approval that can be dismissed accidentally is not a gate —
 but it needs a queue reachable from the rail and the notification drawer, the §18.4 binding facts on
 the card (approver identity, workflow version, argument hash, execution window), and an expiry after

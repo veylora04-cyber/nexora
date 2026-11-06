@@ -222,10 +222,11 @@ column. If a control does not clearly belong to one of those three, it is in the
 
 ---
 
-## 10. Open UX questions — answered
+## 10. Open UX questions — answered, `PROPOSED`
 
-These four were open through Phase 01 and are now decided. The full reasoning is in
-[`decision-review.md`](decision-review.md) §3; this is the resolution.
+These four were open through Phase 01 and now have a recommended answer. **`PROPOSED`, not
+`APPROVED`:** the recommendation is design's, and the product owner has not signed it off. The full
+reasoning is in [`decision-review.md`](decision-review.md) §3; this is the resolution as designed.
 
 **1 · Rail collapse.** Not a single breakpoint, two behaviours. Expanded and user-collapsible at
 ≥ 1200px; collapsed by default but user-expandable between 900px and 1200px; replaced by a drawer
