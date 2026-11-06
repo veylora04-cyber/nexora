@@ -1,12 +1,13 @@
 # ACCEPTANCE REPORT — Phase 01 refinement, architecture corrections, UI/UX upgrade
 
 **Branch:** `phase-01-closure-phase-02-architecture`
-**HEAD when the work was finished:** `3ed84ddb13fa35d72a85cde7596a17ccdb9479cc`, plus the commit that
-adds this report — `git log -1` on the branch is the authoritative SHA.
+**Branch tip:** `git log -1` on the branch. The table in §1 lists every commit that is not on
+`origin`, so a stale SHA in this file cannot mislead.
 **Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — **not modified, not merged**
-**Remote:** the branch is **9 commits ahead of `origin/phase-01-closure-phase-02-architecture`
-and not pushed.** Push failed with `could not read Username for 'https://github.com'`; no
-credential is available in this environment. Nothing was force-pushed and no history was rewritten.
+**Remote:** the branch has **unpushed commits** on top of
+`origin/phase-01-closure-phase-02-architecture` (`e8cfcfa`). Push failed with
+`could not read Username for 'https://github.com'`; no credential is available in this environment.
+Nothing was force-pushed and no history was rewritten.
 
 ---
 
