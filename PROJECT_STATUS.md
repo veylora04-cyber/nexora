@@ -1,11 +1,15 @@
 # PROJECT_STATUS
 
+> **This file is the single authoritative status document.** Where any other document — README,
+> DESIGN_PROGRESS, NEXT_STEPS, ACCEPTANCE_REPORT — disagrees with this one about *what is done*,
+> *what is approved* or *where the repository stands*, this file wins and the other is the bug.
+
 **Project:** NEXORA — modular, multi-level AI work platform
-**Phase:** 01 (design foundation) — closed · Phase 02 (architecture) — proposal ready
-**Branch:** `phase-01-closure-phase-02-architecture`
-**Repository:** `https://github.com/veylora04-cyber/nexora` (private)
-**Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c`
-**Last updated:** Phase 01 closure
+**Phase:** 01 (design foundation) — closed · 02 (architecture) — proposal ready · 03 (implementation) — not started
+**Repository:** `https://github.com/veylora04-cyber/nexora` — public
+**`main`:** `b8c80bc` — merge commit of PR #2 (`phase-01-closure-phase-02-architecture` → `main`)
+**Working branch:** `refinement/final-polish-readiness`, branched from `main` @ `b8c80bc`
+**Last updated:** final polish and pre-implementation readiness pass
 
 ---
 
@@ -20,7 +24,7 @@
 | App shell | ✅ Complete | Rail, topbar, scope switcher, drawer, palette |
 | Screens | ✅ Complete | 7 pages / 35+ inspectable states |
 | RTL / LTR | ✅ Complete | Logical properties throughout, verified both ways |
-| Responsive | ✅ Complete | 390 / 768 / 834 / 1024 / 1440 verified, 0 overflow |
+| Responsive | ✅ Complete | 360 / 390 / 768 / 1024 / 1280 / 1440 / 1920 verified, 0 overflow |
 | Accessibility | ✅ Passed | Contrast AA, names, focus, targets, reduced motion |
 | Design decisions | ✅ Reviewed, none approved | 10 proposals: review recommends 6 approve, 4 modify, 0 reject. All 10 remain `PROPOSED` (`docs/design/decision-review.md`) |
 | Phase 02 architecture | ✅ Proposal | `docs/architecture/phase-02-architecture.md` — 24 sections, 29 decisions, 12 diagrams |
@@ -40,7 +44,7 @@
 | 1 | AI context inspector vanished below 1240px | Becomes a slide-over drawer (`#ctx-drawer`) triggered from the thread header. Focus lands on the close button; Esc and scrim both dismiss. |
 | 2 | AI session list vanished below 900px | Becomes a drawer (`#sessions-drawer`) with search, today/week grouping and a "new conversation" footer. The model chip hides below 900px because the thread header has no room for both. |
 | 3 | Composer grew without limit | `max-height: 168px` with internal scrolling. |
-| 4 | Missing AI failure states | Nine rendered states — rate limit, timeout, partial failure, invalid credential, quota exhausted, tool execution failed, context overflow, empty, normal — switched by a state strip inside the thread. |
+| 4 | Missing AI failure states | Ten rendered states — rate limit, timeout, partial failure, invalid credential, quota exhausted, tool execution failed, context overflow, streaming, empty, normal — switched by a state strip above the thread. |
 | 5 | Missing empty states | Dashboard with zero tasks, workspace with zero members, AI with zero sessions. |
 | 6 | Smart Start steps 2–4 undesigned | All four steps now full, inspectable screens: invite (email, default role, link policy, guest approval), AI setup (Central vs Personal, model, cap, retention, fail-closed), review (editable summary, three consents, what happens after creation). |
 | 7 | Notification drawer had no rules | Grouped by Today / Earlier, per-row read/unread state, unread count, mark-all-as-read. |
@@ -52,7 +56,7 @@ visual language are unchanged; the additions use existing primitives (`.state-ca
 ### Phase 02 architecture
 
 `docs/architecture/phase-02-architecture.md` covers the seventeen areas the brief requires, as
-twenty-three numbered decisions (`D-ARCH-01`…`D-ARCH-23`). Each records the recommended approach, the
+twenty-nine numbered decisions (`D-ARCH-01`…`D-ARCH-29`). Each records the recommended approach, the
 reasoning, the alternatives, and the security, scalability and complexity implications. Every claim is
 tagged **[S]** spec-stated, **[D]** decided here, or **[P]** parameter still to be set — so a reader can
 see which parts are requirements and which are proposals.
@@ -111,6 +115,18 @@ Every claim above was measured in a browser, not read from source.
 | Accessibility | Accessible names, focus visibility, tab order, and that the closed mobile rail cannot receive focus | 0 unnamed controls, 0 missing focus rings, 0 focus leaks |
 | Layout defects | Element geometry for the AI thread, approval card and composer at 390/768/1440 | Approval card holds six facts at 318px wide with no clipping; composer bottom meets the prototype bar exactly |
 
+### Final polish — the decision off-screen, and the missing streaming state
+
+| Screen | Before | After |
+|---|---|---|
+| AI workspace | Opened at scroll position 0, so the approval card — the only thing blocked on a human — began below the fold at 1440 and was 634 px tall inside a 438 px thread at 390 | Opens at its newest content; the card is aligned below the state strip when it fits and at its own top when it does not. At 390 the six facts are label/value rows, so the card is 444 px |
+| AI states | Nine; none of them was "the answer is arriving" | Ten. Streaming shows a caret at the insertion point, a "Writing…" row with a stop control, and the composer's send becomes stop. Both animations are suppressed under reduced motion |
+| State strip | `position: sticky` inside the scroll container, so it covered the first 72 px of whatever scrolled under it; two rows at 1280, three at 390 | Moved out of the scroll container; one scrollable row below 1400 px (107 px → 39 px at 1280) |
+| Dashboard | The date sat on its own row above the greeting | Merged into the subtitle line, where it reads as part of the sentence |
+
+No token, component, colour or type change was made. Evidence and the full measurement record are in
+`docs/qa/VISUAL_QA.md`; the readiness review is `docs/architecture/implementation-roadmap.md`.
+
 ---
 
 ```
@@ -124,14 +140,16 @@ design-preview/             static, dependency-free prototype
 docs/design/                brand-direction · design-system · ux-architecture
                             design-decisions · decision-review
 docs/architecture/          phase-02-architecture · security-traceability
-                            error-taxonomy
+                            error-taxonomy · implementation-roadmap
+docs/qa/                    VISUAL_QA · FINAL_REPORT
 docs/evidence/              before/after pairs and AI state captures (13 PNGs)
+docs/evidence/v2/           this pass: 14 captures, 1440 and 390, fa/en, light/dark
 PROJECT_STATUS.md  DECISIONS.md  DESIGN_PROGRESS.md  NEXT_STEPS.md  README.md
 ACCEPTANCE_REPORT.md
 NEXORA_Master_Product_Technical_Specification (1).md
 ```
 
-54 tracked files — 41 source and document files plus 13 evidence captures. No build step, no package
+71 tracked files — 44 source and document files plus 27 evidence captures. No build step, no package
 manager, no external network request at runtime.
 
 ---
