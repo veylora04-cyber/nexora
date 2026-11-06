@@ -178,7 +178,7 @@ All checks run against `python3 -m http.server 8080` with the browser cache disa
 | Accessible names | Every `a[href]`, `button`, `input`, `select`, `textarea`, `[tabindex]` | **0 unnamed** |
 | Focus visibility | Real keyboard tabbing through the reference page | **Every stop has a visible ring** (only `body` wrap-around does not) |
 | Mobile rail focus | 24 × `Tab` at 390px | **0 stops inside the closed rail** |
-| Drawer focus | Open each drawer, read `document.activeElement` | Lands on the close button at 390px and 1200px |
+| Drawer focus | Open each drawer, read `document.activeElement`, then dismiss by Escape and by the close button | Lands on the close button; returns to the trigger that opened it, at 390px and 1200px |
 | Fonts | `document.fonts.check()` for both families | **true / true** |
 | Tables | Wide tables at 390px | Scroll inside `.table-scroll`; page width unchanged |
 
