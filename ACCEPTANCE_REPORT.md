@@ -1,8 +1,8 @@
 # ACCEPTANCE REPORT — Phase 01 refinement, architecture corrections, UI/UX upgrade
 
 **Branch:** `phase-01-closure-phase-02-architecture`
-**Branch tip:** `git log -1` on the branch. The table in §1 lists every commit that is not on
-`origin`, so a stale SHA in this file cannot mislead.
+**Branch tip:** `git log -1` on the branch. The table in §1 lists the commits that carry work; small
+documentation corrections that follow them are visible in `git log`.
 **Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — **not modified, not merged**
 **Remote:** the branch has **unpushed commits** on top of
 `origin/phase-01-closure-phase-02-architecture` (`e8cfcfa`). Push failed with
@@ -27,6 +27,8 @@ Nothing was force-pushed and no history was rewritten.
 | `7fb2681` | fix(a11y): return focus to the drawer trigger on close |
 | `a16a809` | docs: acceptance report and before/after evidence |
 | `3ed84dd` | docs: the tree listing now shows the evidence directory and the report |
+| `823fd1c` | docs: pin the report to the commit it describes |
+| `f1b12ed` | docs: make the report's git facts drift-proof |
 
 ---
 
