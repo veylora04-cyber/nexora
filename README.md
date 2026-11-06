@@ -40,7 +40,7 @@ jumps between screens. All three axes are live, not screenshots.
 ```
 design-preview/
   assets/
-    tokens.css       182 semantic tokens — the single source of truth
+    tokens.css       122 named semantic tokens (188 declarations) — the single source of truth
     base.css         reset, focus, type scale, app frame
     components.css   40+ components, every interaction state
     layouts.css      screen composition only
@@ -56,7 +56,7 @@ docs/design/
   brand-direction.md  identity, palette, type, motion, voice
   design-system.md    tokens, components, states, contribution rules
   ux-architecture.md  information architecture, flows, screen specs
-  design-decisions.md approved / proposed / unresolved
+  design-decisions.md every decision with one of four statuses
   decision-review.md  all ten proposals reviewed against the specification
 docs/architecture/
   phase-02-architecture.md  technical architecture proposal, 29 decisions, 12 diagrams
@@ -86,8 +86,8 @@ Measured, not asserted. Scripts ran against the served prototype in Chromium.
 
 | Check | Result |
 |---|---|
-| Horizontal overflow | 7 pages × 5 widths (390–1440) × 2 languages = 70 combinations, **0 overflow** |
-| Contrast | 7 pages × 2 themes, plus the five AI failure states in both themes, **all pass WCAG AA** |
+| Horizontal overflow | 7 pages × 7 widths (360–1920) × 4 language/theme combinations = 196 loads, **0 overflow** |
+| Contrast | 7 pages × 2 themes, plus all nine AI states in both themes, **all pass WCAG AA** |
 | Accessible names | **0 missing** on interactive elements |
 | Focus rings | Full keyboard traversal, **every stop has a visible ring** |
 | Closed mobile drawer | **0 focus landings** (visibility gated, not just translated) |
@@ -98,12 +98,14 @@ Measured, not asserted. Scripts ran against the served prototype in Chromium.
 ## Status
 
 Phase 01 is **closed** and Phase 02 has an **architecture proposal**. Ten design proposals were
-reviewed against the master specification: six approved, four modified, none rejected — see
-[`docs/design/decision-review.md`](docs/design/decision-review.md). Six questions still need product
-or legal answers. No application development starts until the design and the architecture are
-approved.
+reviewed against the master specification: the review *recommends* six approve and four modify, none
+reject — a recommendation is not an approval, so all ten remain `PROPOSED`. Six questions still need
+product or legal answers. No application development starts until the design and the architecture are
+approved. **[`PROJECT_STATUS.md`](PROJECT_STATUS.md) is the authoritative status document**; this
+section summarises it.
 
 ## Branch
 
-Work lives on `phase-01-closure-phase-02-architecture`, branched from `main` at `056d0a8`. `main` is
-untouched; nothing is pushed to it directly.
+`main` is at `b8c80bc`, the merge commit of PR #2 — the Phase 01 closure and Phase 02 architecture work
+is merged, not pending. Current work happens on `refinement/final-polish-readiness`, branched from that
+merge commit. Nothing is pushed to `main` directly; changes arrive through a pull request.

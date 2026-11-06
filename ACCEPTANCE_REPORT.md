@@ -1,13 +1,19 @@
 # ACCEPTANCE REPORT — Phase 01 refinement, architecture corrections, UI/UX upgrade
 
+> **Status of this document: historical record, superseded.** It describes the phase that produced
+> PR #2. That PR was **merged into `main` at `b8c80bc`**, so the statements below about `main` being
+> untouched were true when written and are no longer current. For the present state of the project,
+> read **[`PROJECT_STATUS.md`](PROJECT_STATUS.md)**; the report for the current pass is
+> [`docs/qa/FINAL_REPORT.md`](docs/qa/FINAL_REPORT.md).
+
 **Branch:** `phase-01-closure-phase-02-architecture`
 **Branch tip:** `git log -1` on the branch. The table in §1 lists the commits that carry work; small
 documentation corrections that follow them are visible in `git log`.
-**Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — **not modified, not merged**
-**Remote:** **pushed.** `origin/phase-01-closure-phase-02-architecture` moved `e8cfcfa..8e29275`
-as a fast-forward, and the remote tip was read back through the GitHub API to confirm it matches the
-local HEAD. `origin/main` is still `056d0a8` — not modified, not merged. Nothing was force-pushed
-and no history was rewritten.
+**Base:** `main` @ `056d0a8c98f22f7e74b2203345939ea989f2eb0c` — the branch was cut from it and the
+work was later **merged back into `main` as PR #2**, merge commit `b8c80bc`.
+**Remote:** pushed, then merged. `origin/phase-01-closure-phase-02-architecture` moved
+`e8cfcfa..8e29275` as a fast-forward, and the remote tip was read back through the GitHub API to
+confirm it matched the local HEAD. Nothing was force-pushed and no history was rewritten.
 
 ---
 
@@ -276,8 +282,8 @@ than `APPROVED`.
 
 ## 9. Confirmation
 
-- `main` was **not** modified. `origin/main` is still `056d0a8`.
-- Nothing was merged into `main`.
+- `main` was **not** modified *during this phase*; it was still `056d0a8` at the time of writing.
+- Since then the branch was merged into `main` through **PR #2** (`b8c80bc`), by the product owner.
 - Nothing was force-pushed, and no commit on the branch was rewritten.
 - No secrets were committed.
 - No production backend, auth service, database migration or live AI integration was created.

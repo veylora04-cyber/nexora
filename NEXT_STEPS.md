@@ -67,7 +67,7 @@ Build order and dependency reasoning are in `phase-02-architecture.md` §21. The
 2. Tenant model, RLS policy generation, and the tenancy test suite — because every later feature is
    written on top of this, and retrofitting isolation is not a refactor.
 3. Identity (Keycloak) and the policy engine, with the role matrix as the seed data.
-4. AI Gateway and the provider adapter, with the fixed error taxonomy mapped onto the five failure
+4. AI Gateway and the provider adapter, with the fixed error taxonomy mapped onto the nine failure
    states that are already drawn.
 5. Approval gate and sandboxed tool execution.
 6. Metering ledger, then billing.
@@ -81,8 +81,10 @@ deferring is safe.
 
 ## 5 · Housekeeping
 
-- **Repository:** `https://github.com/veylora04-cyber/nexora` (private). This work is on
-  `phase-01-closure-phase-02-architecture`, branched from `main` at `056d0a8`. `main` is untouched.
+- **Repository:** `https://github.com/veylora04-cyber/nexora` (public). `main` is at `b8c80bc` — the
+  merge commit of PR #2, so the Phase 01 closure and Phase 02 architecture work is **merged**. Current
+  work is on `refinement/final-polish-readiness`, branched from that merge commit. Status authority:
+  `PROJECT_STATUS.md`.
 - **Branch policy:** never push to `main` without explicit permission. Open a pull request from the
   phase branch.
 - **Open question:** should `design-preview/` stay at the repo root, or move under `design/` to match
