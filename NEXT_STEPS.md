@@ -10,11 +10,11 @@ integration is built until the design foundation and the architecture are approv
 
 1. Open `design-preview/index.html` through a local server (see `PROJECT_STATUS.md`), walk the six
    screen cards, and toggle **theme** and **language** in the prototype bar on every page.
-2. Read **`docs/design/decision-review.md`** — it is the review artefact. Ten proposals, six approved,
-   four modified, none rejected, each with the specification clause that grounds it. The four UX
+2. Read **`docs/design/decision-review.md`** — it is the review artefact. Ten proposals, with the review recommending
+   six approvals and four modifications, none rejected, each with the specification clause that grounds it. The four UX
    questions that were open are answered in §3 of that document.
-3. Read **`docs/architecture/phase-02-architecture.md`** — twenty-three decisions across the seventeen
-   required areas. §20 lists what it deliberately does *not* decide; §21 gives the build order.
+3. Read **`docs/architecture/phase-02-architecture.md`** — twenty-nine decisions across the seventeen
+   required areas, plus `security-traceability.md` (18 domains) and `error-taxonomy.md` (8 error classes). §20 lists what it deliberately does *not* decide; §21 gives the build order.
 4. Answer the six questions in `design-decisions.md` §C. They are product and legal questions, not
    design ones, and three of them block work that is otherwise ready.
 

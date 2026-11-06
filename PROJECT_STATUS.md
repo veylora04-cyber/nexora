@@ -22,8 +22,10 @@
 | RTL / LTR | ✅ Complete | Logical properties throughout, verified both ways |
 | Responsive | ✅ Complete | 390 / 768 / 834 / 1024 / 1440 verified, 0 overflow |
 | Accessibility | ✅ Passed | Contrast AA, names, focus, targets, reduced motion |
-| Design decisions | ✅ Reviewed | 10 proposals → 6 approved, 4 modified, 0 rejected (`docs/design/decision-review.md`) |
-| Phase 02 architecture | ✅ Proposal | `docs/architecture/phase-02-architecture.md` — 22 sections, 23 decisions |
+| Design decisions | ✅ Reviewed, none approved | 10 proposals: review recommends 6 approve, 4 modify, 0 reject. All 10 remain `PROPOSED` (`docs/design/decision-review.md`) |
+| Phase 02 architecture | ✅ Proposal | `docs/architecture/phase-02-architecture.md` — 24 sections, 29 decisions, 8 diagrams |
+| Security traceability | ✅ Proposal | `docs/architecture/security-traceability.md` — 18 domains with control, phase, test, scope |
+| Error taxonomy | ✅ Proposal | `docs/architecture/error-taxonomy.md` — 8 classes mapped to UI surfaces |
 | Application code | ⛔ Not started | Deliberately blocked until design + architecture are approved |
 | Backend / auth / AI providers | ⛔ Not started | Same |
 
